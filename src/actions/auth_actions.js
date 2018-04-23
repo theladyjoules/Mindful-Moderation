@@ -1,9 +1,14 @@
-import { browserHistory } from 'react-router';
 import { AUTH_USER,  
          UNAUTH_USER,
          AUTH_ERROR,
-         GET_ACCOUNT_DATA } from '../actions/types';
-import {setCookie, getCookie, deleteCookie} from '../utilities/cookies';
+         GET_ACCOUNT_DATA,
+         TOGGLE_UPDATE_USER_VIEW,
+         UPDATE_USER_ERROR,
+         UPDATE_USER,
+         TOGGLE_UPDATE_PASSWORD_VIEW,
+         UPDATE_PASSWORD_ERROR,
+         UPDATE_PASSWORD } from '../actions/types';
+import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 
 const API_URL = 'http://localhost:3001/api';
 
@@ -78,7 +83,6 @@ export function registerUser({ email, firstName, lastName, password }) {
       window.location.href = '/';
     })
     .catch((error) => {
-      console.log(error)
       errorHandler(dispatch, error.response, AUTH_ERROR)
     });
   }
@@ -103,6 +107,89 @@ export function getAccountData() {
         type: GET_ACCOUNT_DATA,
         payload: data
       });
+    })
+    .catch((error) => {
+      errorHandler(dispatch, error.response, AUTH_ERROR)
+    });
+  }
+}
+
+export function toggleUpdateUserView() {
+  return function (dispatch) {
+    dispatch({ type: TOGGLE_UPDATE_USER_VIEW });
+  }
+}
+
+export function updateUser({email, firstName, lastName}) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({ email, firstName, lastName }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': getCookie('token')
+    },
+  };
+
+  return function(dispatch) {
+    fetch(`${API_URL}/update_user`, options)
+    .then(function(response) { return response.json(); })
+    .then(function(data){
+      if('success' in data){
+        dispatch({ 
+          type: UPDATE_USER,
+          payload: data
+        });
+      }
+      else{
+        dispatch({ 
+          type: UPDATE_USER_ERROR,
+          payload: data.error
+        });
+      }
+    })
+    .catch((error) => {
+      errorHandler(dispatch, error.response, AUTH_ERROR)
+    });
+  }
+}
+
+export function toggleUpdatePasswordView() {
+  return function (dispatch) {
+    dispatch({ type: TOGGLE_UPDATE_PASSWORD_VIEW });
+  }
+}
+
+export function updatePassword({currentPassword, password}) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({currentPassword, password}),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': getCookie('token')
+    },
+  };
+
+  return function(dispatch) {
+    fetch(`${API_URL}/update_password`, options)
+    .then(function(response) { return response.json(); })
+    .then(function(data){
+      if('success' in data){
+        dispatch({ 
+          type: UPDATE_PASSWORD,
+          payload: data
+        });
+      }
+      else{
+        console.log('error')
+        dispatch({ 
+          type: UPDATE_PASSWORD_ERROR,
+          payload: data.error
+        });
+      }
     })
     .catch((error) => {
       errorHandler(dispatch, error.response, AUTH_ERROR)

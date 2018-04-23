@@ -1,0 +1,15 @@
+/***** MIXINS *****/
+@mixin font-size($sizeValue: 12 ){
+  font-size: $sizeValue + px;
+  font-size: (0.0625 * $sizeValue) + rem;
+}
+
+@mixin line-height($heightValue: 20 ){
+  line-height: $heightValue + px;
+  line-height: (0.0625 * $heightValue) + rem;
+}
+
+/***** FUNCTIONS *****/
+@function calc-percent($target, $container) {
+  @return ($target / $container) * 100%;
+}

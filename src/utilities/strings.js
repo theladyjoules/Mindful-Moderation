@@ -32,7 +32,7 @@ function strings(s){
         string = 'This field is required.';
         break;
     case 'password':
-        string = 'Requires: 8 characters, 1 uppercase, 1 lowercase, and 1 number.';
+        string = 'Passwords must be at least 8 characters in length.';
         break;
     case 'passwordConfirm':
         string = 'Passwords must match.';

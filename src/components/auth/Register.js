@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { strings } from '../../utilities/strings';
 import { isInvalidEmail, isInvalidPassword, isInvalidRequiredField, renderField } from '../../utilities/forms';
-import { registerUser } from '../../actions';
+import { registerUser } from '../../actions/auth_actions';
 
 class Register extends Component {  
   handleFormSubmit(formProps) {

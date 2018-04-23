@@ -8,8 +8,8 @@ import Footer from './global/Footer'
 import NotFound404 from './global/NotFound404'
 import RequireAuth from './auth/Require-Auth';
 
-import '../styles/vendor/bootstrap.min.css';
 import '../styles/global/styles.css';
+import '../styles/vendor/react-md.indigo-pink.min.css';
 
 const Home = Loadable({
   loader: () => import('./home/Home'),
@@ -27,7 +27,7 @@ const Login = Loadable({
 });
 
 const Account = Loadable({
-  loader: () => import('./auth/Account'),
+  loader: () => import('./auth/AccountMain'),
   loading: Loader,
 });
 

@@ -1,147 +1,160 @@
-import React from 'react'
+import React, { Component } from 'react';  
+import { connect } from 'react-redux';  
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form'
-import Loader from '../global/Loader'
-import { isInvalidRequiredField, renderField } from '../../utilities/forms'
-import { strings } from '../../utilities/strings'
-import { setStatemealData } from '../../actions/index'
+import { Field, reduxForm } from 'redux-form';
+import $ from 'jquery';
+import moment from 'moment'
+import Loader from '../global/Loader';
+import { strings } from '../../utilities/strings';
+import { isInvalidRequiredField, renderTextField, renderDatePicker, renderTimePicker, renderSelectField, renderTextarea, RadioExample } from '../../utilities/forms';
+import { logMeal } from '../../actions/log_actions';
+import './styles/log.css';
 
-class LogMeal extends React.Component {
+class LogMeal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: false,
-      errorMessage:''
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.setErrorMessage = this.setErrorMessage.bind(this);
-  }
-
-  componentWillMount(){
-    document.body.classList.add('log');
-    // let advanceMessage = getUrlParameter('advancemessage');
-    // if(this.props.user.duplicateRegistrationAttempted && this.props.visitedPages[this.props.visitedPages.length - 2] === 'join/personalinformation'){
-    //   this.setErrorMessage(getMessage('emailAlreadyRegistered'));
-    // }
-    // if(advanceMessage){
-    //   this.setErrorMessage(getMessage(advanceMessage));
-    // }
+    this.handleDatePickerChange = this.handleDatePickerChange.bind(this);
   }
 
   componentDidMount(){
-    document.body.classList.add('auth');
+    $('.ion-clock.im-btn').trigger('click');
   }
 
-  componentWillUnmount() {
-    document.body.classList.remove('auth');
+  handleFormSubmit(formProps) {
+    this.props.logMeal(formProps);
   }
 
-  toggleLoader(){
-    this.setState({isLoading:!this.state.isLoading});
-  }
-
-  setErrorMessage(em){
-    this.setState({errorMessage: em});
-  }
-
-  handleSubmit(values){
-    this.toggleLoader();
-
-    this.props.setStateUserData({isAuthenticated:true});
-    // setAuthToken(values.email, values.password).then((data) => {
-    //   if(isAuthenticated()){
-    //     sessionStorage.setItem('username', values.email);
-    //     loginUser(values.email, values.password).then((data) => {
-    //       if(data.CustomerId){
-    //         this.toggleLoader();
-    //         sessionStorage.setItem('customerId', data.CustomerId);
-    //         this.props.setStateUserData({isAuthenticated:true});
-    //       }
-    //       else{
-    //         this.setErrorMessage(getMessage('login'));
-    //       }
-    //     });
-    //   }
-    //   else{
-    //     this.setErrorMessage(getMessage('login'));
-    //   }
-    // });
+  handleDatePickerChange(m){
+    this.setState({ m });
+    console.log(m)
   }
 
   render() {
-    let message = (this.state.errorMessage.length) ? (<div className="error-message-box">{this.state.errorMessage}</div>) : null;
+    const { handleSubmit } = this.props;
     return (
       <div>
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-              {message}
-              {this.isLoading ? (
-                <Loader />
-              ) : (
-                <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-                  <Field
-                    name="email"
-                    type="text"
-                    autoComplete="email"
-                    component={renderField}
-                    label="Email"
-                  />
-                  <Field
-                    name="password"
-                    type="password"
-                    autoComplete="password"
-                    component={renderField}
-                    label="Password"
-                  />
-                  <div className="input-sub-link">
-                    <Link to='/forgot-password'>Forgot Password?</Link>
-                  </div>
-                  <button type="submit" disabled={this.props.invalid || this.props.submitting} className="btn btn-amaranth">Submit</button>
-                  <div className="button-wrapper">
-                    <p>Not a member? <Link to='/sign-up'>Sign Up</Link></p>
-                  </div>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
+        <h1>Log Meal</h1>
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <Field
+            id="mealName"
+            name="mealName"
+            type="text"
+            label="Meal Name"
+            helpText="Ex: Lunch, Afternoon Snack"
+            component={renderTextField}
+            className="md-cell md-cell--12"
+          />
+          <Field
+            id="mealDate"
+            name="mealDate"
+            label="Meal Date"
+            maxDate={new Date()}
+            className=""
+            component={renderDatePicker}
+          />
+          <Field
+            id="mealStartTime"
+            name="mealStartTime"
+            label="Meal Start Time"
+            component={renderTimePicker}
+            floatingLabelText="Meal Start Time"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
+            type="text" 
+          />
+          <Field
+            id="mealDuration"
+            name="mealDuration"
+            type="text"
+            label="Meal Duration"
+            helpText="In Minutes"
+            component={renderTextField}
+            className="md-cell md-cell--12"
+          />
+          <Field
+            id="mealFoods"
+            name="mealFoods"
+            type="text"
+            label="Food Eaten"
+            helpText="Ex: apple, steak dinner"
+            component={renderTextarea}
+            className="md-cell md-cell--12"
+            rows={2}
+          />
+          <Field
+            id="mealHungerBefore"
+            name="mealHungerBefore"
+            label="Hunger Before"
+            type="radio"
+            component={RadioExample}
+            className="md-cell md-cell--12"
+          />
+          <Field
+            id="mealHungerAfter"
+            name="mealHungerAfter"
+            label="Hunger After"
+            type="radio"
+            component={RadioExample}
+            className="md-cell md-cell--12"
+          />
+          <Field
+            id="mealSetting"
+            name="mealSetting"
+            type="text"
+            label="Meal Setting"
+            helpText="Ex: park bench, dining room"
+            component={renderTextField}
+            className="md-cell md-cell--12"
+          />
+          /* Meal Moods Here */
+          <Field
+            id="mealNotes"
+            name="mealNotes"
+            type="text"
+            label="Notes"
+            component={renderTextarea}
+            className="md-cell md-cell--12"
+            rows={2}
+          />
+          
+          <button type="submit" className="btn btn-primary" disabled={this.props.invalid || this.props.submitting}>Log</button>
+          <Link to='/' className="btn">Cancel</Link>
+        </form>
       </div>
     );
   }
 }
 
-const MapStateToProps = dispatch => {
-  // return {
-  //   setStateUserData: data => dispatch(setStateUserData(data))
-  // };
-};
-
 const validate = values =>{
   const errors = {}
-  // if (isInvalidRequiredField(values, 'email')){
-  //   errors.email = getMessage('required')
+  // if (isInvalidRequiredField(values, 'firstName')){
+  //   errors.firstName = strings('required')
   // }
-  // if (isInvalidRequiredField(values, 'password')) {
-  //   errors.password = getMessage('required')
+  // if (isInvalidRequiredField(values, 'lastName')){
+  //   errors.lastName = strings('required')
+  // }
+  // if (isInvalidRequiredField(values, 'email')){
+  //   errors.email = strings('required')
+  // }
+  // if (isInvalidEmail(values, 'email')){
+  //   errors.email = strings('email')
   // }
   return errors
 }
 
-LogMeal = reduxForm({
-  // a unique name for the form
-  form: 'login',
-  validate,
+LogMeal = reduxForm({  
+  form: 'logMeal',
+  enableReinitialize: true,
+  validate
 })(LogMeal)
 
 LogMeal = connect(
   state => ({
-    initialValues: ('login' in state.form) ? state.form.login.values : {},
-    user: state.mainReducer.user,
-    visitedPages: state.mainReducer.visitedPages
+    initialValues: ('logMeal' in state.form) ? state.form.logMeal.values : {}
   }),
-  MapStateToProps
+  { logMeal }
 )(LogMeal)
 
 export default LogMeal

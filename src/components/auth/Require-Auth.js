@@ -1,4 +1,5 @@
 import React, { Component } from 'react';  
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 
 export default function(ComposedComponent) {  
@@ -6,13 +7,13 @@ export default function(ComposedComponent) {
 
     componentWillMount() {
       if(!this.props.authenticated) {
-        this.context.router.push('/login');
+        this.props.history.push('/login')
       }
     }
 
     componentWillUpdate(nextProps) {
       if(!nextProps.authenticated) {
-        this.context.router.push('/login');
+        this.props.history.push('/login')
       }
     }
 
@@ -25,5 +26,6 @@ export default function(ComposedComponent) {
     return { authenticated: state.auth.authenticated };
   }
 
-  return connect(mapStateToProps)(Authentication);
+  return connect(mapStateToProps)(withRouter(Authentication));
+
 }
