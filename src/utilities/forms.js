@@ -73,7 +73,7 @@ const renderSelectField = ({ input, menuItems, meta: { touched, error }, ...othe
   />
 );
 
-function renderDatePicker ({ id, label, placeholder, input, maxDate, minDate, className, type }) {
+function renderDatePicker ({ id, label, placeholder, input, maxDate, minDate, defaultValue, className, type }) {
   return (
     <DatePicker
       id={id}
@@ -82,6 +82,7 @@ function renderDatePicker ({ id, label, placeholder, input, maxDate, minDate, cl
       className="md-cell"
       maxDate={maxDate}
       minDate={minDate}
+      defaultValue={new Date()}
       {...input}
     />
   )
@@ -109,7 +110,7 @@ const renderRadioGroup = ({ id, input, label, defaultValue, meta: { touched, err
     name="radio-example"
     type="radio"
     label={label}
-    defaultValue="B"
+    defaultValue="5"
     controls={[{
       label: '1',
       value: '1',

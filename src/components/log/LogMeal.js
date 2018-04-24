@@ -21,8 +21,9 @@ class LogMeal extends Component {
     $('.ion-clock.im-btn').trigger('click');
   }
 
-  handleFormSubmit(formProps) {
-    this.props.logMeal(formProps);
+  handleFormSubmit(values) {
+    console.log(values)
+    // this.props.logMeal(formProps);
   }
 
   handleDatePickerChange(m){
@@ -36,7 +37,6 @@ class LogMeal extends Component {
       <div>
         <h1>Log Meal</h1>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <MoodField />
           <Field
             id="mealName"
             name="mealName"
@@ -53,10 +53,11 @@ class LogMeal extends Component {
             maxDate={new Date()}
             className=""
             component={renderDatePicker}
+            defaultValue={new Date()}
           />
           <Field
-            id="mealStartTime"
-            name="mealStartTime"
+            id="mealTime"
+            name="mealTime"
             label="Meal Start Time"
             component={renderTimePicker}
             floatingLabelText="Meal Start Time"
@@ -110,15 +111,7 @@ class LogMeal extends Component {
             component={renderTextField}
             className="md-cell md-cell--12"
           />
-          <Field
-            id="mealMoods"
-            name="mealMoods"
-            type="text"
-            label="Mood"
-            helpText="Ex: happy, stressed out"
-            component={renderTextField}
-            className="md-cell md-cell--12"
-          />          
+          <MoodField />   
           <Field
             id="mealNotes"
             name="mealNotes"
@@ -162,7 +155,7 @@ LogMeal = reduxForm({
 
 LogMeal = connect(
   state => ({
-    initialValues: ('logMeal' in state.form) ? state.form.logMeal.values : {}
+    initialValues: ('logMeal' in state.form) ? state.form.logMeal.values : {mealDate: moment().format('MM/DD/YYYY'), mealTime: moment().format('h:mm a')}
   }),
   { logMeal }
 )(LogMeal)

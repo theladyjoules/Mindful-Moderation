@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';  
 import {
   Avatar,
   Chip,
@@ -6,6 +7,7 @@ import {
   ListItem,
   TextField
 } from 'react-md';
+import { addSelectedMood, removeSelectedMood } from '../../actions/log_actions';
 
 class MoodField extends React.Component {
   constructor(props) {
@@ -42,28 +44,25 @@ class MoodField extends React.Component {
     const value = e.currentTarget.textContent === 'Add New' ? this.state.filterString : e.currentTarget.textContent
     console.log(value)
     this.setState({
-      selectedMoods: [...this.state.selectedMoods, value],
       filterString: '',
       showAutoComplete: false
     })
+    this.props.addSelectedMood(value)
   }
 
   handleRemoveMood(data, e){
     const value = data
-    let sm = this.state.selectedMoods
-    var index = this.state.selectedMoods.indexOf(data);
+    let sm = this.props.selectedMoods
+    var index = this.props.selectedMoods.indexOf(data);
     if (index > -1) {
-      sm.splice(index, 1);
-      this.setState({
-        selectedMoods: sm
-      })
+      this.props.removeSelectedMood(index)
     }
   }
 
   render() {
     let autoCompleteEmpty = true;
     let listItems = this.state.moods.map((mood, index) => {
-      if(mood.indexOf(this.state.filterString) > -1 && this.state.selectedMoods.indexOf(mood) === -1){
+      if(mood.indexOf(this.state.filterString) > -1 && this.props.selectedMoods.indexOf(mood) === -1){
         autoCompleteEmpty = false;
         return <ListItem key={index} primaryText={mood} onClick={this.handleAutoCompleteItemClick} />
       }
@@ -71,7 +70,7 @@ class MoodField extends React.Component {
     if(autoCompleteEmpty){
       listItems = <ListItem primaryText="Add New" onClick={this.handleAutoCompleteItemClick} />
     }
-    const moodChips = this.state.selectedMoods.map((selectedMood, index) => {
+    const moodChips = (this.props.selectedMoods.length) ? this.props.selectedMoods.map((selectedMood, index) => {
       return <Chip
           key={selectedMood}
           label={selectedMood}
@@ -79,15 +78,17 @@ class MoodField extends React.Component {
           removable
           onClick={this.handleRemoveMood.bind(this, selectedMood)}
         />
-    });
+    }) : null;
     return (
       <div className="mood-input-wrapper">
         {moodChips}
         <TextField
-          id="floating-center-title"
-          label="Title"
+          id="mealMoods"
+          name="mealMoods"
+          type="text"
+          label="Mood"
+          helpText="Ex: happy, stressed out"
           lineDirection="center"
-          placeholder="Hello World"
           className="md-cell md-cell--bottom"
           onFocus={this.handleFocus}
           onChange={this.handleChange}
@@ -101,4 +102,11 @@ class MoodField extends React.Component {
   }
 }
 
-export default MoodField
+
+function mapStateToProps(state) {  
+  return {
+    selectedMoods: state.log.selectedMoods
+  };
+}
+
+export default connect(mapStateToProps, { addSelectedMood, removeSelectedMood })(MoodField); 
