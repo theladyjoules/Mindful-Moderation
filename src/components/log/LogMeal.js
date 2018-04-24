@@ -5,8 +5,9 @@ import { Field, reduxForm } from 'redux-form';
 import $ from 'jquery';
 import moment from 'moment'
 import Loader from '../global/Loader';
+import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
-import { isInvalidRequiredField, renderTextField, renderDatePicker, renderTimePicker, renderSelectField, renderTextarea, RadioExample } from '../../utilities/forms';
+import { isInvalidRequiredField, renderTextField, renderDatePicker, renderTimePicker, renderSelectField, renderTextarea, renderRadioGroup } from '../../utilities/forms';
 import { logMeal } from '../../actions/log_actions';
 import './styles/log.css';
 
@@ -35,6 +36,7 @@ class LogMeal extends Component {
       <div>
         <h1>Log Meal</h1>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <MoodField />
           <Field
             id="mealName"
             name="mealName"
@@ -88,7 +90,7 @@ class LogMeal extends Component {
             name="mealHungerBefore"
             label="Hunger Before"
             type="radio"
-            component={RadioExample}
+            component={renderRadioGroup}
             className="md-cell md-cell--12"
           />
           <Field
@@ -96,7 +98,7 @@ class LogMeal extends Component {
             name="mealHungerAfter"
             label="Hunger After"
             type="radio"
-            component={RadioExample}
+            component={renderRadioGroup}
             className="md-cell md-cell--12"
           />
           <Field
@@ -108,7 +110,15 @@ class LogMeal extends Component {
             component={renderTextField}
             className="md-cell md-cell--12"
           />
-          /* Meal Moods Here */
+          <Field
+            id="mealMoods"
+            name="mealMoods"
+            type="text"
+            label="Mood"
+            helpText="Ex: happy, stressed out"
+            component={renderTextField}
+            className="md-cell md-cell--12"
+          />          
           <Field
             id="mealNotes"
             name="mealNotes"

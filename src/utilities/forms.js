@@ -2,7 +2,7 @@ import React from 'react'
 import { strings } from './strings'
 import { TextField } from 'react-md/lib/TextFields';
 import moment from 'moment'
-import { DatePicker, TimePicker, SelectField, SelectionControlGroup } from  'react-md';
+import { DatePicker, TimePicker, SelectField, SelectionControlGroup, Chip } from  'react-md';
 
 const isInvalidEmail = (values, fieldKey) => {
   if(!(fieldKey in values) || values[fieldKey] === null || values[fieldKey] === ''){
@@ -103,7 +103,7 @@ const renderTimePicker  = ({ id, input, label, defaultValue, meta: { touched, er
   />
 )
 
-const RadioExample = ({ id, input, label, defaultValue, meta: { touched, error },  ...other }) => (
+const renderRadioGroup = ({ id, input, label, defaultValue, meta: { touched, error },  ...other }) => (
   <SelectionControlGroup
     id={id}
     name="radio-example"
@@ -146,4 +146,4 @@ const RadioExample = ({ id, input, label, defaultValue, meta: { touched, error }
   />
 );
 
-export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, renderField, renderTextField, renderSelectField, renderDatePicker, renderTimePicker, renderTextarea, RadioExample}
+export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, renderField, renderTextField, renderSelectField, renderDatePicker, renderTimePicker, renderTextarea, renderRadioGroup}

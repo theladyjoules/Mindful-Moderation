@@ -1,4 +1,6 @@
 /***** MIXINS *****/
 /***** FUNCTIONS *****/
-.m-input-moment .ion-calendar.im-btn {
+.mood-autocomplete {
   display: none; }
+  .mood-autocomplete.active {
+    display: block; }
