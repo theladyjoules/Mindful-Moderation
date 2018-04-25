@@ -5,9 +5,9 @@ import { Field, reduxForm } from 'redux-form';
 import $ from 'jquery';
 import moment from 'moment'
 import Loader from '../global/Loader';
-import MoodField from './MoodField';
+// import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
-import { isInvalidRequiredField, renderTextField, renderDatePicker, renderTimePicker, renderSelectField, renderTextarea, renderRadioGroup } from '../../utilities/forms';
+import { isInvalidRequiredField, renderField } from '../../utilities/forms';
 import { logMeal } from '../../actions/log_actions';
 import './styles/log.css';
 
@@ -43,7 +43,7 @@ class LogMeal extends Component {
             type="text"
             label="Meal Name"
             helpText="Ex: Lunch, Afternoon Snack"
-            component={renderTextField}
+            component={renderField}
             className="md-cell md-cell--12"
           />
           <Field
@@ -52,14 +52,14 @@ class LogMeal extends Component {
             label="Meal Date"
             maxDate={new Date()}
             className=""
-            component={renderDatePicker}
+            component={renderField}
             defaultValue={new Date()}
           />
           <Field
             id="mealTime"
             name="mealTime"
             label="Meal Start Time"
-            component={renderTimePicker}
+            component={renderField}
             floatingLabelText="Meal Start Time"
             autoComplete="off"
             autoCorrect="off"
@@ -73,7 +73,7 @@ class LogMeal extends Component {
             type="text"
             label="Meal Duration"
             helpText="In Minutes"
-            component={renderTextField}
+            component={renderField}
             className="md-cell md-cell--12"
           />
           <Field
@@ -82,7 +82,7 @@ class LogMeal extends Component {
             type="text"
             label="Food Eaten"
             helpText="Ex: apple, steak dinner"
-            component={renderTextarea}
+            component={renderField}
             className="md-cell md-cell--12"
             rows={2}
           />
@@ -91,7 +91,7 @@ class LogMeal extends Component {
             name="mealHungerBefore"
             label="Hunger Before"
             type="radio"
-            component={renderRadioGroup}
+            component={renderField}
             className="md-cell md-cell--12"
           />
           <Field
@@ -99,7 +99,7 @@ class LogMeal extends Component {
             name="mealHungerAfter"
             label="Hunger After"
             type="radio"
-            component={renderRadioGroup}
+            component={renderField}
             className="md-cell md-cell--12"
           />
           <Field
@@ -108,16 +108,15 @@ class LogMeal extends Component {
             type="text"
             label="Meal Setting"
             helpText="Ex: park bench, dining room"
-            component={renderTextField}
+            component={renderField}
             className="md-cell md-cell--12"
-          />
-          <MoodField />   
+          />  
           <Field
             id="mealNotes"
             name="mealNotes"
             type="text"
             label="Notes"
-            component={renderTextarea}
+            component={renderField}
             className="md-cell md-cell--12"
             rows={2}
           />

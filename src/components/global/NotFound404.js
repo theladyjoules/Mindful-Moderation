@@ -17,7 +17,7 @@ class NotFound404 extends React.Component {
             <div className="col-xs-12 col-sm-6 col-sm-push-3">
               <div className="error-404">
                 <h2>The page you are looking for can't be found.</h2>
-                <Link to='/' className="btn btn-amaranth">Home</Link>
+                <Link to='/' className="btn btn-green">Home</Link>
               </div>
             </div>
           </div>

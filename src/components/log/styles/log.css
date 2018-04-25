@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,600,700");
+/***** MIXINS *****/
 /***** MIXINS *****/
 /***** FUNCTIONS *****/
+/***** HUNGER ICONS *****/
 .mood-autocomplete {
   display: none; }
   .mood-autocomplete.active {

@@ -13,19 +13,19 @@ class Header extends React.Component {
     console.log(this.props)
     if(this.props.isLoggedIn){
       nav = (
-        <ul>
-          <li><Link to='/account' className="btn btn-amaranth">Calendar</Link></li>
-          <li><Link to='/account' className="btn btn-amaranth">Resources</Link></li>
-          <li><a className="btn btn-white" onClick={this.props.logoutUser}>Logout</a></li>
-        </ul>
+        <nav className="col-xs-9 col-sm-9 main-menu-hamburger-wrapper">
+          <a className="main-menu-hamburger"><i className="fas fa-bars"></i></a>
+        </nav>
       );
     }
     else if(!this.props.isLoggedIn && window.location.pathname.indexOf('join') === -1){
       nav = (
-        <ul>
-          <li><Link to='/login' className="btn btn-white">Login</Link></li>
-          <li><Link to='/register' className="btn btn-amaranth">Register</Link></li>
-        </ul>
+        <nav className="col-xs-9 col-sm-9">
+          <ul>
+            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/register'>Sign Up</Link></li>
+          </ul>
+        </nav>
       );
     }
     return (
@@ -33,11 +33,9 @@ class Header extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-3 col-sm-3">
-              <Link to='/' className="logo">MindfuldModeration</Link>
+              <Link to='/' className="logo">MM</Link>
             </div>
-            <nav className="col-xs-9 col-sm-9">
-              {nav}
-            </nav>
+            {nav}
           </div>
         </div>
       </header>

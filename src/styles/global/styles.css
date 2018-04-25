@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,600,700");
+/***** MIXINS *****/
+/***** MIXINS *****/
+/***** FUNCTIONS *****/
+/***** HUNGER ICONS *****/
+/***** BASE *****/
+html, body {
+  font-family: 'Nunito', sans-serif;
+  height: 100%;
+  font-size: 100%;
+  color: #111011;
+  font-weight: 300; }
+
+#root, .sub-root {
+  height: 100%; }
+
+.main-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+main {
+  flex: 1 0 auto; }
+
+footer {
+  flex-shrink: 0; }
+
+img {
+  max-width: 100%; }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+*:focus {
+  outline: none; }
+
+/***** TYPOGRAPHY *****/
+h2 {
+  font-size: 36px;
+  font-size: 2.25rem;
+  line-height: 42px;
+  line-height: 2.625rem;
+  font-weight: 600;
+  margin: 0; }
+
+h3 {
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 36px;
+  line-height: 2.25rem;
+  font-weight: 600;
+  margin: 0; }
+
+h4 {
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 30px;
+  line-height: 1.875rem;
+  font-weight: 600;
+  margin: 0; }
+
+h5 {
+  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  font-weight: 600;
+  margin: 0; }
+
+h6 {
+  font-size: 18px;
+  font-size: 1.125rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  font-weight: 600;
+  margin: 0; }
+
+p {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem; }
+
+/***** LISTS *****/
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem; }
+
+ol {
+  margin: 0;
+  padding-left: 17px;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 24px;
+  line-height: 1.5rem; }
+
+/***** LINKS *****/
+a {
+  color: #106a21; }
+  a:hover, a:active, a:focus, a:visited {
+    text-decoration: underline;
+    color: #106a21; }
+
+/***** BUTTONS *****/
+.btn {
+  border-radius: 100px;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  line-height: 16px;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 175px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 9px 25px;
+  text-align: center;
+  border: 2px solid #106a21;
+  font-weight: 600;
+  letter-spacing: 2px; }
+  .btn:hover, .btn:active, .btn:focus, .btn:visited {
+    text-decoration: none; }
+  .btn.btn-green {
+    background-color: #106a21;
+    color: #ffffff; }
+    .btn.btn-green:disabled {
+      background-color: #D7DDD8;
+      border-color: #D7DDD8;
+      color: #ffffff; }
+  .btn.btn-orange {
+    background-color: #EA9E19;
+    color: #ffffff; }
+    .btn.btn-orange:disabled {
+      background-color: #D7DDD8;
+      border-color: #D7DDD8;
+      color: #ffffff; }
+  .btn.btn-white {
+    background-color: #ffffff;
+    color: #111011;
+    border-color: #111011; }
+    .btn.btn-white:hover, .btn.btn-white:active, .btn.btn-white:focus {
+      color: #ffffff;
+      background-color: #111011;
+      border-color: #111011; }
+
+.button-wrapper {
+  margin-top: 25px; }
+  .button-wrapper .btn {
+    vertical-align: middle;
+    margin-right: 38px; }
+  .button-wrapper p {
+    display: inline-block;
+    vertical-align: middle; }
+
+/***** GLOBALS *****/
+#main-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #D7DDD8; }
+
+a.logo {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: #106a21;
+  color: #ffffff;
+  font-size: 26px;
+  font-size: 1.625rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 50%; }
+  a.logo:hover, a.logo:active, a.logo:visited, a.logo:focus {
+    color: #ffffff;
+    text-decoration: none; }
+
+.main-menu-hamburger-wrapper {
+  text-align: right; }
+
+.main-menu-hamburger {
+  font-size: 32px;
+  font-size: 2rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+  cursor: pointer;
+  color: #111011; }
+
+.hunger-icon-3 {
+  width: 28px;
+  height: 28px;
+  background: #d4d4d4;
+  border-radius: 50%;
+  display: block;
+  position: relative; }
+  .hunger-icon-3:before {
+    content: '';
+    height: 30%;
+    width: 30%;
+    background: #106a21;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2; }
+
+.hunger-icon-7 {
+  width: 28px;
+  height: 28px;
+  background: #d4d4d4;
+  border-radius: 50%;
+  display: block;
+  position: relative; }
+  .hunger-icon-7:before {
+    content: '';
+    height: 70%;
+    width: 70%;
+    background: #106a21;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2; }
+
+/***** DAY VIEW *****/
+.meal-summary-wrapper {
+  margin: 0; }
+
+.meal-card {
+  border: 1px solid #D7DDD8;
+  box-shadow: 0 0 8px rgba(120, 120, 120, 0.6);
+  -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.6);
+  -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.6);
+  padding-left: 0;
+  padding-right: 0; }
+  .meal-card header {
+    background: #106a21;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between; }
+    .meal-card header h2 {
+      flex: 0 1 30%;
+      text-align: right;
+      font-size: 22px;
+      font-size: 1.375rem;
+      line-height: 60px;
+      line-height: 3.75rem;
+      font-weight: 400; }
+      .meal-card header h2:last-child {
+        flex: 0 1 70%;
+        margin-right: 20px; }
+  .meal-card main {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 24px;
+    line-height: 1.5rem; }
+    .meal-card main .meal-card-section {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      padding-bottom: 10px; }
+    .meal-card main h3 {
+      font-size: 18px;
+      font-size: 1.125rem;
+      line-height: 24px;
+      line-height: 1.5rem;
+      flex: 0 1 30%;
+      text-align: right; }
+    .meal-card main .meal-card-value {
+      flex: 0 1 70%;
+      padding-left: 30px;
+      padding-right: 30px; }
+    .meal-card main .hunger-section {
+      border-bottom: 1px solid #D7DDD8;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-bottom: 10px; }
+      .meal-card main .hunger-section .hunger-start {
+        display: inline-block;
+        vertical-align: top;
+        width: 45%; }
+      .meal-card main .hunger-section .hunger-end {
+        display: inline-block;
+        vertical-align: top;
+        width: 45%;
+        text-align: right; }
+      .meal-card main .hunger-section .hunger-start-index {
+        display: inline-block;
+        vertical-align: middle;
+        font-weight: 600; }
+      .meal-card main .hunger-section .hunger-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 0 10px; }
+      .meal-card main .hunger-section .hunger-end-index {
+        display: inline-block;
+        vertical-align: middle;
+        font-weight: 600; }
+      .meal-card main .hunger-section .hunger-divider {
+        display: inline-block;
+        vertical-align: middle;
+        width: 10%;
+        text-align: center; }
+  .meal-card footer {
+    margin-left: 0;
+    margin-right: 0; }
+    .meal-card footer .col-xs-6 {
+      padding-left: 0;
+      padding-right: 0; }
+      .meal-card footer .col-xs-6:first-child {
+        border-right: 1px solid #ffffff; }
+    .meal-card footer .btn-meal-card {
+      background: #D7DDD8;
+      display: block;
+      text-align: center;
+      padding: 15px 0; }

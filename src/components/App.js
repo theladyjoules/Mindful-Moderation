@@ -8,8 +8,9 @@ import Footer from './global/Footer'
 import NotFound404 from './global/NotFound404'
 import RequireAuth from './auth/Require-Auth';
 
+import '../styles/vendor/bootstrap.min.css';
+import '../styles/vendor/fontawesome-all.min.css';
 import '../styles/global/styles.css';
-import '../styles/vendor/react-md.indigo-pink.min.css';
 
 const Home = Loadable({
   loader: () => import('./home/Home'),
@@ -40,7 +41,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="main-wrapper">
         <main>
           <Header />
           <Switch>
