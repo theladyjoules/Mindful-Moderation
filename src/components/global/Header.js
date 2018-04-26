@@ -14,7 +14,7 @@ class Header extends React.Component {
     if(this.props.isLoggedIn){
       nav = (
         <nav className="col-xs-9 col-sm-9 main-menu-hamburger-wrapper">
-          <a className="main-menu-hamburger"><i className="fas fa-bars"></i></a>
+          <a className="main-menu-hamburger" onClick={this.props.logoutUser}><i className="fas fa-bars"></i></a>
         </nav>
       );
     }

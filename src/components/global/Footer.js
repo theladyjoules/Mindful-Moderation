@@ -6,7 +6,6 @@ const Footer = () => (
     <div className="flex-container sub-footer">
       <div className="row">
         <div className="col-xs-12">
-          <Link to='/log-meal' className="btn">Log Meal</Link>
         </div>
       </div>
     </div>

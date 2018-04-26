@@ -14,13 +14,16 @@ $orange:#EA9E19;
 $pink:#DDAACC;
 $magenta:#992277;
 $lightGray:#D7DDD8;
-$darkGray:#111011;
+$mediumGray:#898c89;
+$darkGray:#404240;
+$red:#bd2c1b;
 
 /***** MIXINS *****/
 @mixin box-shadow(){
-  box-shadow: 0 0 8px rgba(120, 120, 120, 0.6)  ; 
-  -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.6)  ; 
-  -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.6)  ; 
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+  // box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)  ; 
+  // -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)  ; 
+  // -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)  ; 
 }
 
 @mixin font-size($sizeValue: 12 ){
@@ -43,7 +46,7 @@ $darkGray:#111011;
 @mixin hunger-icon($size, $type, $color){
   width:$size + px;
   height:$size + px;
-  background:#d4d4d4;
+  background:$mediumGray;
   border-radius:50%;
   display:block;
   position:relative;

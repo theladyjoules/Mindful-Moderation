@@ -28,18 +28,24 @@ const isInvalidRequiredField = (values, fieldKey) => {
   return !(fieldKey in values) || values[fieldKey] === null || values[fieldKey] === '' 
 }
 
+const handleFormFieldFocus = () => {
+  console.log('focus')
+}
+
 const renderField = ({
   input,
   label,
   type,
   autoComplete,
   helpText,
-  meta: { touched, error, warning }
+  onFocus,
+  meta: { touched, error, warning, active }
 }) => (
-  <div className={"form-group " + (touched && error && 'invalid')}>
-    <label>{label}
+  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
+    <label>{label}</label>
       <input {...input} autoComplete={autoComplete} type={type} />
-      <div className={"input-message " + (touched && (error && 'error'))}>
+      <hr />
+      <div className={"input-message " + (touched && error ? 'error' : '')}>
         { touched && error
           ? error
           : ( helpText && (!error || !touched && error)
@@ -48,7 +54,6 @@ const renderField = ({
           )
         }
       </div>
-    </label>
   </div>
 )
 
@@ -145,4 +150,4 @@ const renderField = ({
 //   />
 // );
 
-export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, renderField}
+export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, handleFormFieldFocus, renderField}

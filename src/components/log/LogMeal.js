@@ -14,21 +14,14 @@ import './styles/log.css';
 class LogMeal extends Component {
   constructor(props) {
     super(props);
-    this.handleDatePickerChange = this.handleDatePickerChange.bind(this);
   }
 
   componentDidMount(){
-    $('.ion-clock.im-btn').trigger('click');
   }
 
   handleFormSubmit(values) {
     console.log(values)
     // this.props.logMeal(formProps);
-  }
-
-  handleDatePickerChange(m){
-    this.setState({ m });
-    console.log(m)
   }
 
   render() {
