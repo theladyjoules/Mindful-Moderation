@@ -1,6 +1,7 @@
 import React, { Component } from 'react';  
 import { connect } from 'react-redux';  
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom'
 import { strings } from '../../utilities/strings';
 import { isInvalidEmail, isInvalidPassword, isInvalidRequiredField, handleFormFieldFocus, renderField } from '../../utilities/forms';
 import { registerUser } from '../../actions/auth_actions';
@@ -27,44 +28,48 @@ class Register extends Component {
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            <h1>Sign Up</h1>
-            {this.renderAlert()}
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-              <Field 
-                label="First Name"
-                name="firstName"
-                className="form-control" 
-                component="input" 
-                type="text"
-                component={renderField}
-                onFocus={handleFormFieldFocus} />
-              <Field 
-                label="Last Name"
-                name="lastName"
-                className="form-control" 
-                component="input" 
-                type="text"
-                component={renderField}
-                onFocus={handleFormFieldFocus} />
-              <Field 
-                label="Email"
-                name="email"
-                className="form-control" 
-                component="input" 
-                type="email"
-                component={renderField}
-                onFocus={handleFormFieldFocus} />
-              <Field 
-                label="Password"
-                name="password"
-                className="form-control" 
-                component="input" 
-                type="password"
-                component={renderField}
-                onFocus={handleFormFieldFocus}
-                helpText="Minimum 8 Characters" />
-              <div className="button-floor">
-                <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Register</button>
+              <div className="form-header">
+                <h1>Sign Up</h1>
+              </div>
+              {this.renderAlert()}
+              <div className="form-field-wrapper">
+                <Field 
+                  label="First Name"
+                  name="firstName"
+                  className="form-control" 
+                  component="input" 
+                  type="text"
+                  component={renderField}
+                  onFocus={handleFormFieldFocus} />
+                <Field 
+                  label="Last Name"
+                  name="lastName"
+                  className="form-control" 
+                  component="input" 
+                  type="text"
+                  component={renderField}
+                  onFocus={handleFormFieldFocus} />
+                <Field 
+                  label="Email"
+                  name="email"
+                  className="form-control" 
+                  component="input" 
+                  type="email"
+                  component={renderField}
+                  onFocus={handleFormFieldFocus} />
+                <Field 
+                  label="Password"
+                  name="password"
+                  className="form-control" 
+                  component="input" 
+                  type="password"
+                  component={renderField}
+                  onFocus={handleFormFieldFocus} />
+                <div className="submit-wrapper">
+                  <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Get Started</button>
+                  <p>Already have an account? <Link to="/login">Login.</Link></p>
+                </div>
               </div>
             </form>
           </div>
@@ -102,11 +107,6 @@ Register = reduxForm({
   form: 'register',
   validate
 })(Register)
-
-function mapStateToProps(state) {  
-  return {
-  };
-}
 
 Register = connect(
   state => ({

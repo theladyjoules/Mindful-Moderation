@@ -8,22 +8,22 @@ $lg: 1200px;
 
 /***** MIXINS *****/
 $white:#ffffff;
-$green:#106a21;
+$green:#2a7a39;
 $darkGreen:#083510;
 $orange:#EA9E19;
 $pink:#DDAACC;
 $magenta:#992277;
-$lightGray:#D7DDD8;
+$lightGray:#e4e8e5;
 $mediumGray:#898c89;
 $darkGray:#404240;
 $red:#bd2c1b;
 
 /***** MIXINS *****/
 @mixin box-shadow(){
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
-  // box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)  ; 
-  // -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)  ; 
-  // -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)  ; 
+  // box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+  box-shadow: 0 0 8px rgba(120, 120, 120, 0.2)  ; 
+  -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2)  ; 
+  -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2)  ; 
 }
 
 @mixin font-size($sizeValue: 12 ){
