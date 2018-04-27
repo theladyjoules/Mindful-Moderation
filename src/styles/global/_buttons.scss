@@ -1,0 +1,51 @@
+.btn{
+  border-radius: 100px;
+  @include font-size(14);
+  @include line-height(20);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  min-width:175px;
+  display:inline-block;
+  vertical-align:top;
+  padding:16px 60px;
+  text-align:center;
+  border:2px solid $green;
+  font-weight:600;
+  letter-spacing:2px;
+  border-radius: 4px;
+
+  &:hover, &:active, &:focus, &:visited{
+    text-decoration:none;
+  }
+  &.btn-green{
+    background-color:$green;
+    color:$white;
+
+    &:disabled{
+      background-color:$mediumGray;
+      border-color:$mediumGray;
+      color:$white;
+    }
+  }
+  &.btn-orange{
+    background-color:$orange;
+    color:$white;
+
+    &:disabled{
+      background-color:$lightGray;
+      border-color:$lightGray;
+      color:$white;
+    }
+  }
+  &.btn-white{
+    background-color:$white;
+    color:$darkGray;
+    border-color:$darkGray;
+
+    &:hover, &:active, &:focus{
+      color:$white;
+      background-color:$darkGray;
+      border-color:$darkGray;
+    }
+  }
+}

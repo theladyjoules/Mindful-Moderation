@@ -1,0 +1,71 @@
+h1{
+  @include font-size(32);
+  @include line-height(38);
+  font-weight:600;
+  margin:0;
+}
+
+h2{
+  @include font-size(30);
+  @include line-height(36);
+  font-weight:600;
+  margin:0;
+}
+
+h3{
+  @include font-size(24);
+  @include line-height(30);
+  font-weight:600;
+  margin:0;
+}
+
+h4{
+  @include font-size(20);
+  @include line-height(26);
+  font-weight:600;
+  margin:0;
+}
+
+h5{
+  @include font-size(18);
+  @include line-height(24);
+  font-weight:600;
+  margin:0;
+}
+
+h6{
+  @include font-size(16);
+  @include line-height(20);
+  font-weight:600;
+  margin:0;
+}
+
+p{
+  @include font-size(16);
+  @include line-height(24);
+}
+
+/***** LISTS *****/ 
+ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  @include font-size(16);
+  @include line-height(24);
+}
+ol{
+  margin:0;
+  padding-left:17px;
+  @include font-size(16);
+  @include line-height(24);
+}
+
+/***** LINKS *****/
+a{
+  color:$green;
+
+  &:hover, &:active, &:focus, &:visited{
+    text-decoration:underline;
+    color:$green;
+  }
+}

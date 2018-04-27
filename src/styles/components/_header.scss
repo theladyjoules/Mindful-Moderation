@@ -1,0 +1,39 @@
+#main-header{
+  padding-bottom:10px;
+  border-bottom:1px solid $lightGray;
+}
+a.logo{
+  display:block;
+  width:40px;
+  height:40px;
+  background:$darkGreen;
+  border-radius:50%;
+  position:relative;
+  margin-top:10px;
+
+  &:after{
+    content:'';
+    background:$green;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    width:50%;
+    height:50%;
+    border-radius:50%;
+  }
+}
+
+.main-menu-hamburger-wrapper{
+  text-align:right;
+  padding-top:5px;
+}
+.main-menu-hamburger{
+  @include font-size(50);
+  @include line-height(52);
+  cursor:pointer;
+  color:$mediumGray;
+  display: block;
+}

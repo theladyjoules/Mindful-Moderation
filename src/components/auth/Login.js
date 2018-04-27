@@ -37,15 +37,13 @@ class Login extends Component {
                 <Field 
                   label="Email"
                   name="email" 
-                  className="form-control" 
                   component="input" 
                   type="text"
                   component={renderField}
                   onFocus={handleFormFieldFocus} />
                 <Field 
                   label="Password"
-                  name="password" 
-                  className="form-control" 
+                  name="password"  
                   component="input" 
                   type="password"
                   component={renderField}

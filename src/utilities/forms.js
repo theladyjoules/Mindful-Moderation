@@ -39,11 +39,12 @@ const renderField = ({
   autoComplete,
   helpText,
   onFocus,
+  required,
   meta: { touched, error, warning, active }
 }) => (
   <div className={"form-field" + (touched && error ? ' invalid' : '') + (active ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
     <label>{label}</label>
-      <input {...input} autoComplete={autoComplete} type={type} />
+      <input {...input} autoComplete={autoComplete} type={type} required={required} />
       <hr />
       <div className={"input-message " + (touched && error ? 'error' : '')}>
         { touched && error
@@ -57,97 +58,44 @@ const renderField = ({
   </div>
 )
 
-// const renderTextField = ({ input, meta: { touched, error }, ...others }) => (
-//   <TextField {...input} {...others} error={touched && !!error} errorText={error} />
-// );
+const renderTextarea = ({
+  input,
+  label,
+  type,
+  autoComplete,
+  helpText,
+  onFocus,
+  required,
+  meta: { touched, error, warning, active }
+}) => (
+  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
+    <label>{label}</label>
+      <textarea {...input} autoComplete={autoComplete} type={type} required={required} rows="3"></textarea>
+      <hr />
+      <div className={"input-message " + (touched && error ? 'error' : '')}>
+        { touched && error
+          ? error
+          : ( helpText && (!error || !touched && error)
+            ? helpText
+            : null
+          )
+        }
+      </div>
+  </div>
+)
 
-// const renderTextarea = ({ input, rows, meta: { touched, error }, ...others }) => (
-//   <TextField {...input} {...others} error={touched && !!error} errorText={error} rows={rows} />
-// );
+const renderRadioInput = ({
+  input,
+  label,
+  type,
+  id,
+  meta: { touched, error, warning, active }
+}) => (
+  <label className="radio-container">
+    <div className="radio-label">{label}</div>
+    <input {...input} id={id} type={type} />
+    <span className="radio-button"></span>
+  </label>
+)
 
-// const renderSelectField = ({ input, menuItems, meta: { touched, error }, ...others }) => (
-//   <SelectField 
-//     {...input} 
-//     {...others} 
-//     error={touched && !!error} 
-//     errorText={error} 
-//     menuItems={menuItems} 
-//     className="md-cell"
-//   />
-// );
-
-// function renderDatePicker ({ id, label, placeholder, input, maxDate, minDate, defaultValue, className, type }) {
-//   return (
-//     <DatePicker
-//       id={id}
-//       label={label}
-//       lineDirection="center"
-//       className="md-cell"
-//       maxDate={maxDate}
-//       minDate={minDate}
-//       defaultValue={new Date()}
-//       {...input}
-//     />
-//   )
-// }
-
-// const renderTimePicker  = ({ id, input, label, defaultValue, meta: { touched, error },  ...other }) => (
-//   <TimePicker 
-//     id={id}
-//     label={label}
-//     errorText = {touched && error} 
-//     {...input}
-//     container="inline"
-//     mode="landscape"
-//     value = {input.value != '' ? moment(moment().format('DD MMM YYYY')+' '+input.value).toDate() : null}
-//     autoComplete="off"  
-//     onChange = {(event, value) => {input.onChange(moment(value).format('h:mm a'))}} 
-//     className="md-cell"
-//     {...other}
-//   />
-// )
-
-// const renderRadioGroup = ({ id, input, label, defaultValue, meta: { touched, error },  ...other }) => (
-//   <SelectionControlGroup
-//     id={id}
-//     name="radio-example"
-//     type="radio"
-//     label={label}
-//     defaultValue="5"
-//     controls={[{
-//       label: '1',
-//       value: '1',
-//     }, {
-//       label: '2',
-//       value: '2',
-//     }, {
-//       label: '3',
-//       value: '3',
-//     }, {
-//       label: '4',
-//       value: '4',
-//     }, {
-//       label: '5',
-//       value: '5',
-//     }, {
-//       label: '6',
-//       value: '6',
-//     }, {
-//       label: '7',
-//       value: '7',
-//     }, {
-//       label: '8',
-//       value: '8',
-//     }, {
-//       label: '9',
-//       value: '9',
-//     }, {
-//       label: '10',
-//       value: '10'
-//     }]}
-//     {...input}
-//     {...other}
-//   />
-// );
-
-export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, handleFormFieldFocus, renderField}
+export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, handleFormFieldFocus, renderField, renderTextarea, renderRadioInput}

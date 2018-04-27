@@ -37,7 +37,6 @@ class Register extends Component {
                 <Field 
                   label="First Name"
                   name="firstName"
-                  className="form-control" 
                   component="input" 
                   type="text"
                   component={renderField}
@@ -45,7 +44,6 @@ class Register extends Component {
                 <Field 
                   label="Last Name"
                   name="lastName"
-                  className="form-control" 
                   component="input" 
                   type="text"
                   component={renderField}
@@ -53,7 +51,6 @@ class Register extends Component {
                 <Field 
                   label="Email"
                   name="email"
-                  className="form-control" 
                   component="input" 
                   type="email"
                   component={renderField}
@@ -61,7 +58,6 @@ class Register extends Component {
                 <Field 
                   label="Password"
                   name="password"
-                  className="form-control" 
                   component="input" 
                   type="password"
                   component={renderField}

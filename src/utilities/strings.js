@@ -124,6 +124,36 @@ function strings(s){
     case 'whatCVV2':
         string = 'The Card Verification Code, or CVC*, is an extra code printed on your debit or credit card. With most cards (Visa, MasterCard, bank cards, etc.) it is the final three digits of the number printed on the signature strip on the reverse of your card. On American Express (AMEX) cards, it is usually a four digit code on the front.';
         break;
+    case 'hungerScaleWord1':
+        string = 'Ravenous';
+        break;
+    case 'hungerScaleWord2':
+        string = 'Over-Hungry';
+        break;
+    case 'hungerScaleWord3':
+        string = 'Hungry';
+        break;
+    case 'hungerScaleWord4':
+        string = 'Lightly Hungry';
+        break;
+    case 'hungerScaleWord5':
+        string = 'Neutral';
+        break;
+    case 'hungerScaleWord6':
+        string = 'Just Satisfied';
+        break;
+    case 'hungerScaleWord7':
+        string = 'Completely Satisfied';
+        break;
+    case 'hungerScaleWord8':
+        string = 'Full';
+        break;
+    case 'hungerScaleWord9':
+        string = 'Stuffed';
+        break;
+    case 'hungerScaleWord10':
+        string = 'Sick';
+        break;
     default:
       break;
   }

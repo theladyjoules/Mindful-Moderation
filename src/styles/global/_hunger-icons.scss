@@ -1,0 +1,7 @@
+.hunger-icon-3{
+  @include hunger-icon(28, 30%, $green);
+}
+
+.hunger-icon-7{
+  @include hunger-icon(28, 70%, $green);
+}

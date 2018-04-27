@@ -1,0 +1,146 @@
+a.log-cta{
+  width:100px;
+  height:100px;
+  background:$darkGreen;
+  border-radius:50%;
+  color:$white;
+  text-align:center;
+  @include font-size(60);
+  @include line-height(107);
+  @include box-shadow();
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  cursor:pointer;
+}
+.daily-view h1{
+  margin: 20px 0 5px;
+  color:$mediumGray;
+  span{
+    @include font-size(20);
+    padding-left:15px;
+  }
+}
+.meal-summary-wrapper{
+  margin:0;
+  padding-bottom:100px;
+}
+.meal-card{
+  padding-left:0;
+  padding-right:0;
+  margin-bottom:30px;
+  background:$white;
+  border-radius: 4px;
+  @include box-shadow();
+
+  h3{
+
+  }
+  header{
+    background:$green;
+    color:$white;
+    display:flex;
+    justify-content:space-between;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    h2{
+      flex:0 1 30%;
+      text-align:right;
+      @include font-size(22);
+      @include line-height(60);
+      font-weight:400;
+
+      &:last-child{
+        flex:0 1 70%;
+        margin-right:20px;
+      }
+    }
+  }
+  main{
+    @include font-size(18);
+    @include line-height(24);
+
+    .meal-card-section{
+      display:flex;
+      justify-content:space-between;
+      padding-top:10px;
+      padding-bottom:10px;
+    }
+    h3{
+      @include font-size(18);
+      @include line-height(24);
+      flex:0 1 30%;
+      text-align:right;
+    }
+    .meal-card-value{
+      flex:0 1 70%;
+      padding-left:30px;
+      padding-right:30px;
+    }
+    .hunger-section{
+      border-bottom:1px solid $lightGray;
+      padding-top:20px;
+      padding-bottom:20px;
+      margin-bottom:10px;
+
+      .hunger-start{
+        display:inline-block;
+        vertical-align:top;
+        width:45%;
+      }
+      .hunger-end{
+        display:inline-block;
+        vertical-align:top;
+        width:45%;
+        text-align:right;
+      }
+      .hunger-start-index{
+        display:inline-block;
+        vertical-align:middle;
+        font-weight:600;
+      }
+      .hunger-icon{
+        display:inline-block;
+        vertical-align:middle;
+        margin:0 0 0 10px;
+      }
+      .hunger-end-index{
+        display:inline-block;
+        vertical-align:middle;
+        font-weight:600;
+      }
+      .hunger-divider{
+        display:inline-block;
+        vertical-align:middle;
+        width:10%;
+        text-align:center;
+      }
+    }
+  }
+  footer{
+    margin-left:0;
+    margin-right:0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding:15px;
+
+    .col-xs-6{
+    }
+    .btn-meal-card{
+      background:$lightGray;
+      display:block;
+      text-align:center;
+      padding:15px 0;
+      font-weight:600;
+      border-radius: 4px;
+      color:$darkGray;
+
+      &:hover, &:active, &:focus{
+        background:$mediumGray;
+        color:$white;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ class Home extends React.Component {
           <MealCard />
           <MealCard />
         </div>
+        <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
       </div>
     )
   }
