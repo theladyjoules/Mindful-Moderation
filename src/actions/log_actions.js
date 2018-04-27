@@ -1,7 +1,7 @@
 import { LOG_MEAL,  
          LOG_MEAL_ERROR,
-         ADD_SELECTED_MOOD,
-         REMOVE_SELECTED_MOOD } from '../actions/types';
+         ADD_MOOD,
+         REMOVE_MOOD } from '../actions/types';
 
 export function logMeal() {  
 
@@ -28,20 +28,20 @@ export function logMeal() {
   // }
 }
 
-export function addSelectedMood(mood) {  
+export function addMood(mood) {  
   return function(dispatch) {
     dispatch({ 
-      type: ADD_SELECTED_MOOD,
+      type: ADD_MOOD,
       payload: mood
     });
   }
 }
 
-export function removeSelectedMood(moodIndex) {  
+export function removeMood(mood) {  
   return function(dispatch) {
     dispatch({ 
-      type: REMOVE_SELECTED_MOOD,
-      payload: moodIndex
+      type: REMOVE_MOOD,
+      payload: mood
     });
   }
 }

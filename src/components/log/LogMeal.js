@@ -1,28 +1,50 @@
 import React, { Component } from 'react';  
 import { connect } from 'react-redux';  
 import { Link } from 'react-router-dom'
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import moment from 'moment'
 import Loader from '../global/Loader';
 // import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
-import { isInvalidRequiredField, handleFormFieldFocus, renderField, renderTextarea, renderRadioInput } from '../../utilities/forms';
-import { logMeal } from '../../actions/log_actions';
+import { isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
+import { logMeal, addMood, removeMood } from '../../actions/log_actions';
 import './styles/log.css';
 
 class LogMeal extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount(){
+    this.handleAddMood = this.handleAddMood.bind(this);
+    this.handleRemoveMood = this.handleRemoveMood.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleFormSubmit(values) {
   }
 
+  handleAddMood(value){
+    if(value.length && this.props.moods.indexOf(value) === -1){
+      this.props.addMood(value)
+      this.props.dispatch(change('logMeal','mealMood','' ))
+    }
+  }
+  handleRemoveMood(mood){
+    if(this.props.moods.indexOf(mood) > -1){
+      this.props.removeMood(mood)
+    }
+  }
+  handleKeyPress(e, value){
+    if(e.key === 'Enter'){
+      this.handleAddMood(value)
+    }
+  }
+
   render() {
     const { handleSubmit } = this.props;
+    const chips = (this.props.moods.length) ? this.props.moods.map((mood) =>
+      <div className="chip ion-close-round" key={mood} onClick={() => this.handleRemoveMood(mood)}>
+        {mood}
+      </div>
+    ) : null;
     return (
       <div className="container">
         <div className="row">
@@ -268,10 +290,25 @@ class LogMeal extends Component {
                     />
                   </div>
                 </div>
+                <div className="mood-field-wrapper">
+                  <Field
+                    name="mealMood"
+                    type="text"
+                    label="Mood"
+                    helpText="ex: happy, stressed, calm"
+                    component={renderChipField}
+                    onFocus={handleFormFieldFocus}
+                    handleAdd={this.handleAddMood}
+                    handleKeyPress={this.handleKeyPress}
+                  />
+                  <div className="chip-wrapper">
+                    {chips}
+                  </div>
+                </div>
                 <Field
                   name="mealSetting"
                   type="text"
-                  label="Meal Setting"
+                  label="Setting"
                   helpText="Ex: park bench, dining room"
                   component={renderField}
                   onFocus={handleFormFieldFocus}
@@ -323,9 +360,11 @@ LogMeal = connect(
   state => ({
     initialValues: ('logMeal' in state.form) ? state.form.logMeal.values : {mealDate: moment().format('YYYY-MM-DD'), mealTime: moment().format('kk:mm')},
     mealHungerBefore: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerBefore' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerBefore : null,
-    mealHungerAfter: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerAfter' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerAfter : null
+    mealHungerAfter: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerAfter' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerAfter : null,
+    moods: state.log.moods,
+    moodsField: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealMood' in state.form.logMeal.values) ? state.form.logMeal.values.mealMood : null
   }),
-  { logMeal }
+  { logMeal, addMood, removeMood }
 )(LogMeal)
 
 export default LogMeal

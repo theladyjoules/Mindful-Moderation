@@ -15,5 +15,5 @@ export const AUTH_USER = 'auth_user',
              ADD_VISITED_PAGE = "ADD_VISITED_PAGE",
              LOG_MEAL = "log_meal",
              LOG_MEAL_ERROR = "log_meal_error",
-             ADD_SELECTED_MOOD = "add_selected_mood",
-             REMOVE_SELECTED_MOOD = "remove_selected_mood";
+             ADD_MOOD = "add_mood",
+             REMOVE_MOOD = "remove_mood";

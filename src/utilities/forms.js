@@ -29,7 +29,6 @@ const isInvalidRequiredField = (values, fieldKey) => {
 }
 
 const handleFormFieldFocus = () => {
-  console.log('focus')
 }
 
 const renderField = ({
@@ -40,11 +39,40 @@ const renderField = ({
   helpText,
   onFocus,
   required,
-  meta: { touched, error, warning, active }
+  meta: { touched, error, warning, active, visited }
 }) => (
-  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
+  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active || visited ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
     <label>{label}</label>
       <input {...input} autoComplete={autoComplete} type={type} required={required} />
+      <hr />
+      <div className={"input-message " + (touched && error ? 'error' : '')}>
+        { touched && error
+          ? error
+          : ( helpText && (!error || !touched && error)
+            ? helpText
+            : null
+          )
+        }
+      </div>
+  </div>
+)
+
+const renderChipField = ({
+  input,
+  label,
+  type,
+  autoComplete,
+  helpText,
+  onFocus,
+  required,
+  handleAdd,
+  handleKeyPress,
+  meta: { touched, error, warning, active, visited }
+}) => (
+  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active || visited || touched ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
+    <label>{label}</label>
+      <a className="btn-mood-add" onClick={() => handleAdd(input.value)}>Add</a>
+      <input {...input} autoComplete={autoComplete} type={type} required={required} onKeyPress={(e) => handleKeyPress(e, input.value)} />
       <hr />
       <div className={"input-message " + (touched && error ? 'error' : '')}>
         { touched && error
@@ -66,9 +94,9 @@ const renderTextarea = ({
   helpText,
   onFocus,
   required,
-  meta: { touched, error, warning, active }
+  meta: { touched, error, warning, active, visited }
 }) => (
-  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
+  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active || visited  ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
     <label>{label}</label>
       <textarea {...input} autoComplete={autoComplete} type={type} required={required} rows="3"></textarea>
       <hr />
@@ -98,4 +126,4 @@ const renderRadioInput = ({
   </label>
 )
 
-export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, handleFormFieldFocus, renderField, renderTextarea, renderRadioInput}
+export {isInvalidEmail, isInvalidPassword, isInvalidPasswordConfirm, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput}

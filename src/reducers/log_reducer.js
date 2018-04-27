@@ -1,9 +1,9 @@
 import { LOG_MEAL,
          LOG_MEAL_ERROR,
-         ADD_SELECTED_MOOD,
-         REMOVE_SELECTED_MOOD } from '../actions/types';
+         ADD_MOOD,
+         REMOVE_MOOD } from '../actions/types';
 
-const INITIAL_STATE = { error: '', message: '', selectedMoods: ''}
+const INITIAL_STATE = { error: '', message: '', moods: ''}
 
 export default function (state = INITIAL_STATE, action) {  
   switch(action.type) {
@@ -17,15 +17,15 @@ export default function (state = INITIAL_STATE, action) {
         message: action.payload.success,
         error:''
       }
-    case ADD_SELECTED_MOOD:
+    case ADD_MOOD:
       return { ...state, 
-        selectedMoods: [...state.selectedMoods, action.payload]
+        moods: [...state.moods, action.payload]
       }
-    case REMOVE_SELECTED_MOOD:
+    case REMOVE_MOOD:
       return { ...state, 
-        selectedMoods: [
-          ...state.selectedMoods.slice(0, action.payload),
-          ...state.selectedMoods.slice(action.payload + 1)
+        moods: [
+          ...state.moods.slice(0, state.moods.indexOf(action.payload)),
+          ...state.moods.slice(state.moods.indexOf(action.payload) + 1)
         ]
       }
     default:
