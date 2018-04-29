@@ -158,23 +158,6 @@ a.log-cta{
     padding:15px;
     width:70%;
     float:right;
-
-    .col-xs-6{
-    }
-    .btn-meal-card{
-      background:$lightGray;
-      display:block;
-      text-align:center;
-      padding:15px 0;
-      font-weight:600;
-      border-radius: 4px;
-      color:$darkGray;
-
-      &:hover, &:active, &:focus{
-        background:$darkGray;
-        color:$white;
-        text-decoration: none;
-      }
-    }
+    text-align:right;
   }
 }

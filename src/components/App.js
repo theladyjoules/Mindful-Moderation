@@ -43,6 +43,11 @@ const DayView = Loadable({
   loading: Loader,
 });
 
+const MealView = Loadable({
+  loader: () => import('./log/MealView'),
+  loading: Loader,
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +74,7 @@ class App extends React.Component {
             <Route exact path='/account' component={RequireAuth(Account)} />  
             <Route exact path='/log-meal' component={RequireAuth(LogMeal)} />
             <Route exact path='/day/:day' component={RequireAuth(DayView)} />
-
+            <Route exact path='/day/:day/meal/:meal' component={RequireAuth(MealView)} />
             <Route component={NotFound404} />
           </Switch>
         </main>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 class MealCard extends React.Component {
 
   render() {
-    console.log(this.props.meal.mealMood)
+    console.log(this.props.meal)
     const chips = (this.props.meal.mealMood && this.props.meal.mealMood[0] !== '') ? this.props.meal.mealMood.map((mood) =>
       <div className="chip" key={mood}>
         {mood}
@@ -35,6 +35,12 @@ class MealCard extends React.Component {
               </div>
             </div>
           </div>
+          {'mealMood' in this.props.meal && 'mealMood' && this.props.meal.mealMood[0] !== '' ? (
+            <div className="meal-card-section chip-wrapper">
+              <h3>Mood:</h3>
+              <div className="meal-card-value">{chips}</div>
+            </div>
+          ) : null}
           {'mealFoods' in this.props.meal && this.props.meal.mealFoods ? (
             <div className="meal-card-section">
               <h3>Foods:</h3>
@@ -53,12 +59,6 @@ class MealCard extends React.Component {
               <div className="meal-card-value">{this.props.meal.mealDuration}</div>
             </div>
           ) : null}
-          {'mealMood' in this.props.meal && 'mealMood' && this.props.meal.mealMood[0] !== '' ? (
-            <div className="meal-card-section chip-wrapper">
-              <h3>Mood:</h3>
-              <div className="meal-card-value">{chips}</div>
-            </div>
-          ) : null}
           {'mealNotes' in this.props.meal && this.props.meal.mealNotes ? (
             <div className="meal-card-section">
               <h3>Notes:</h3>
@@ -67,11 +67,11 @@ class MealCard extends React.Component {
           ) : null}
         </main>
         <footer className="row">
-          <div className="col-xs-6">
-            <Link className="btn-meal-card" to='/log-meal'>View</Link>
+          <div className="col-xs-3 col-xs-push-6" >
+            <Link to={"/day/" + this.props.meal.mealDateFormatted + "/meal/" + this.props.meal._id}>View</Link>
           </div>
-          <div className="col-xs-6">
-            <Link className="btn-meal-card" to='/log-meal'>Edit</Link>
+          <div className="col-xs-3 col-xs-push-6">
+            <Link to='/log-meal'>Edit</Link>
           </div>
         </footer>
       </article>

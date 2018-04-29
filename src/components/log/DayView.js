@@ -22,8 +22,8 @@ class DayView extends React.Component {
   }
 
   render() {
-    const cards = (this.state.day in this.props.log && this.props.log[this.state.day].length) ? this.props.log[this.state.day].map((meal, index) =>
-      <MealCard key={index} meal={meal} />
+    const cards = (this.state.day in this.props.log && Object.keys(this.props.log[this.state.day]).length) ? Object.keys(this.props.log[this.state.day]).map( (meal, index) =>
+      <MealCard key={index} meal={this.props.log[this.state.day][meal]} />
     ) : (
       <div>
         Click on the orange plus below to log a meal. :)

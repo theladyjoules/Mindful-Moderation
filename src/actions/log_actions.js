@@ -2,12 +2,16 @@ import { LOG_MEAL,
          LOG_MEAL_ERROR,
          ADD_MOOD,
          REMOVE_MOOD,
-         GET_MEALS_BY_DAY } from '../actions/types';
+         GET_MEALS_BY_DAY} from '../actions/types';
 import { getCookie } from '../utilities/cookies';
 import moment from 'moment'
 
 const API_URL = 'http://localhost:3001/api';
 
+export function getMealById() {
+  return function(dispatch) {
+  }
+}
 
 export function getMealsByDay(day) {
   console.log(day)

@@ -2,7 +2,8 @@ import { LOG_MEAL,
          LOG_MEAL_ERROR,
          ADD_MOOD,
          REMOVE_MOOD,
-         GET_MEALS_BY_DAY } from '../actions/types';
+         GET_MEALS_BY_DAY,
+         GET_MEAL_FROM_STORE } from '../actions/types';
 
 const INITIAL_STATE = { error: '', message: '', moods: ''}
 

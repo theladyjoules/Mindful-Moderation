@@ -791,19 +791,8 @@ a.log-cta {
     border-bottom-right-radius: 4px;
     padding: 15px;
     width: 70%;
-    float: right; }
-    .meal-card footer .btn-meal-card {
-      background: #e4e8e5;
-      display: block;
-      text-align: center;
-      padding: 15px 0;
-      font-weight: 600;
-      border-radius: 4px;
-      color: #404240; }
-      .meal-card footer .btn-meal-card:hover, .meal-card footer .btn-meal-card:active, .meal-card footer .btn-meal-card:focus {
-        background: #404240;
-        color: #ffffff;
-        text-decoration: none; }
+    float: right;
+    text-align: right; }
 
 .main-nav-drawer-wrapper {
   position: fixed;
