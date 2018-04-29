@@ -1,12 +1,13 @@
 import React, { Component } from 'react';  
 import { connect } from 'react-redux';  
 import { Link } from 'react-router-dom'
-import { Field, reduxForm, change } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import moment from 'moment'
+import $ from 'jquery'
 import Loader from '../global/Loader';
 // import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
-import { isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
+import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
 import { logMeal, addMood, removeMood } from '../../actions/log_actions';
 import './styles/log.css';
 
@@ -16,25 +17,38 @@ class LogMeal extends Component {
     this.handleAddMood = this.handleAddMood.bind(this);
     this.handleRemoveMood = this.handleRemoveMood.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleAddMoodClick = this.handleAddMoodClick.bind(this);
+  }
+
+  componentWillMount(){
+    this.props.dispatch(reset('logMeal'));
   }
 
   handleFormSubmit(values) {
+    values['mealMood'] = this.props.moods
+    this.props.logMeal(values)
   }
 
   handleAddMood(value){
     if(value.length && this.props.moods.indexOf(value) === -1){
+      $('#mealMood').val('')
       this.props.addMood(value)
-      this.props.dispatch(change('logMeal','mealMood','' ))
     }
   }
+
+  handleAddMoodClick(e){
+    this.handleAddMood($('#mealMood').val())
+  }
+
   handleRemoveMood(mood){
     if(this.props.moods.indexOf(mood) > -1){
       this.props.removeMood(mood)
     }
   }
-  handleKeyPress(e, value){
+  handleKeyPress(e){
     if(e.key === 'Enter'){
-      this.handleAddMood(value)
+      this.handleAddMood($('#mealMood').val())
+      e.preventDefault()
     }
   }
 
@@ -291,16 +305,13 @@ class LogMeal extends Component {
                   </div>
                 </div>
                 <div className="mood-field-wrapper">
-                  <Field
-                    name="mealMood"
-                    type="text"
-                    label="Mood"
-                    helpText="ex: happy, stressed, calm"
-                    component={renderChipField}
-                    onFocus={handleFormFieldFocus}
-                    handleAdd={this.handleAddMood}
-                    handleKeyPress={this.handleKeyPress}
-                  />
+                  <div className={"form-field" + (this.props.moods.length ? ' active' : '')}>
+                    <input type="text" name="mealMood" id="mealMood" onKeyPress={(e) => this.handleKeyPress(e)} />
+                    <label>Mood</label>
+                    <hr />
+                    <a className="btn-mood-add" onClick={this.handleAddMoodClick}>Add</a>
+                    <div className="input-message">ex: happy, stressed, calm</div>
+                  </div>
                   <div className="chip-wrapper">
                     {chips}
                   </div>
@@ -335,18 +346,25 @@ class LogMeal extends Component {
 
 const validate = values =>{
   const errors = {}
-  // if (isInvalidRequiredField(values, 'firstName')){
-  //   errors.firstName = strings('required')
-  // }
-  // if (isInvalidRequiredField(values, 'lastName')){
-  //   errors.lastName = strings('required')
-  // }
-  // if (isInvalidRequiredField(values, 'email')){
-  //   errors.email = strings('required')
-  // }
-  // if (isInvalidEmail(values, 'email')){
-  //   errors.email = strings('email')
-  // }
+  if (isInvalidRequiredField(values, 'mealDate')){
+    errors.mealDate = strings('required')
+  }
+  if (isInvalidDate(values, 'mealDate')){
+    errors.mealDate = strings('mealDate')
+  }
+  if (isInvalidRequiredField(values, 'mealTime')){
+    errors.mealTime = strings('required')
+  }
+  if (isInvalidTime(values, 'mealTime')){
+    errors.mealTime = strings('mealTime')
+  }
+  if (isInvalidRequiredField(values, 'mealHungerBefore')){
+    errors.mealHungerBefore = strings('required')
+  }
+  if (isInvalidRequiredField(values, 'mealHungerAfter')){
+    errors.mealHungerAfter = strings('required')
+  }
+  console.log(errors)
   return errors
 }
 

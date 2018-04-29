@@ -1,34 +1,47 @@
 a.log-cta{
-  width:100px;
-  height:100px;
+  width:75px;
+  height:75px;
   background:$darkGreen;
   border-radius:50%;
   color:$white;
   text-align:center;
-  @include font-size(60);
-  @include line-height(107);
-  @include box-shadow();
+  @include font-size(50);
+  @include line-height(84);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
   position:fixed;
   bottom:30px;
   right:30px;
   cursor:pointer;
 }
-.daily-view h1{
-  margin: 20px 0 5px;
-  color:$mediumGray;
-  span{
-    @include font-size(20);
-    padding-left:15px;
-  }
-}
 .meal-summary-wrapper{
   margin:0;
   padding-bottom:100px;
 }
+.day-view-header{
+  display:flex;
+  justify-content:space-between;
+  padding-bottom: 18px;
+
+  h1{
+    color:$mediumGray;
+    span{
+      @include font-size(20);
+      padding-left:15px;
+    }
+  }
+  a{
+    color:$mediumGray;
+    margin-top:auto;
+    margin-bottom:auto;
+  }
+  a.disabled{
+    color:$lightGray;
+  }
+}
 .meal-card{
   padding-left:0;
   padding-right:0;
-  margin-bottom:30px;
+  margin-bottom:75px;
   background:$white;
   border-radius: 4px;
   @include box-shadow();
@@ -37,7 +50,7 @@ a.log-cta{
 
   }
   header{
-    background:$green;
+    background:$darkGreen;
     color:$white;
     display:flex;
     justify-content:space-between;
@@ -48,12 +61,13 @@ a.log-cta{
       flex:0 1 30%;
       text-align:right;
       @include font-size(22);
-      @include line-height(60);
+      @include line-height(26);
       font-weight:400;
+      padding: 12px 0;
 
       &:last-child{
         flex:0 1 70%;
-        margin-right:20px;
+        padding-right:30px;
       }
     }
   }
@@ -66,6 +80,18 @@ a.log-cta{
       justify-content:space-between;
       padding-top:10px;
       padding-bottom:10px;
+
+      &.chip-wrapper{
+        margin-top:7px;
+
+        .meal-card-value{
+          margin-top:-7px;
+        }
+      }
+    }
+    .chip{
+      padding-right:7px;
+      background:$orange;
     }
     h3{
       @include font-size(18);
@@ -83,7 +109,13 @@ a.log-cta{
       padding-top:20px;
       padding-bottom:20px;
       margin-bottom:10px;
+      @include font-size(24);
+      @include line-height(30);
 
+      h3{
+        margin-top: auto;
+        margin-bottom: auto;
+      }
       .hunger-start{
         display:inline-block;
         vertical-align:top;
@@ -124,6 +156,8 @@ a.log-cta{
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     padding:15px;
+    width:70%;
+    float:right;
 
     .col-xs-6{
     }
@@ -137,7 +171,7 @@ a.log-cta{
       color:$darkGray;
 
       &:hover, &:active, &:focus{
-        background:$mediumGray;
+        background:$darkGray;
         color:$white;
         text-decoration: none;
       }

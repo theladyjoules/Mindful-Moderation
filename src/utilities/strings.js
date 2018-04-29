@@ -58,71 +58,11 @@ function strings(s){
     case 'zipCode':
         string = 'Please enter a valid zip code.';
         break;
-    case 'cc100':
-      string = 'An error occurred.';
-      break;
-    case 'cc110':
-      string = 'An error occurred.';
-      break;
-    case 'cc200':
-      string = 'Please enter your name.';
-      break;
-    case 'cc300':
-      string = 'An error occurred.';
-      break;
-    case 'cc310':
-      string = 'Please enter a valid credit card number.';
-      break;
-    case 'cc315':
-      string = 'Please enter a valid credit card number.';
-      break;
-    case 'cc320':
-      string = 'Please select your credit card type.';
-      break;
-    case 'cc330':
-      string = 'Please enter the expiration month.';
-      break;
-    case 'cc340':
-      string = 'Please enter the expiration year.';
-      break;
-    case 'cc350':
-      string = 'CVV2 field submitted but does not match the card.';
-      break;
-    case 'cc355':
-      string = 'Please enter your CVV2.';
-      break;
-    case 'cc357':
-      string = 'An invalid character was entered, such as a letter in a numeric field.';
-      break;
-    case 'cc360':
-      string = 'Payment declined by financial institution, or some other error has occurred.';
-      break;
-    case 'cc370':
-      string = 'Expiration date invalid.';
-      break;
-    case 'cc400':
-      string = 'An error occurred.';
-      break;
-    case 'cc500':
-      string = 'An error occurred.';
-      break;
-    case 'cc510':
-      string = 'An error occurred.';
-      break;
-    case 'cc520':
-      string = 'An error occurred.';
-      break;
-    case 'cc530':
-      string = 'An error occurred.';
-      break;
-    case 'cc531':
-      string = 'An error occurred.';
-      break;
-    case 'cc550':
-        string = 'An error occurred.';
+    case 'mealDate':
+        string = 'Please enter a valid date.';
         break;
-    case 'whatCVV2':
-        string = 'The Card Verification Code, or CVC*, is an extra code printed on your debit or credit card. With most cards (Visa, MasterCard, bank cards, etc.) it is the final three digits of the number printed on the signature strip on the reverse of your card. On American Express (AMEX) cards, it is usually a four digit code on the front.';
+    case 'mealTime':
+        string = 'Please enter a valid time.';
         break;
     case 'hungerScaleWord1':
         string = 'Ravenous';

@@ -21,6 +21,7 @@ class Header extends React.Component {
       userNav = (
         <div className="nav-drawer-section">
           <ul>
+            <li><Link to='/log-meal' onClick={this.props.toggleNavDrawer}>Log a Meal or Snack</Link></li>
             <li><Link to='/today' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
             <li><Link to='/calendar' onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
             <li><Link to='/journey' onClick={this.props.toggleNavDrawer}>Your Journey</Link></li>

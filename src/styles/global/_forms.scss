@@ -54,7 +54,7 @@ form{
     @include line-height(34);
     transition-duration: .15s;
     transition-property: transform,font-size,color;
-    transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, 0, 0);
     color:$mediumGray;
 
     &.range{
@@ -71,9 +71,109 @@ form{
     position:relative;
     z-index:2;
     padding:0;
+    position: relative;
+    top: 36px;
   }
   input[type="radio"]{
     opacity:1;
+  }
+  .hunger-label{
+    display:flex;
+    justify-content: space-between;
+
+    .hunger-description{
+      color:$green;
+      font-weight:700;
+    }
+  }
+  hr{
+    margin:0;
+    border-top:1px solid $lightGray;
+    position:relative;
+    overflow: visible;
+
+    &:after{
+      background: $green;
+      content: "";
+      display: block;
+      height: 2px;
+      transition-duration: .15s;
+      transition-property: width;
+      width: 0;
+      position:absolute;
+      top:-1px;
+      left:0;
+    }
+  }
+  .btn-mood-add{
+    position:absolute;
+    right:0;
+    z-index:3;
+    opacity:0;
+    transition-duration: .15s;
+    transition-property: opacity;
+    bottom: 54px;
+  }
+  .input-message{
+    @include font-size(16);
+    @include line-height(26);
+    color:$mediumGray;
+    font-style:italic;
+  }
+  input:focus{
+    opacity:1;
+
+    & + label{
+      transform: translate3d(0, -34px, 0);
+      @include font-size(20);
+      color:$green;
+    }
+    & + label + hr:after{
+      width:100%;
+      right:0;
+    }
+    & + label + hr + .btn-mood-add{
+      opacity:1;
+    }
+  }
+  &.active, &.has-value{
+
+    label{
+      transform: translate3d(0, -34px, 0);
+      @include font-size(20);
+      color:$green;
+    }
+    input, textarea{
+      opacity:1;
+    }
+    hr:after{
+      width:100%;
+      right:0;
+    }
+    .btn-mood-add{
+      opacity:1;
+    }
+  }
+  &.textarea label, &.textarea input:focus + label{
+    transform: translate3d(0, -106px, 0);
+  }
+  &.invalid{
+    padding-bottom:0;
+
+    label{
+      color:$red;
+    }
+    hr{
+      border-color:$red;
+
+      &:after{
+        background-color:$red;
+      }
+    }
+    .input-message{
+      color:$red;
+      font-style: normal;
+    }
   }
   /* The container */
   .radio-container {
@@ -153,84 +253,6 @@ form{
       flex-wrap: nowrap;
       justify-content: space-between;
       padding-top: 17px;
-    }
-  }
-  .hunger-label{
-    display:flex;
-    justify-content: space-between;
-
-    .hunger-description{
-      color:$green;
-      font-weight:700;
-    }
-  }
-  hr{
-    margin:0;
-    border-top:1px solid $lightGray;
-    position:relative;
-    overflow: visible;
-
-    &:after{
-      background: $green;
-      content: "";
-      display: block;
-      height: 2px;
-      transition-duration: .15s;
-      transition-property: width;
-      width: 0;
-      position:absolute;
-      top:-1px;
-      left:0;
-    }
-  }
-  .btn-mood-add{
-    position:absolute;
-    right:0;
-    z-index:3;
-    opacity:0;
-    transition-duration: .15s;
-    transition-property: opacity;
-  }
-  .input-message{
-    @include font-size(16);
-    @include line-height(26);
-    color:$mediumGray;
-    font-style:italic;
-  }
-  &.active, &.has-value{
-
-    label{
-      transform: translate3d(0, 0, 0);
-      @include font-size(20);
-      color:$green;
-    }
-    input, textarea{
-      opacity:1;
-    }
-    hr:after{
-      width:100%;
-      right:0;
-    }
-    .btn-mood-add{
-      opacity:1;
-    }
-  }
-  &.invalid{
-    padding-bottom:0;
-
-    label{
-      color:$red;
-    }
-    hr{
-      border-color:$red;
-
-      &:after{
-        background-color:$red;
-      }
-    }
-    .input-message{
-      color:$red;
-      font-style: normal;
     }
   }
 }

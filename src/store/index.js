@@ -15,7 +15,9 @@ if (token) {
 }
 
 store.subscribe(()=>{
-  localStorage.setItem('mindfulModerationReduxState', JSON.stringify(store.getState()))
+  let fullStore = store.getState()
+  console.log(fullStore)
+  localStorage.setItem('mindfulModerationReduxState', JSON.stringify({auth: fullStore.auth, form: fullStore.form}))
 })
 
 export default store;
