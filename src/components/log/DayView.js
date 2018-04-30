@@ -15,15 +15,15 @@ class DayView extends React.Component {
   }
 
   componentDidMount(){
-    if(!(this.state.day in this.props.log)){
+    if(this.props.log.loadedDays.indexOf(this.state.day) === -1){
       console.log('getting day from server: ' + this.state.day)
       this.props.getMealsByDay(this.state.day)
     }
   }
 
   render() {
-    const cards = (this.state.day in this.props.log && Object.keys(this.props.log[this.state.day]).length) ? Object.keys(this.props.log[this.state.day]).map( (meal, index) =>
-      <MealCard key={index} meal={this.props.log[this.state.day][meal]} />
+    const cards = (this.props.log.loadedDays.indexOf(this.state.day) > -1 && Object.keys(this.props.log[this.state.day]).length) ? Object.keys(this.props.log[this.state.day]).map( (meal, index) =>
+      <MealCard key={index} meal={this.props.log[this.state.day][meal]} showViewLink={true} showEditLink={true} />
     ) : (
       <div>
         Click on the orange plus below to log a meal. :)

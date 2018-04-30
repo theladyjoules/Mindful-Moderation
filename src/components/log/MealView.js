@@ -17,7 +17,7 @@ class DayView extends React.Component {
   }
 
   componentDidMount(){
-    if(!(this.state.day in this.props.log) || (this.state.day in this.props.log && !(this.state.mealId in this.props.log[this.state.day]))){
+    if(this.props.log.loadedMeals.indexOf(this.state.mealId) === -1){
       console.log('getting meal from server: ' + this.state.mealId)
       this.props.getMealById(this.state.mealId)
     }
@@ -26,11 +26,11 @@ class DayView extends React.Component {
   render() {
     let displayDate = null
     let pageContent = <Loader />
-    if(this.state.day in this.props.log && this.state.mealId in this.props.log[this.state.day]){
+    if(this.props.log.loadedMeals.indexOf(this.state.mealId) > -1){
       const thisMeal = this.props.log[this.state.day][this.state.mealId]
       const mealDate = moment(thisMeal.mealDate)
       displayDate = <h1>{mealDate.format("dddd")}<span>{mealDate.format("MMMM Do")}</span></h1>
-      pageContent = <MealCard meal={thisMeal} />
+      pageContent = <MealCard meal={thisMeal} showEditLink={true} />
     }
     return (
       <div className="container meal-view">
@@ -40,6 +40,7 @@ class DayView extends React.Component {
         <div className="meal-summary-wrapper row">
           {pageContent}
         </div>
+        <Link to={"/day/" + this.state.day} className="cta-back ion-chevron-left">Back</Link>
         <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
       </div>
     )

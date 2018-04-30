@@ -17,4 +17,6 @@ export const AUTH_USER = 'auth_user',
              LOG_MEAL_ERROR = "log_meal_error",
              ADD_MOOD = "add_mood",
              REMOVE_MOOD = "remove_mood",
-             GET_MEALS_BY_DAY = "get_meals_by_day";
+             GET_MEALS_BY_DAY = "get_meals_by_day",
+             GET_MEAL_BY_ID = "get_meal_by_id",
+             SET_CURRENT_DAY_MEAL = "set_current_day_meal";

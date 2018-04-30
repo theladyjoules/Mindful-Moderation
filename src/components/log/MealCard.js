@@ -68,10 +68,14 @@ class MealCard extends React.Component {
         </main>
         <footer className="row">
           <div className="col-xs-3 col-xs-push-6" >
-            <Link to={"/day/" + this.props.meal.mealDateFormatted + "/meal/" + this.props.meal._id}>View</Link>
+            {this.props.showViewLink ? (
+              <Link to={"/day/" + this.props.meal.mealDateHumanFormat + "/meal/" + this.props.meal._id}>View</Link>
+            ) : null}
           </div>
           <div className="col-xs-3 col-xs-push-6">
-            <Link to='/log-meal'>Edit</Link>
+            {this.props.showEditLink ? (
+              <Link to={"/edit/day/" + this.props.meal.mealDateHumanFormat + "/meal/" + this.props.meal._id}>Edit</Link>
+            ) : null}
           </div>
         </footer>
       </article>

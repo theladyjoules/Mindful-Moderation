@@ -57,7 +57,7 @@ const renderField = ({
   required,
   meta: { touched, error, warning, active, visited }
 }) => (
-  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active || visited ? ' active' : '') + (input.value.length ? ' has-value' : '')}>
+  <div className={"form-field" + (touched && error ? ' invalid' : '') + (active || visited ? ' active' : '') + (input.value !== '' ? ' has-value' : '')}>
       <input {...input} autoComplete={autoComplete} type={type} required={required} />
       <label>{label}</label>
       <hr />
