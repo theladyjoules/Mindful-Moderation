@@ -7,7 +7,7 @@ import $ from 'jquery'
 import Loader from '../global/Loader';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
-import { editMeal, addMood, removeMood, getMealById } from '../../actions/log_actions';
+import { editExistingMeal, addMood, removeMood, getMealById } from '../../actions/log_actions';
 import './styles/log.css';
 
 let pathname = window.location.pathname.split( '/' )
@@ -15,28 +15,60 @@ let pathname = window.location.pathname.split( '/' )
 class EditMeal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      day: pathname[3],
-      mealId: pathname[5]
-    }
     this.handleAddMood = this.handleAddMood.bind(this);
     this.handleRemoveMood = this.handleRemoveMood.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleAddMoodClick = this.handleAddMoodClick.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentDidMount(){
     console.log('mounting edit form')
-    if(this.props.log.loadedMeals.indexOf(this.state.mealId) === -1){
-      console.log('getting meal from server: ' + this.state.mealId)
-      this.props.getMealById(this.state.mealId)
+    if(this.props.log.loadedMeals.indexOf(this.props.mealId) === -1){
+      console.log('getting meal from server: ' + this.props.mealId)
+      this.props.getMealById(this.props.mealId)
     }
     this.props.dispatch(reset('editMeal'));
   }
 
   handleFormSubmit(values) {
-    values['mealMood'] = this.props.moods
-    this.props.editMeal(values)
+    let changedFields = {}
+    const thisMeal = this.props.log[this.props.day][this.props.mealId]
+    if(values.mealDateFormFormat !== thisMeal.mealDateFormFormat || values.mealTimeFormFormat !== thisMeal.mealTimeFormFormat){
+      changedFields['mealDateFormFormat'] = values.mealDateFormFormat
+      changedFields['mealTimeFormFormat'] = values.mealTimeFormFormat
+      changedFields['mealDate'] = moment(values.mealDateFormFormat + 'T' + values.mealTimeFormFormat)
+      changedFields['mealDateHumanFormat'] = changedFields['mealDate'].format('MM-DD-YYYY')
+      changedFields['mealTimeHumanFormat'] = changedFields['mealDate'].format('h:mm a')
+    }
+    if(values.mealDuration !== thisMeal.mealDuration){
+      changedFields['mealDuration'] = values.mealDuration
+    }
+    if(values.mealName !== thisMeal.mealName){
+      changedFields['mealName'] = values.mealName
+    }
+    if(values.mealFoods !== thisMeal.mealFoods){
+      changedFields['mealFoods'] = values.mealFoods
+    }
+    if(values.mealHungerBefore !== thisMeal.mealHungerBefore){
+      changedFields['mealHungerBefore'] = values.mealHungerBefore
+    }
+    if(values.mealHungerAfter !== thisMeal.mealHungerAfter){
+      changedFields['mealHungerAfter'] = values.mealHungerAfter
+    }
+    if(this.props.moods !== thisMeal.mealMood){
+      changedFields['mealMood'] = this.props.moods
+    }
+    if(values.mealSetting !== thisMeal.mealSetting){
+      changedFields['mealSetting'] = values.mealSetting
+    }
+    if(values.mealNotes !== thisMeal.mealNotes){
+      changedFields['mealNotes'] = values.mealNotes
+    }
+    if(Object.keys(changedFields).length){
+      changedFields['mealId'] = this.props.mealId
+      this.props.editExistingMeal(changedFields)
+    }
   }
 
   handleAddMood(value){
@@ -69,11 +101,12 @@ class EditMeal extends Component {
         {mood}
       </div>
     ) : null;
+    console.log(this.props.log)
     return (
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            {this.props.log.loadedMeals.indexOf(this.state.mealId) > -1 ? (
+            {this.props.log.loadedMeals.indexOf(this.props.mealId) > -1 ? (
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <div className="form-header">
                   <h1>Edit Meal</h1>
@@ -343,8 +376,8 @@ class EditMeal extends Component {
                     onFocus={handleFormFieldFocus}
                   />
                   <div className="submit-wrapper">
-                    <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Log</button>
-                    <p><Link to={"/day/" + this.state.day}>Cancel</Link></p>
+                    <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting || this.props.pristine}>Update</button>
+                    <p><Link to={"/day/" + this.props.day}>Cancel</Link></p>
                   </div>
                 </div>
               </form>
@@ -395,7 +428,7 @@ EditMeal = connect(
     moodsField: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealMood' in state.form.editMeal.values) ? state.form.editMeal.values.mealMood : null,
     log: state.log
   }),
-  { editMeal, addMood, removeMood, getMealById }
+  { editExistingMeal, addMood, removeMood, getMealById }
 )(EditMeal)
 
 export default EditMeal

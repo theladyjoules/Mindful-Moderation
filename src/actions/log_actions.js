@@ -53,57 +53,12 @@ export function getMealsByDay(day) {
   }
 }
 
-export function editMeal({mealDate, mealTime, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}) {  
-
-  // let mealUtc = moment.utc(mealDate + ' '+ mealTime);
-  mealDate = moment(mealDate + 'T' + mealTime)
-  const mealDateFormatted = mealDate.format('MM-DD-YYYY')
-  const mealTimeFormatted = mealDate.format('h:mm a')
-  console.log(mealDate)
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({mealDate, mealDateFormatted, mealTimeFormatted, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': getCookie('token')
-    },
-  };
-  return function(dispatch) {
-    fetch(`${API_URL}/meal/create`, options)
-    .then(function(response) { return response.json(); })
-    .then(function(data){
-      if('success' in data && data.success){
-        const theDate = moment(data.meal.mealDate);
-        data.meal.formattedTime = theDate.format('hh:mm');
-        data.meal.formattedDate = theDate.format('MM-DD-YYYY');
-        dispatch({ 
-          type: LOG_MEAL,
-          payload: data.meal
-        });
-        let today = moment()
-        if (today.isSame(theDate, 'd')) {
-          window.location.href = '/';
-        } else {
-          window.location.href = '/day/'+theDate.format('MM-DD-YYYY');
-        }
-      }
-    })
-    .catch((error) => {
-      console.log(error)
-    });
-  }
-}
-
 export function logMeal({mealDate, mealTime, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}) {  
-
-  
   const mealDateFormFormat = mealDate
   const mealTimeFormFormat = mealTime
   mealDate = moment(mealDate + 'T' + mealTime)
   const mealDateHumanFormat = mealDate.format('MM-DD-YYYY')
   const mealTimeHumanFormat = mealDate.format('h:mm a')
-  console.log(mealDate)
   const options = {
     method: 'POST',
     body: JSON.stringify({mealDate, mealDateHumanFormat, mealTimeHumanFormat, mealDateFormFormat, mealTimeFormFormat, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}),
@@ -130,6 +85,42 @@ export function logMeal({mealDate, mealTime, mealDuration, mealName, mealFoods, 
           window.location.href = '/day/'+theDate.format('MM-DD-YYYY');
         }
       }
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+  }
+}
+
+export function editExistingMeal(changedFields) {
+      console.log(changedFields)
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(changedFields),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': getCookie('token')
+    },
+  };
+  return function(dispatch) {
+    fetch(`${API_URL}/meal/update`, options)
+    .then(function(response) { return response.json(); })
+    .then(function(data){
+      console.log(data)
+      // if('success' in data && data.success){
+      //   dispatch({ 
+      //     type: LOG_MEAL,
+      //     payload: data.meal
+      //   });
+      //   let today = moment()
+      //   let theDate = moment(data.meal.mealDate)
+      //   if (today.isSame(theDate, 'd')) {
+      //     window.location.href = '/';
+      //   } else {
+      //     window.location.href = '/day/'+theDate.format('MM-DD-YYYY');
+      //   }
+      // }
     })
     .catch((error) => {
       console.log(error)
