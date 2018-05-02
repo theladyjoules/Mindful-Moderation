@@ -672,6 +672,9 @@ a.log-cta {
 .meal-summary-wrapper {
   margin: 0;
   padding-bottom: 100px; }
+  .meal-summary-wrapper .row {
+    margin-left: 0;
+    margin-right: 0; }
 
 .day-view-header {
   display: flex;
@@ -834,3 +837,11 @@ a.log-cta {
       .nav-drawer-section ul li a:before {
         font-size: 30px;
         font-size: 1.875rem; }
+
+table {
+  width: 100%; }
+  table thead tr th span {
+    display: none; }
+  table tbody tr td {
+    width: 14.285714285714%;
+    text-align: center; }

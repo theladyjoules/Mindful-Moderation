@@ -1,0 +1,15 @@
+table{
+  width:100%;
+
+  thead{
+    tr th{
+      span{
+        display:none;
+      }
+    }
+  }
+  tbody tr td{
+    width:14.285714285714%;
+    text-align:center
+  }
+}

@@ -7,7 +7,8 @@ import { AUTH_USER,
          TOGGLE_UPDATE_PASSWORD_VIEW,
          UPDATE_PASSWORD_ERROR,
          UPDATE_PASSWORD,
-         GET_ACCOUNT_DATA } from '../actions/types';
+         GET_ACCOUNT_DATA,
+         UPDATE_MEAL } from '../actions/types';
 
 const INITIAL_STATE = { error: '', message: '', content: '', authenticated: false, isEditingProfile: false, isEditingPassword: false}
 

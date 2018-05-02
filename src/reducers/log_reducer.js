@@ -5,34 +5,13 @@ import { LOG_MEAL,
          GET_MEALS_BY_DAY,
          GET_MEAL_FROM_STORE,
          GET_MEAL_BY_ID,
-         SET_CURRENT_DAY_MEAL } from '../actions/types';
+         SET_CURRENT_DAY_MEAL,
+         UPDATE_MEAL } from '../actions/types';
 
-const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: [], loadedMeals: [], currentDay: '', currentMeal: ''}
+const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: {}, loadedMeals: {}, currentDay: '', currentMeal: ''}
 
 export default function (state = INITIAL_STATE, action) {  
   switch(action.type) {
-    case SET_CURRENT_DAY_MEAL:
-      return { ...state, 
-        currentDay: action.payload.day,
-        currentMeal: action.payload.mealId,
-        moods: state[action.payload.day][action.payload.mealId].mealMood
-      };
-    case LOG_MEAL_ERROR:
-      return { ...state, 
-        message: '',
-        error: action.payload
-      };
-    case LOG_MEAL:
-      if(action.payload.mealDateHumanFormat in state){
-        return { ...state, 
-          [action.payload.mealDateHumanFormat]: [...state[action.payload.mealDateHumanFormat], action.payload]
-        }
-      }
-      else{
-        return { ...state, 
-          [action.payload.mealDateHumanFormat]: [action.payload]
-        }
-      }
     case ADD_MOOD:
       return { ...state, 
         moods: [...state.moods, action.payload]
@@ -44,21 +23,67 @@ export default function (state = INITIAL_STATE, action) {
           ...state.moods.slice(state.moods.indexOf(action.payload) + 1)
         ]
       }
-    case GET_MEALS_BY_DAY:
-      let loadedMeals = [];
-      for(let m in action.payload.meals){
-        loadedMeals.push(action.payload.meals[m]._id)
+    case SET_CURRENT_DAY_MEAL:
+      return { ...state, 
+        currentDay: action.payload.day,
+        currentMeal: action.payload.mealId,
+        moods: state.loadedMeals[action.payload.mealId].mealMood
+      };
+    case LOG_MEAL_ERROR:
+      return { ...state, 
+        message: '',
+        error: action.payload
+      };
+    case LOG_MEAL:
+      if(action.payload.mealDateHumanFormat in state.loadedDays){
+        return { ...state,
+          loadedDays:{
+            ...state.loadedDays,
+            [action.payload.mealDateHumanFormat]: [...[action.payload.mealDateHumanFormat], action.payload._id],
+          },
+          loadedMeals:{
+            ...state.loadedMeals,
+            [action.payload._id]: action.payload
+          }
+        }
       }
+      else{
+        return { ...state, 
+          loadedDays:{
+            ...state.loadedMeals,
+            [action.payload._id]: action.payload
+          }
+        }
+      }
+    case UPDATE_MEAL:
       return { ...state,
-        [action.payload.day]: action.payload.meals,
-        loadedDays: [...new Set([...state.loadedDays, action.payload.day])],
-        loadedMeals: [...new Set([...state.loadedMeals, ...loadedMeals])],
+        loadedMeals:{
+          ...state.loadedMeals,
+          [action.payload._id]: action.payload
+        }
+      }
+    case GET_MEALS_BY_DAY:
+      let dayMeals = [];
+      let newMeals = {}
+      for(let m in action.payload.meals){
+        dayMeals.push(action.payload.meals[m]._id)
+        newMeals[action.payload.meals[m]._id] = action.payload.meals[m]
+      }
+      console.log(action.payload)
+      return { ...state,
+        loadedDays:{
+          ...state.loadedDays,
+          [action.payload.day]:  Object.assign({}, [action.payload.day], dayMeals)
+        },
+        loadedMeals: Object.assign({}, state.loadedMeals, newMeals)
       }
     case GET_MEAL_BY_ID:
       let mealId = Object.values(action.payload.meal)[0]._id
       return { ...state,
-        [action.payload.day]: action.payload.meal,
-        loadedMeals: [...state.loadedMeals, Object.keys(action.payload.meal)[0]],
+        loadedMeals: {
+          ...state.loadedMeals,
+          [Object.values(action.payload.meal)[0]._id]: Object.values(action.payload.meal)[0]
+        },
         currentDay: action.payload.day,
         currentMeal: Object.values(action.payload.meal)[0]._id,
         moods: Object.values(action.payload.meal)[0].mealMood

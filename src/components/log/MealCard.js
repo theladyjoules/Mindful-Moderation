@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 class MealCard extends React.Component {
 
   render() {
-    console.log(this.props.meal)
     const chips = (this.props.meal.mealMood && this.props.meal.mealMood[0] !== '') ? this.props.meal.mealMood.map((mood) =>
       <div className="chip" key={mood}>
         {mood}
@@ -69,12 +68,12 @@ class MealCard extends React.Component {
         <footer className="row">
           <div className="col-xs-3 col-xs-push-6" >
             {this.props.showViewLink ? (
-              <Link to={"/day/" + this.props.meal.mealDateHumanFormat + "/meal/" + this.props.meal._id}>View</Link>
+              <Link to={"/meal/" + this.props.meal._id}>View</Link>
             ) : null}
           </div>
           <div className="col-xs-3 col-xs-push-6">
             {this.props.showEditLink ? (
-              <Link to={"/edit/day/" + this.props.meal.mealDateHumanFormat + "/meal/" + this.props.meal._id}>Edit</Link>
+              <Link to={"/edit-meal/" + this.props.meal._id}>Edit</Link>
             ) : null}
           </div>
         </footer>

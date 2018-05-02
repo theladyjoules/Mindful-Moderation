@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';  
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Loadable from 'react-loadable';
 import { withRouter } from 'react-router'
@@ -53,6 +54,11 @@ const EditMealWrapper = Loadable({
   loading: Loader,
 });
 
+const Calendar = Loadable({
+  loader: () => import('./calendar/Calendar'),
+  loading: Loader,
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -78,9 +84,10 @@ class App extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/account' component={RequireAuth(Account)} />  
             <Route exact path='/log-meal' component={RequireAuth(LogMeal)} />
-            <Route exact path='/edit/day/:day/meal/:meal' component={RequireAuth(EditMealWrapper)} />
+            <Route exact path='/edit-meal/:meal' component={RequireAuth(EditMealWrapper)} />
             <Route exact path='/day/:day' component={RequireAuth(DayView)} />
-            <Route exact path='/day/:day/meal/:meal' component={RequireAuth(MealView)} />
+            <Route exact path='/meal/:meal' component={RequireAuth(MealView)} />
+            <Route exact path='/calendar/:month' component={RequireAuth(Calendar)} />
             <Route component={NotFound404} />
           </Switch>
         </main>

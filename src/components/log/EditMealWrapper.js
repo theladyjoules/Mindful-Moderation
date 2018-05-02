@@ -8,13 +8,13 @@ class EditMealWrapper extends React.Component {
     super(props);
     const pathname = window.location.pathname.split( '/' )
     this.state = {
-      day: pathname[3],
-      mealId: pathname[5]
+      mealId: pathname[2]
     }
   }
 
   componentDidMount(){
-    if(this.state.day in this.props.log && this.state.mealId in this.props.log[this.state.day]){
+    console.log(this.state.mealId)
+    if(this.state.mealId in this.props.log.loadedMeals){
       this.props.setCurrentDayMeal(this.state.day, this.state.mealId)
     }
     else{
@@ -25,8 +25,8 @@ class EditMealWrapper extends React.Component {
   render() {
     return (
       <div>
-        {this.state.day == this.props.currentDay && this.state.mealId == this.props.currentMeal ? (
-            <EditMeal day={this.state.day} mealId={this.state.mealId} />
+        {this.state.mealId == this.props.currentMeal ? (
+            <EditMeal day={this.props.log.loadedMeals[this.state.mealId].mealDateHumanFormat} mealId={this.state.mealId} />
           ) : null
         }
       </div>

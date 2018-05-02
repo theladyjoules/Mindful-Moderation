@@ -24,7 +24,7 @@ class EditMeal extends Component {
 
   componentDidMount(){
     console.log('mounting edit form')
-    if(this.props.log.loadedMeals.indexOf(this.props.mealId) === -1){
+    if(this.props.mealId in this.props.log.loadedMeals){
       console.log('getting meal from server: ' + this.props.mealId)
       this.props.getMealById(this.props.mealId)
     }
@@ -33,7 +33,7 @@ class EditMeal extends Component {
 
   handleFormSubmit(values) {
     let changedFields = {}
-    const thisMeal = this.props.log[this.props.day][this.props.mealId]
+    const thisMeal = this.props.log.loadedMeals[this.props.mealId]
     if(values.mealDateFormFormat !== thisMeal.mealDateFormFormat || values.mealTimeFormFormat !== thisMeal.mealTimeFormFormat){
       changedFields['mealDateFormFormat'] = values.mealDateFormFormat
       changedFields['mealTimeFormFormat'] = values.mealTimeFormFormat
@@ -106,7 +106,7 @@ class EditMeal extends Component {
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            {this.props.log.loadedMeals.indexOf(this.props.mealId) > -1 ? (
+            {this.props.mealId in this.props.log.loadedMeals ? (
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <div className="form-header">
                   <h1>Edit Meal</h1>
@@ -377,7 +377,7 @@ class EditMeal extends Component {
                   />
                   <div className="submit-wrapper">
                     <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting || this.props.pristine}>Update</button>
-                    <p><Link to={"/day/" + this.props.day}>Cancel</Link></p>
+                    <p><Link to={'/meal/' + this.props.log.loadedMeals[this.props.mealId]._id}>Cancel</Link></p>
                   </div>
                 </div>
               </form>
@@ -421,12 +421,13 @@ EditMeal = reduxForm({
 
 EditMeal = connect(
   state => ({
-    initialValues: state.log[state.log.currentDay][state.log.currentMeal],
+    initialValues: state.log.loadedMeals[state.log.currentMeal],
     mealHungerBefore: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealHungerBefore' in state.form.editMeal.values) ? state.form.editMeal.values.mealHungerBefore : null,
     mealHungerAfter: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealHungerAfter' in state.form.editMeal.values) ? state.form.editMeal.values.mealHungerAfter : null,
     moods: state.log.moods,
     moodsField: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealMood' in state.form.editMeal.values) ? state.form.editMeal.values.mealMood : null,
-    log: state.log
+    log: state.log,
+    visitedPages: state.utility.visitedPages
   }),
   { editExistingMeal, addMood, removeMood, getMealById }
 )(EditMeal)

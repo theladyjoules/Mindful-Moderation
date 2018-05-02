@@ -90,6 +90,8 @@ export function registerUser({ email, firstName, lastName, password }) {
 
 export function logoutUser() {  
   return function (dispatch) {
+
+        console.log('hi')
     dispatch({ type: UNAUTH_USER });
     deleteCookie('token')
     window.location.href =  '/login';
