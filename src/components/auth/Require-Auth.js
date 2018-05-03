@@ -1,18 +1,20 @@
 import React, { Component } from 'react';  
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
+import { getCookie } from '../../utilities/cookies';
 
 export default function(ComposedComponent) {  
   class Authentication extends Component {
 
     componentWillMount() {
-      if(!this.props.authenticated) {
+      console.log(getCookie('token'))
+      if(!getCookie('token')) {
         this.props.history.push('/login')
       }
     }
 
     componentWillUpdate(nextProps) {
-      if(!nextProps.authenticated) {
+      if(!getCookie('token')) {
         this.props.history.push('/login')
       }
     }

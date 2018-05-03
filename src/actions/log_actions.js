@@ -5,7 +5,8 @@ import { LOG_MEAL,
          GET_MEALS_BY_DAY,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
-         UPDATE_MEAL} from '../actions/types';
+         UPDATE_MEAL,
+         GET_MEALS_BY_MONTH} from '../actions/types';
 import { getCookie } from '../utilities/cookies';
 import {logoutUser} from './auth_actions';
 import moment from 'moment'
@@ -48,6 +49,29 @@ export function getMealsByDay(day) {
       if(data && 'success' in data && data.success && Object.keys(data.meals).length > 0){
         dispatch({
           type: GET_MEALS_BY_DAY,
+          payload: data
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+  }
+}
+
+export function getMealsByMonth(month, year) {
+  return function(dispatch) {
+    fetch(`${API_URL}/month/${month}/${year}`, {
+      headers: { 'Authorization': getCookie('token') }
+    })
+    .then(function(response) {
+      return response.json(); 
+    })
+    .then(function(data){
+      console.log(data)
+      if(data && 'success' in data && data.success && Object.keys(data.meals).length > 0){
+        dispatch({
+          type: GET_MEALS_BY_MONTH,
           payload: data
         });
       }

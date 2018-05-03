@@ -1,15 +1,83 @@
-table{
-  width:100%;
+.calendar-wrapper{
+  height:100%;
+}
+.calendar{
+  height: 100%;
+  max-height:756px;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  background:$white;
+  border-radius: 4px;
+  @include box-shadow();
 
-  thead{
-    tr th{
+  &.rows-7 .calendar-row{
+    height:16%;
+  }
+  &.rows-6 .calendar-row{
+    height:19.2%;
+  }
+  &.rows-5 .calendar-row{
+    height:24%;
+  }
+  .calendar-row{
+    border-bottom:1px solid $lightGray;
+
+    &.calendar-header{
+      height:4%;
+      border-bottom:none;
+      font-weight:700;
+
       span{
         display:none;
       }
+      .calendar-day{
+        padding-bottom:0;
+      }
     }
-  }
-  tbody tr td{
-    width:14.285714285714%;
-    text-align:center
+    .calendar-day{
+      height:100%;
+      width:14.285714285714%;
+      float:left;
+      padding:10px;
+      cursor:pointer;
+      color:$darkGray;
+
+      &:hover, &:active, &:focus, &:visited{
+        color:$darkGray;
+        text-decoration:none;
+      }
+      &.inactive{
+        opacity:0.5;
+      }
+      .calendar-date{
+        font-size:14px;
+        padding-left:4px;
+      }
+      .current{
+
+        .calendar-date{
+          padding-left:0;
+          padding-top:1px;
+          background:$orange;
+          border-radius:50%;
+          color:$white;
+          display: block;
+          width: 22px;
+          text-align: center;
+          margin-top:-1px;
+          margin-left:-2px;
+        }
+      }
+      .calendar-meal{
+        background:$green;
+        border-radius: 4px;
+        color:$white;
+        margin-top:3px;
+        display:flex;
+        justify-content: space-between;
+        padding: 1px 5px;
+      }
+    }
   }
 }

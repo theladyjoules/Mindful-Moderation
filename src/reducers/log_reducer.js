@@ -3,12 +3,13 @@ import { LOG_MEAL,
          ADD_MOOD,
          REMOVE_MOOD,
          GET_MEALS_BY_DAY,
+         GET_MEALS_BY_MONTH,
          GET_MEAL_FROM_STORE,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
          UPDATE_MEAL } from '../actions/types';
 
-const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: {}, loadedMeals: {}, currentDay: '', currentMeal: ''}
+const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: {}, loadedMeals: {}, loadedMonths: {}, currentDay: '', currentMeal: ''}
 
 export default function (state = INITIAL_STATE, action) {  
   switch(action.type) {
@@ -76,6 +77,13 @@ export default function (state = INITIAL_STATE, action) {
           [action.payload.day]:  Object.assign({}, [action.payload.day], dayMeals)
         },
         loadedMeals: Object.assign({}, state.loadedMeals, newMeals)
+      }
+    case GET_MEALS_BY_MONTH:
+      return { ...state,
+        loadedMonths:{
+          ...state.loadedMonths,
+          [action.payload.month]: action.payload.meals
+        }
       }
     case GET_MEAL_BY_ID:
       let mealId = Object.values(action.payload.meal)[0]._id

@@ -19,7 +19,7 @@ html, body {
 }
 
 main{
-  flex: 1 0 auto;
+  height: 100%;
 }
 
 footer{
@@ -38,4 +38,31 @@ img{
 
 *:focus {
     outline: none;
+}
+
+
+.view-header{
+  display:flex;
+  justify-content:space-between;
+  padding-bottom: 18px;
+
+  h1{
+    color:$mediumGray;
+    span{
+      @include font-size(20);
+      padding-left:15px;
+    }
+  }
+  a{
+    color:$mediumGray;
+    margin-top:auto;
+    margin-bottom:auto;
+
+    &:hover, &:active, &:focus, &:visited{
+      color:$mediumGray;
+    }
+  }
+  a.disabled{
+    color:$lightGray;
+  }
 }

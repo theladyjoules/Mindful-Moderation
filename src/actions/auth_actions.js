@@ -9,6 +9,7 @@ import { AUTH_USER,
          UPDATE_PASSWORD_ERROR,
          UPDATE_PASSWORD } from '../actions/types';
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
+import moment from 'moment'
 
 const API_URL = 'http://localhost:3001/api';
 
@@ -53,7 +54,8 @@ export function loginUser({ email, password }) {
     fetch(`${API_URL}/login`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
-      setCookie('token', data.token, '/')
+      console.log(data)
+      setCookie('token', data.token, '/', null, data.expires, moment().add(data.expires, 's').format('ddd, DD MMM YYYY HH:mm:ss'))
       dispatch({ type: AUTH_USER });
       window.location.href = '/';
     })

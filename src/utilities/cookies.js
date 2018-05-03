@@ -15,8 +15,8 @@ function setCookie(name, value, path = null, domain = null, maxAge = null, expir
   let cookieString = name+'='+value
   cookieString += path ? ';path='+path : ''
   cookieString += domain ? ';domain='+domain : ''
-  cookieString += maxAge ? ';maxAge='+maxAge : ''
-  cookieString += expires ? ';expires='+expires : ''
+  cookieString += maxAge ? ';max-age='+maxAge : ''
+  cookieString += expires ? ';expires='+expires +' GMT' : ''
   cookieString += secure ? ';secure' : ''
   console.log(cookieString)
   document.cookie = cookieString;

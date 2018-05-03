@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { logoutUser }from '../../actions/auth_actions';
+import moment from 'moment'
 
 class Header extends React.Component {
   constructor(props) {
@@ -22,8 +23,8 @@ class Header extends React.Component {
         <div className="nav-drawer-section">
           <ul>
             <li><Link to='/log-meal' onClick={this.props.toggleNavDrawer}>Log a Meal or Snack</Link></li>
-            <li><Link to='/today' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
-            <li><Link to='/calendar' onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
+            <li><Link to='/' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
+            <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))} onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
             <li><Link to='/journey' onClick={this.props.toggleNavDrawer}>Your Journey</Link></li>
             <li><a onClick={this.handleLogoutClick}>Logout</a></li>
           </ul>

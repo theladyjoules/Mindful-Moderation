@@ -36,7 +36,7 @@ class DayView extends React.Component {
     const nextLink = (isToday) ? <div></div> : <Link className="ion-chevron-right" to={'/day/' + currentDay.add(2, 'days').format('MM-DD-YYYY')} />
     return (
       <div className="container daily-view">
-        <div className="day-view-header">
+        <div className="view-header">
           {prevLink}
           <h1>{moment(this.state.day).format("dddd")}<span>{moment(this.state.day).format("MMMM Do")}</span></h1>
           {nextLink}

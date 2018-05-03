@@ -13,7 +13,7 @@ class MealCard extends React.Component {
       <article className="meal-card col-xs-12 col-md-6">
         <header>
           <h2>{this.props.meal.mealName}</h2>
-          <h2>{this.props.meal.mealTimeFormatted}</h2>
+          <h2>{this.props.meal.mealTimeHumanFormat}</h2>
         </header>
         <main>
           <div className="meal-card-section hunger-section">
