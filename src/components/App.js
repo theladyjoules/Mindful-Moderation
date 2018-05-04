@@ -59,6 +59,11 @@ const Calendar = Loadable({
   loading: Loader,
 });
 
+const Profile = Loadable({
+  loader: () => import('./profile/Profile'),
+  loading: Loader,
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -88,6 +93,7 @@ class App extends React.Component {
             <Route exact path='/day/:day' component={RequireAuth(DayView)} />
             <Route exact path='/meal/:meal' component={RequireAuth(MealView)} />
             <Route exact path='/calendar/:month' component={RequireAuth(Calendar)} />
+            <Route exact path='/profile' component={RequireAuth(Profile)} />
             <Route component={NotFound404} />
           </Switch>
         </main>

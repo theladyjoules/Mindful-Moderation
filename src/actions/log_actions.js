@@ -6,7 +6,8 @@ import { LOG_MEAL,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
          UPDATE_MEAL,
-         GET_MEALS_BY_MONTH} from '../actions/types';
+         GET_MEALS_BY_MONTH,
+         DELETE_MEAL } from '../actions/types';
 import { getCookie } from '../utilities/cookies';
 import {logoutUser} from './auth_actions';
 import moment from 'moment'
@@ -20,15 +21,15 @@ export function getMealById(mealId) {
     })
     .then(function(response) { return response.json(); })
     .then(function(data){
-      if(data === 'Unauthorized'){
-        logoutUser()
-      }
-      else if('success' in data && data.success && Object.keys(data.meal).length > 0){
+      if('success' in data && data.success && Object.keys(data.meal).length > 0){
         console.log(data);
         dispatch({
           type: GET_MEAL_BY_ID,
           payload: data
         });
+      }
+      else{
+        window.location.href = '/'
       }
     })
     .catch((error) => {
@@ -121,8 +122,32 @@ export function logMeal({mealDate, mealTime, mealDuration, mealName, mealFoods, 
   }
 }
 
+export function deleteMeal(mealId, mealDateHumanFormat) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({mealId: mealId}),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': getCookie('token')
+    },
+  };
+  return function(dispatch) {
+    fetch(`${API_URL}/meal/delete`, options)
+    .then(function(response) { return response.json(); })
+    .then(function(data){
+      console.log(data)
+      if('success' in data && data.success){
+        window.location.href = '/day/'+mealDateHumanFormat
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+  }
+}
+
 export function editExistingMeal(changedFields) {
-      console.log(changedFields)
   const options = {
     method: 'POST',
     body: JSON.stringify(changedFields),
@@ -142,13 +167,6 @@ export function editExistingMeal(changedFields) {
           type: UPDATE_MEAL,
           payload: data.meal
         });
-        // let today = moment()
-        // let theDate = moment(data.meal.mealDate)
-        // if (today.isSame(theDate, 'd')) {
-        //   window.location.href = '/';
-        // } else {
-        //   window.location.href = '/day/'+theDate.format('MM-DD-YYYY');
-        // }
       }
     })
     .catch((error) => {

@@ -7,7 +7,8 @@ import { LOG_MEAL,
          GET_MEAL_FROM_STORE,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
-         UPDATE_MEAL } from '../actions/types';
+         UPDATE_MEAL,
+         DELETE_MEAL } from '../actions/types';
 
 const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: {}, loadedMeals: {}, loadedMonths: {}, currentDay: '', currentMeal: ''}
 
@@ -28,7 +29,7 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, 
         currentDay: action.payload.day,
         currentMeal: action.payload.mealId,
-        moods: state.loadedMeals[action.payload.mealId].mealMood
+        moods: state.loadedMeals[action.payload.mealId].mealMood,
       };
     case LOG_MEAL_ERROR:
       return { ...state, 
@@ -62,6 +63,33 @@ export default function (state = INITIAL_STATE, action) {
           ...state.loadedMeals,
           [action.payload._id]: action.payload
         }
+      }
+    case DELETE_MEAL:
+      let newLoadedMeals = state.loadedMeals
+      let newLoadedDays = state.loadedDays
+      let newLoadedMonths = state.loadedMonths
+      let newCurrentMeal = (state.currentMeal === action.payload) ? '' : state.currentMeal
+      delete newLoadedMeals[action.payload]
+      for(let day in newLoadedDays){
+        if(action.payload in newLoadedDays[day]){
+          delete newLoadedDays[day][action.payload]
+          break
+        }
+      }
+      monthLoop:
+      for(let month in newLoadedMonths){
+        for(let day in newLoadedMonths[month]){
+          if(action.payload in newLoadedMonths[month][day]){
+            delete newLoadedMonths[month][day][action.payload]
+            break monthLoop
+          }
+        }
+      }
+      return { ...state,
+        loadedMeals: newLoadedMeals,
+        loadedDays: newLoadedDays,
+        loadedMonths: newLoadedMonths,
+        currentMeal: newCurrentMeal
       }
     case GET_MEALS_BY_DAY:
       let dayMeals = [];

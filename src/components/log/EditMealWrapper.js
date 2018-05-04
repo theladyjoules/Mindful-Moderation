@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux';  
-import EditMeal from './EditMeal';
-import { getMealById, setCurrentDayMeal } from '../../actions/log_actions';
+import { connect } from 'react-redux'
+import EditMeal from './EditMeal'
+import { getMealById, setCurrentDayMeal } from '../../actions/log_actions'
 
 class EditMealWrapper extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class EditMealWrapper extends React.Component {
   render() {
     return (
       <div>
-        {this.state.mealId == this.props.currentMeal ? (
+        {this.state.mealId === this.props.currentMeal ? (
             <EditMeal day={this.props.log.loadedMeals[this.state.mealId].mealDateHumanFormat} mealId={this.state.mealId} />
           ) : null
         }

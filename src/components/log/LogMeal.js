@@ -9,7 +9,6 @@ import Loader from '../global/Loader';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
 import { logMeal, addMood, removeMood } from '../../actions/log_actions';
-import './styles/log.css';
 
 class LogMeal extends Component {
   constructor(props) {
@@ -370,13 +369,13 @@ const validate = values =>{
 
 LogMeal = reduxForm({  
   form: 'logMeal',
-  enableReinitialize: true,
+  enableReinitialize: false,
   validate
 })(LogMeal)
 
 LogMeal = connect(
   state => ({
-    initialValues: ('logMeal' in state.form) ? state.form.logMeal.values : {mealDate: moment().format('YYYY-MM-DD'), mealTime: moment().format('kk:mm')},
+    initialValues: {mealDate: moment().format('YYYY-MM-DD'), mealTime: moment().format('kk:mm')},
     mealHungerBefore: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerBefore' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerBefore : null,
     mealHungerAfter: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerAfter' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerAfter : null,
     moods: state.log.moods,

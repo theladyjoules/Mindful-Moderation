@@ -66,3 +66,73 @@ img{
     color:$lightGray;
   }
 }
+a.log-cta{
+  width:75px;
+  height:75px;
+  background:$darkGreen;
+  border-radius:50%;
+  color:$white;
+  text-align:center;
+  @include font-size(50);
+  @include line-height(84);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  cursor:pointer;
+
+  &:hover, &:active, &:focus, &:visited{
+    color:$white;
+  }
+}
+a.cta-calendar{
+  position:fixed;
+  bottom:30px;
+  left:30px;
+  color:$mediumGray;
+  font-weight:600;
+  @include font-size(18);
+
+  &:hover, &:active, &:focus, &:visited{
+    color:$mediumGray;
+  }
+  &:before{
+    margin-right:15px;
+  }
+}
+
+.avatar{
+  display:block;
+  width:80px;
+  height:80px;
+  background:$green;
+  color:$white;
+  text-align:center;
+  border-radius:50%;
+  @include font-size(26);
+  @include line-height(80);
+  position:relative;
+  font-weight:700;
+
+  &:before{
+    content:'';
+    background:$darkGreen;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    width:50%;
+    height:50%;
+    border-radius:50%;
+    z-index:1;
+  }
+  span{
+    position:absolute;
+    left:0;
+    right:0;
+    margin:auto;
+    z-index:2;
+  }
+}

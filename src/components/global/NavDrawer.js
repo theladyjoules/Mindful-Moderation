@@ -20,14 +20,28 @@ class Header extends React.Component {
     console.log(this.props)
     if(this.props.isLoggedIn){
       userNav = (
-        <div className="nav-drawer-section">
-          <ul>
-            <li><Link to='/log-meal' onClick={this.props.toggleNavDrawer}>Log a Meal or Snack</Link></li>
-            <li><Link to='/' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
-            <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))} onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
-            <li><Link to='/journey' onClick={this.props.toggleNavDrawer}>Your Journey</Link></li>
-            <li><a onClick={this.handleLogoutClick}>Logout</a></li>
-          </ul>
+        <div>
+          <div className="nav-drawer-section">
+            <ul>
+              <li>
+                <Link to='/log-meal' onClick={this.props.toggleNavDrawer} className="nav-log-cta">
+                  <span className="ion-plus-circled"></span><span>Log a Meal or Snack</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="nav-drawer-section">
+            <ul>
+              <li><Link to='/' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
+              <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))} onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
+              <li><Link to='/journey' onClick={this.props.toggleNavDrawer}>Your Journey</Link></li>
+            </ul>
+          </div>
+          <div className="nav-drawer-section">
+            <ul>
+              <li><a onClick={this.handleLogoutClick}>Logout</a></li>
+            </ul>
+          </div>
         </div>
       );
     }

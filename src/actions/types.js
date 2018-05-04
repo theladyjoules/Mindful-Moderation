@@ -21,4 +21,4 @@ export const AUTH_USER = 'auth_user',
              GET_MEAL_BY_ID = "get_meal_by_id",
              SET_CURRENT_DAY_MEAL = "set_current_day_meal",
              UPDATE_MEAL = "update_meal",
-             ADD_VISITED_PAGE = "ADD_VISITED_PAGE";
+             DELETE_MEAL = "delete_meal";

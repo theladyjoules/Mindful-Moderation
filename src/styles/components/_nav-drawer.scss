@@ -41,9 +41,22 @@
 
       a{
         cursor:pointer;
+        display:block;
 
-        &:before{
-          @include font-size(30);
+        span{
+          display:inline-block;
+          vertical-align:middle;
+
+          &:before{
+            @include font-size(30);
+            margin-right:15px;
+            display:inline-block;
+            vertical-align:middle;
+          }
+        }
+        &.ion-android-close:before{
+          @include font-size(27);
+          margin-left: 5px;
         }
       }
     }

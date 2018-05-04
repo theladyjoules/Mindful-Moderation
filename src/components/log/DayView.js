@@ -44,6 +44,7 @@ class DayView extends React.Component {
         <div className="meal-summary-wrapper row">
           {cards}
         </div>
+        <Link to={"/calendar/" + currentDay.format('MM-YYYY')} className="cta-calendar ion-chevron-left">Calendar</Link>
         <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
       </div>
     )

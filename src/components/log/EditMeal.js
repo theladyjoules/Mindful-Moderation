@@ -7,7 +7,7 @@ import $ from 'jquery'
 import Loader from '../global/Loader';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
-import { editExistingMeal, addMood, removeMood, getMealById } from '../../actions/log_actions';
+import { editExistingMeal, addMood, removeMood, getMealById, deleteMeal } from '../../actions/log_actions';
 import './styles/log.css';
 
 let pathname = window.location.pathname.split( '/' )
@@ -20,6 +20,7 @@ class EditMeal extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleAddMoodClick = this.handleAddMoodClick.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleDeleteMeal = this.handleDeleteMeal.bind(this);
   }
 
   componentDidMount(){
@@ -94,6 +95,10 @@ class EditMeal extends Component {
     }
   }
 
+  handleDeleteMeal(){
+    this.props.deleteMeal(this.props.mealId, this.props.log.loadedMeals[this.props.mealId].mealDateHumanFormat)
+  }
+
   render() {
     const { handleSubmit } = this.props;
     const chips = (this.props.moods.length) ? this.props.moods.map((mood) =>
@@ -108,13 +113,14 @@ class EditMeal extends Component {
           <div className="col-xs-12">
             {this.props.mealId in this.props.log.loadedMeals ? (
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <div className="form-header">
-                  <h1>Edit Meal</h1>
+                <div className="form-header edit-meal">
+                  <h1></h1>
+                  <a onClick={this.handleDeleteMeal}>Delete</a>
                 </div>
                 <div className="form-field-wrapper">
                   <Field
                     name="mealDateFormFormat"
-                    label="Meal Date"
+                    label="Date"
                     component={renderField}
                     onFocus={handleFormFieldFocus}
                     type="date"
@@ -124,7 +130,7 @@ class EditMeal extends Component {
                     <div className="col-xs-12 col-sm-6">
                       <Field
                         name="mealTimeFormFormat"
-                        label="Meal Start Time"
+                        label="Start Time"
                         component={renderField}
                         type="time" 
                         required="required"
@@ -135,7 +141,7 @@ class EditMeal extends Component {
                       <Field
                         name="mealDuration"
                         type="number"
-                        label="Meal Duration"
+                        label="Duration"
                         helpText="in minutes"
                         component={renderField}
                         onFocus={handleFormFieldFocus}
@@ -143,7 +149,7 @@ class EditMeal extends Component {
                     </div>
                   </div>
                   <Field 
-                    label="Meal Name"
+                    label="Name"
                     name="mealName"
                     component="input" 
                     type="text"
@@ -426,10 +432,9 @@ EditMeal = connect(
     mealHungerAfter: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealHungerAfter' in state.form.editMeal.values) ? state.form.editMeal.values.mealHungerAfter : null,
     moods: state.log.moods,
     moodsField: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealMood' in state.form.editMeal.values) ? state.form.editMeal.values.mealMood : null,
-    log: state.log,
-    visitedPages: state.utility.visitedPages
+    log: state.log
   }),
-  { editExistingMeal, addMood, removeMood, getMealById }
+  { editExistingMeal, addMood, removeMood, getMealById, deleteMeal }
 )(EditMeal)
 
 export default EditMeal
