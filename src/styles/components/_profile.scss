@@ -1,8 +1,4 @@
 .profile{
-  margin:0;
-  background:$white;
-  border-radius: 4px;
-  @include box-shadow();
 
   .profile-header{
     padding-top:15px;
@@ -10,16 +6,17 @@
     padding-bottom:15px;
 
     .avatar{
-      display:inline-block;
-      vertical-align:middle;
+      display:block;
+      margin:0 auto;
     }
     h1{
-      @include line-height(80);
-      @include font-size(28);
-      display:inline-block;
-      vertical-align:middle;
-      margin-left:34px;
-      font-weight:400;
+      @include line-height(30);
+      @include font-size(24);
+      text-align:center;
+      font-weight:600;
+      padding:15px 0 30px 0;
+      color:$darkGray;
+      text-transform:uppercase;
     }
     .settings-link{
       @include font-size(26);
@@ -33,22 +30,22 @@
       }
     }
   }
-  h2{
-    @include line-height(28);
-    @include font-size(22);
-  }
   .streak{
     text-align:center;
-    padding:41px 0 24px;
-    background:$darkGreen;
-    color:$lightGray;
-    border-radius: 4px;
-    margin:30px 0 25px;
+    padding:20px;
+    background:$white;
+    @include box-shadow();
 
+    h2{
+      @include line-height(18);
+      @include font-size(16);
+      color:$mediumGray;
+      max-width: 150px;
+      margin: 0 auto;
+    }
     .streak-number{
-      padding:15px 0 0 0;
-      @include line-height(56);
-      @include font-size(48);
+      @include line-height(50);
+      @include font-size(38);
       font-weight:700;
 
       span{
@@ -58,14 +55,15 @@
     }
   }
   .stat-row{
-    padding:15px 0;
-    border-bottom:1px solid $lightGray;
+    padding:30px 15px;
 
     .stat{
       display:flex;
     }
     h2{
       padding-bottom:7px;
+      @include font-size(16);
+      @include line-height(24);
     }
     h3{
       @include line-height(56);
@@ -82,6 +80,36 @@
       padding-left:13px;
     }
     .chip-wrapper{
+      padding-top:9px;
+    }
+  }
+}
+.stat-tabber{
+  text-align:center;
+  padding-top:15px;
+  margin-bottom:40px;
+
+  .tab{
+    display:inline-block;
+    vertical-align:bottom;
+    width:50%;
+    border-bottom:1px solid $mediumGray;
+    padding-bottom:1px;
+    color:$mediumGray;
+    font-weight:400;
+    cursor:pointer;
+
+    &.active{
+      border-bottom:2px solid $green;
+      padding-bottom:0;
+      color:$green;
+      font-weight:600;
+    }
+    .tab-title{
+      padding:45px 0 7px;
+      @include font-size(20);
+      @include line-height(24);
+      text-transform:uppercase;
     }
   }
 }

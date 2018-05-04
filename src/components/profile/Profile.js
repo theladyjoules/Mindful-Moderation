@@ -6,18 +6,39 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <section className="profile-wrapper container">
-        <div className="row profile">
+      <section className="profile container">
+        <div className="row profile-header">
           <div className="col-xs-12 col-md-6">
-            <header className="profile-header">
+            <header>
               <div className="avatar"><span>J</span></div>
-              <h1>Julie Hiller</h1>
-              <div className="settings-link ion-android-settings"></div>
+              <h1>Julie</h1>
             </header>
-            <div className="streak">
-              <h2>Current Run Streak</h2>
-              <div className="streak-number">10<span> days</span></div>
-            </div>
+          </div>
+        </div>
+        <div className="row streak">
+          <div className="col-xs-6">
+            <div className="streak-number">10</div>
+            <h2>days in a row logged</h2>
+          </div>
+          <div className="col-xs-6">
+            <div className="streak-number">1,457</div>
+            <h2>total meals and snacks logged</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <nav className="stat-tabber">
+              <div className="tab active">
+                <div className="tab-title">May 2018</div>
+              </div>
+              <div className="tab">
+                <div className="tab-title">All Time</div>
+             </div>
+            </nav>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 col-md-6">
             <div className="stat-row">
               <h2>Average Starting Hunger</h2>
               <div className="stat">

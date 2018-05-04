@@ -90,21 +90,21 @@ a.cta-calendar {
 
 .avatar {
   display: block;
-  width: 80px;
-  height: 80px;
-  background: #2a7a39;
-  color: #ffffff;
+  width: 120px;
+  height: 120px;
+  background: #898c89;
+  color: #e4e8e5;
   text-align: center;
   border-radius: 50%;
-  font-size: 26px;
-  font-size: 1.625rem;
-  line-height: 80px;
-  line-height: 5rem;
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 120px;
+  line-height: 7.5rem;
   position: relative;
   font-weight: 700; }
   .avatar:before {
     content: '';
-    background: #083510;
+    background: #2a7a39;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -121,6 +121,50 @@ a.cta-calendar {
     right: 0;
     margin: auto;
     z-index: 2; }
+
+@-webkit-keyframes avatar-swell {
+  0% {
+    width: 45%;
+    height: 45%; }
+  50% {
+    width: 55%;
+    height: 55%; }
+  100% {
+    width: 45%;
+    height: 45%; } }
+
+@-moz-keyframes avatar-swell {
+  0% {
+    width: 45%;
+    height: 45%; }
+  50% {
+    width: 55%;
+    height: 55%; }
+  100% {
+    width: 45%;
+    height: 45%; } }
+
+@-o-keyframes avatar-swell {
+  0% {
+    width: 45%;
+    height: 45%; }
+  50% {
+    width: 55%;
+    height: 55%; }
+  100% {
+    width: 45%;
+    height: 45%; } }
+
+@keyframes avatar-swell {
+  0% {
+    width: 45%;
+    height: 45%; }
+  50% {
+    width: 55%;
+    height: 55%; }
+  100% {
+    width: 45%;
+    height: 45%; } }
 
 h1 {
   font-size: 32px;
@@ -984,78 +1028,107 @@ a.logo {
         justify-content: space-between;
         padding: 1px 5px; }
 
-.profile {
-  margin: 0;
+.profile .profile-header {
+  padding-top: 15px;
+  position: relative;
+  padding-bottom: 15px; }
+  .profile .profile-header .avatar {
+    display: block;
+    margin: 0 auto; }
+  .profile .profile-header h1 {
+    line-height: 30px;
+    line-height: 1.875rem;
+    font-size: 24px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    padding: 15px 0 30px 0;
+    color: #404240;
+    text-transform: uppercase; }
+  .profile .profile-header .settings-link {
+    font-size: 26px;
+    font-size: 1.625rem;
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 0; }
+    .profile .profile-header .settings-link:before {
+      display: block; }
+
+.profile .streak {
+  text-align: center;
+  padding: 20px;
   background: #ffffff;
-  border-radius: 4px;
   box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
   -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
   -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2); }
-  .profile .profile-header {
-    padding-top: 15px;
-    position: relative;
-    padding-bottom: 15px; }
-    .profile .profile-header .avatar {
-      display: inline-block;
-      vertical-align: middle; }
-    .profile .profile-header h1 {
-      line-height: 80px;
-      line-height: 5rem;
-      font-size: 28px;
-      font-size: 1.75rem;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 34px;
+  .profile .streak h2 {
+    line-height: 18px;
+    line-height: 1.125rem;
+    font-size: 16px;
+    font-size: 1rem;
+    color: #898c89;
+    max-width: 150px;
+    margin: 0 auto; }
+  .profile .streak .streak-number {
+    line-height: 50px;
+    line-height: 3.125rem;
+    font-size: 38px;
+    font-size: 2.375rem;
+    font-weight: 700; }
+    .profile .streak .streak-number span {
+      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 400; }
-    .profile .profile-header .settings-link {
-      font-size: 26px;
-      font-size: 1.625rem;
-      display: block;
-      position: absolute;
-      top: 12px;
-      right: 0; }
-      .profile .profile-header .settings-link:before {
-        display: block; }
-  .profile h2 {
-    line-height: 28px;
-    line-height: 1.75rem;
-    font-size: 22px;
-    font-size: 1.375rem; }
-  .profile .streak {
-    text-align: center;
-    padding: 41px 0 24px;
-    background: #083510;
-    color: #e4e8e5;
-    border-radius: 4px;
-    margin: 30px 0 25px; }
-    .profile .streak .streak-number {
-      padding: 15px 0 0 0;
-      line-height: 56px;
-      line-height: 3.5rem;
-      font-size: 48px;
-      font-size: 3rem;
-      font-weight: 700; }
-      .profile .streak .streak-number span {
-        font-size: 18px;
-        font-size: 1.125rem;
-        font-weight: 400; }
-  .profile .stat-row {
-    padding: 15px 0;
-    border-bottom: 1px solid #e4e8e5; }
-    .profile .stat-row .stat {
-      display: flex; }
-    .profile .stat-row h2 {
-      padding-bottom: 7px; }
-    .profile .stat-row h3 {
-      line-height: 56px;
-      line-height: 3.5rem;
-      font-size: 48px;
-      font-size: 3rem;
-      font-weight: 700; }
-      .profile .stat-row h3 span {
-        font-size: 18px;
-        font-size: 1.125rem;
-        font-weight: 400; }
-    .profile .stat-row .hunger-icon {
-      padding-top: 6px;
-      padding-left: 13px; }
+
+.profile .stat-row {
+  padding: 30px 15px; }
+  .profile .stat-row .stat {
+    display: flex; }
+  .profile .stat-row h2 {
+    padding-bottom: 7px;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 24px;
+    line-height: 1.5rem; }
+  .profile .stat-row h3 {
+    line-height: 56px;
+    line-height: 3.5rem;
+    font-size: 48px;
+    font-size: 3rem;
+    font-weight: 700; }
+    .profile .stat-row h3 span {
+      font-size: 18px;
+      font-size: 1.125rem;
+      font-weight: 400; }
+  .profile .stat-row .hunger-icon {
+    padding-top: 6px;
+    padding-left: 13px; }
+  .profile .stat-row .chip-wrapper {
+    padding-top: 9px; }
+
+.stat-tabber {
+  text-align: center;
+  padding-top: 15px;
+  margin-bottom: 40px; }
+  .stat-tabber .tab {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 50%;
+    border-bottom: 1px solid #898c89;
+    padding-bottom: 1px;
+    color: #898c89;
+    font-weight: 400;
+    cursor: pointer; }
+    .stat-tabber .tab.active {
+      border-bottom: 2px solid #2a7a39;
+      padding-bottom: 0;
+      color: #2a7a39;
+      font-weight: 600; }
+    .stat-tabber .tab .tab-title {
+      padding: 45px 0 7px;
+      font-size: 20px;
+      font-size: 1.25rem;
+      line-height: 24px;
+      line-height: 1.5rem;
+      text-transform: uppercase; }

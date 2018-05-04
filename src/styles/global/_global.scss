@@ -103,20 +103,20 @@ a.cta-calendar{
 
 .avatar{
   display:block;
-  width:80px;
-  height:80px;
-  background:$green;
-  color:$white;
+  width:120px;
+  height:120px;
+  background:$mediumGray;
+  color:$lightGray;
   text-align:center;
   border-radius:50%;
-  @include font-size(26);
-  @include line-height(80);
+  @include font-size(40);
+  @include line-height(120);
   position:relative;
   font-weight:700;
 
   &:before{
     content:'';
-    background:$darkGreen;
+    background:$green;
     position:absolute;
     top:0;
     bottom:0;
@@ -127,6 +127,10 @@ a.cta-calendar{
     height:50%;
     border-radius:50%;
     z-index:1;
+    // -webkit-animation: avatar-swell 5s infinite; /* Safari 4+ */
+    // -moz-animation:    avatar-swell 5s infinite; /* Fx 5+ */
+    // -o-animation:      avatar-swell 5s infinite; /* Opera 12+ */
+    // animation:         avatar-swell 5s infinite; /* IE 10+, Fx 29+ */
   }
   span{
     position:absolute;
@@ -135,4 +139,24 @@ a.cta-calendar{
     margin:auto;
     z-index:2;
   }
+}
+@-webkit-keyframes avatar-swell {
+  0%   { width:45%; height:45%; }
+  50% { width:55%; height:55%; }
+  100%   { width:45%; height:45%; }
+}
+@-moz-keyframes avatar-swell {
+  0%   { width:45%; height:45%; }
+  50% { width:55%; height:55%; }
+  100%   { width:45%; height:45%; }
+}
+@-o-keyframes avatar-swell {
+  0%   { width:45%; height:45%; }
+  50% { width:55%; height:55%; }
+  100%   { width:45%; height:45%; }
+}
+@keyframes avatar-swell {
+  0%   { width:45%; height:45%; }
+  50% { width:55%; height:55%; }
+  100%   { width:45%; height:45%; }
 }

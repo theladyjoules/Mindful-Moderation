@@ -8,7 +8,6 @@ import Loader from '../global/Loader';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
 import { editExistingMeal, addMood, removeMood, getMealById, deleteMeal } from '../../actions/log_actions';
-import './styles/log.css';
 
 let pathname = window.location.pathname.split( '/' )
 
