@@ -14,6 +14,9 @@ let pathname = window.location.pathname.split( '/' )
 class EditMeal extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      moodsPristine: true
+    }
     this.handleAddMood = this.handleAddMood.bind(this);
     this.handleRemoveMood = this.handleRemoveMood.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -75,6 +78,7 @@ class EditMeal extends Component {
     if(value.length && this.props.moods.indexOf(value) === -1){
       $('#mealMood').val('')
       this.props.addMood(value)
+      this.setState({moodsPristine:false})
     }
   }
 
@@ -85,6 +89,7 @@ class EditMeal extends Component {
   handleRemoveMood(mood){
     if(this.props.moods.indexOf(mood) > -1){
       this.props.removeMood(mood)
+      this.setState({moodsPristine:false})
     }
   }
   handleKeyPress(e){
@@ -381,7 +386,7 @@ class EditMeal extends Component {
                     onFocus={handleFormFieldFocus}
                   />
                   <div className="submit-wrapper">
-                    <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting || this.props.pristine}>Update</button>
+                    <button type="submit" className="btn btn-green" disabled={ this.props.invalid || this.props.submitting || (this.props.pristine && this.state.moodsPristine)}>Update</button>
                     <p><Link to={'/meal/' + this.props.log.loadedMeals[this.props.mealId]._id}>Cancel</Link></p>
                   </div>
                 </div>

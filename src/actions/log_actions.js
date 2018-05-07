@@ -9,7 +9,6 @@ import { LOG_MEAL,
          GET_MEALS_BY_MONTH,
          DELETE_MEAL } from '../actions/types';
 import { getCookie } from '../utilities/cookies';
-import {logoutUser} from './auth_actions';
 import moment from 'moment'
 
 const API_URL = 'http://localhost:3001/api';
