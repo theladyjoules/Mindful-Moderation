@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';  
 import AccountProfile from './AccountProfile';
 import AccountPassword from './AccountPassword';
+import AccountData from './AccountData';
 
 class Account extends Component {
 
@@ -24,11 +25,12 @@ class Account extends Component {
 
   render() {
     return (
-      <div>
+      <div className="account container">
         <h1>Account</h1>
         {this.renderAlert()}
         <AccountProfile />
         <AccountPassword />
+        <AccountData />
       </div>
     );
   }

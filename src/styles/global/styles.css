@@ -1137,3 +1137,33 @@ a.logo {
   display: none; }
   .tab-content.active {
     display: block; }
+
+.account h1 {
+  color: #898c89;
+  text-align: center;
+  padding-bottom: 30px; }
+
+.account form {
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0; }
+
+.account .account-section {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
+  -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
+  -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
+  padding: 30px;
+  margin: 0 0 15px 0; }
+  .account .account-section h2 {
+    padding-bottom: 15px;
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 26px;
+    line-height: 1.625rem;
+    text-align: center; }
+
+.account .btn-wrapper {
+  text-align: center;
+  padding-top: 30px; }

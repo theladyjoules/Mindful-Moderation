@@ -1,0 +1,31 @@
+.account{
+  h1{
+    color: #898c89;
+    text-align:center;
+    padding-bottom:30px;
+  }
+  form{
+    box-shadow:none;
+    padding:0;
+    border-radius:0;
+  }
+
+  .account-section{
+    background:$white;
+    border-radius: 4px;
+    @include box-shadow();
+    padding:30px;
+    margin:0 0 15px 0;
+
+    h2{
+      padding-bottom:15px;
+      @include font-size(20);
+      @include line-height(26);
+      text-align:center;
+    }
+  }
+  .btn-wrapper{
+    text-align:center;
+    padding-top:30px;
+  }
+}

@@ -24,4 +24,5 @@ export const AUTH_USER = 'auth_user',
              DELETE_MEAL = "delete_meal",
              GET_STATS = "get_stats",
              GET_STATS_BY_MONTH = "get_stats_by_month",
-             SET_ACTIVE_STAT_TAB = "set_active_stat_tab";
+             SET_ACTIVE_STAT_TAB = "set_active_stat_tab",
+             GET_EXPORT_CSV = "get_export_csv";

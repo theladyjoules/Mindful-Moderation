@@ -18,46 +18,48 @@ class AccountPassword extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <h2>Password</h2>
-          {this.props.isEditingPassword ? (
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-              <div className="row">
-                <div className="col-md-6">
+      <div className="account-section row">
+        <div className="col-xs-12">
+          <h2>Password</h2>
+            {this.props.isEditingPassword ? (
+              <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <Field
+                      name="currentPassword"
+                      type="text"
+                      component={renderField}
+                      label="Current Password"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <Field
+                      name="password"
+                      type="text"
+                      component={renderField}
+                      label="New Password"
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12">
                   <Field
-                    name="currentPassword"
+                    name="passwordConfirm"
                     type="text"
                     component={renderField}
-                    label="Current Password"
+                    label="Confirm New Password"
                   />
+                  </div>
                 </div>
-                <div className="col-md-6">
-                  <Field
-                    name="password"
-                    type="text"
-                    component={renderField}
-                    label="New Password"
-                  />
-                </div>
+                <button type="submit" className="btn btn-primary" disabled={this.props.invalid || this.props.submitting}>Update</button>
+                <a className="btn" onClick={this.props.toggleUpdatePasswordView}>Cancel</a>
+              </form>
+            ) : (
+              <div className="btn-wrapper">
+                <a className="btn" onClick={this.props.toggleUpdatePasswordView}>Change</a>
               </div>
-              <div className="row">
-                <div className="col-md-12">
-                <Field
-                  name="passwordConfirm"
-                  type="text"
-                  component={renderField}
-                  label="Confirm New Password"
-                />
-                </div>
-              </div>
-              <button type="submit" className="btn btn-primary" disabled={this.props.invalid || this.props.submitting}>Update</button>
-              <a className="btn" onClick={this.props.toggleUpdatePasswordView}>Cancel</a>
-            </form>
-          ) : (
-            <div>
-              <a className="btn" onClick={this.props.toggleUpdatePasswordView}>Change</a>
-            </div>
-          )}
+            )}
+        </div>
       </div>
     );
   }

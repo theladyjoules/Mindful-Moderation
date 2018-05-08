@@ -34,6 +34,7 @@ class Header extends React.Component {
               <li><Link to='/' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
               <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))} onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
               <li><Link to='/profile' onClick={this.props.toggleNavDrawer}>Profile</Link></li>
+              <li><Link to='/account' onClick={this.props.toggleNavDrawer}>Settings</Link></li>
             </ul>
           </div>
           <div className="nav-drawer-section">
