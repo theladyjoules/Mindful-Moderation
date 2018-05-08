@@ -17,7 +17,6 @@ class Header extends React.Component {
 
   render() {
     let userNav = null;
-    console.log(this.props)
     if(this.props.isLoggedIn){
       userNav = (
         <div>
@@ -34,7 +33,7 @@ class Header extends React.Component {
             <ul>
               <li><Link to='/' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
               <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))} onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
-              <li><Link to='/journey' onClick={this.props.toggleNavDrawer}>Your Journey</Link></li>
+              <li><Link to='/profile' onClick={this.props.toggleNavDrawer}>Profile</Link></li>
             </ul>
           </div>
           <div className="nav-drawer-section">

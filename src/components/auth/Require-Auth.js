@@ -7,7 +7,7 @@ export default function(ComposedComponent) {
   class Authentication extends Component {
 
     componentWillMount() {
-      console.log(getCookie('token'))
+      // console.log(getCookie('token'))
       if(!getCookie('token')) {
         this.props.history.push('/login')
       }

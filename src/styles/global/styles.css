@@ -1132,3 +1132,8 @@ a.logo {
       line-height: 24px;
       line-height: 1.5rem;
       text-transform: uppercase; }
+
+.tab-content {
+  display: none; }
+  .tab-content.active {
+    display: block; }

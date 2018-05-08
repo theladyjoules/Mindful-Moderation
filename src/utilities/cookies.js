@@ -7,7 +7,7 @@ function deleteCookie(name) {
 
 function getCookie(name){
   let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  console.log(cookieValue)
+  // console.log(cookieValue)
   return cookieValue
 }
 
