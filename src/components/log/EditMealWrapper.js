@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EditMeal from './EditMeal'
-import { getMealById, setCurrentDayMeal } from '../../actions/log_actions'
+import { getMealById, setCurrentDayMeal, resetMoods } from '../../actions/log_actions'
 
 class EditMealWrapper extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class EditMealWrapper extends React.Component {
   }
 
   componentDidMount(){
+    this.props.resetMoods()
     console.log(this.state.mealId)
     if(this.state.mealId in this.props.log.loadedMeals){
       this.props.setCurrentDayMeal(this.state.day, this.state.mealId)
@@ -40,7 +41,7 @@ EditMealWrapper = connect(
     currentDay: state.log.currentDay,
     currentMeal: state.log.currentMeal
   }),
-  { getMealById, setCurrentDayMeal }
+  { getMealById, setCurrentDayMeal, resetMoods }
 )(EditMealWrapper)
 
 export default EditMealWrapper

@@ -2,6 +2,7 @@ import { LOG_MEAL,
          LOG_MEAL_ERROR,
          ADD_MOOD,
          REMOVE_MOOD,
+         RESET_MOODS,
          GET_MEALS_BY_DAY,
          GET_MEALS_BY_MONTH,
          GET_MEAL_FROM_STORE,
@@ -29,6 +30,10 @@ export default function (state = INITIAL_STATE, action) {
           ...state.moods.slice(0, state.moods.indexOf(action.payload)),
           ...state.moods.slice(state.moods.indexOf(action.payload) + 1)
         ]
+      }
+    case RESET_MOODS:
+      return { ...state, 
+        moods: []
       }
     case SET_CURRENT_DAY_MEAL:
       return { ...state, 

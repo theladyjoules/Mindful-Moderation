@@ -25,8 +25,8 @@ class DayView extends React.Component {
     const cards = (this.state.day in this.props.log.loadedDays && Object.keys(this.props.log.loadedDays[this.state.day]).length) ? Object.values(this.props.log.loadedDays[this.state.day]).map( (meal, index) =>
       <MealCard key={index} meal={this.props.log.loadedMeals[meal]} showViewLink={true} showEditLink={true} />
     ) : (
-      <div>
-        Click on the orange plus below to log a meal. :)
+      <div className="day-help-text">
+        Use the plus below to log a meal or snack.
       </div>
     );
     const today = moment()
@@ -36,16 +36,26 @@ class DayView extends React.Component {
     const nextLink = (isToday) ? <div></div> : <Link className="ion-chevron-right" to={'/day/' + currentDay.add(2, 'days').format('MM-DD-YYYY')} />
     return (
       <div className="container daily-view">
-        <div className="view-header">
-          {prevLink}
-          <h1>{moment(this.state.day).format("dddd")}<span>{moment(this.state.day).format("MMMM Do")}</span></h1>
-          {nextLink}
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="view-header">
+              {prevLink}
+              <h1>{moment(this.state.day).format("dddd")}<span>{moment(this.state.day).format("MMMM Do")}</span></h1>
+              {nextLink}
+            </div>
+          </div>
         </div>
         <div className="meal-summary-wrapper row">
           {cards}
+          <Link to={"/calendar/" + currentDay.format('MM-YYYY')} className="cta-calendar ion-chevron-left">Calendar</Link>
         </div>
-        <Link to={"/calendar/" + currentDay.format('MM-YYYY')} className="cta-calendar ion-chevron-left">Calendar</Link>
-        <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
+        <div className="container log-cta-wrapper">
+          <div className="row">
+            <div className="col-xs-12">
+              <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

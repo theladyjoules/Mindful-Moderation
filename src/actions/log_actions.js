@@ -2,6 +2,7 @@ import { LOG_MEAL,
          LOG_MEAL_ERROR,
          ADD_MOOD,
          REMOVE_MOOD,
+         RESET_MOODS,
          GET_MEALS_BY_DAY,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
@@ -204,6 +205,14 @@ export function removeMood(mood) {
     dispatch({ 
       type: REMOVE_MOOD,
       payload: mood
+    });
+  }
+}
+
+export function resetMoods() {  
+  return function(dispatch) {
+    dispatch({ 
+      type: RESET_MOODS,
     });
   }
 }

@@ -21,7 +21,8 @@ html, body {
   flex-direction: column; }
 
 main {
-  height: 100%; }
+  height: 100%;
+  position: relative; }
 
 footer {
   flex-shrink: 0; }
@@ -55,8 +56,8 @@ img {
   .view-header h1 {
     color: #898c89; }
     .view-header h1 span {
-      font-size: 20px;
-      font-size: 1.25rem;
+      font-size: 16px;
+      font-size: 1rem;
       padding-left: 15px; }
   .view-header a {
     color: #898c89;
@@ -67,10 +68,21 @@ img {
   .view-header a.disabled {
     color: #e4e8e5; }
 
+@media only screen and (min-width: 992px) {
+  .view-header {
+    justify-content: center; }
+    .view-header h1 {
+      padding: 0 60px; } }
+
+.log-cta-wrapper {
+  position: fixed;
+  bottom: 0;
+  z-index: 10; }
+
 a.log-cta {
   width: 75px;
   height: 75px;
-  background: #083510;
+  background: radial-gradient(#2a7a39, #083510);
   border-radius: 50%;
   color: #ffffff;
   text-align: center;
@@ -78,18 +90,25 @@ a.log-cta {
   font-size: 3.125rem;
   line-height: 84px;
   line-height: 5.25rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  position: fixed;
+  box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
+  -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
+  -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
+  position: absolute;
   bottom: 30px;
   right: 30px;
   cursor: pointer; }
   a.log-cta:hover, a.log-cta:active, a.log-cta:focus, a.log-cta:visited {
     color: #ffffff; }
 
+@media only screen and (max-width: 768px) {
+  .log-cta-wrapper {
+    width: 100%; } }
+
 a.cta-calendar {
-  position: fixed;
-  bottom: 30px;
+  display: block;
+  position: absolute;
   left: 30px;
+  bottom: 52px;
   color: #898c89;
   font-weight: 600;
   font-size: 18px;
@@ -904,17 +923,32 @@ a.logo {
   color: #898c89;
   display: block; }
 
+.daily-view {
+  height: calc(100% - 70px); }
+  .daily-view .day-help-text {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 24px;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 100px 50px;
+    text-align: center;
+    max-width: 400;
+    color: #898c89;
+    opacity: 0.6; }
+
 .meal-summary-wrapper {
-  margin: 0;
-  padding-bottom: 100px; }
-  .meal-summary-wrapper .row {
-    margin-left: 0;
-    margin-right: 0; }
+  position: relative;
+  min-height: calc(100% - 61px); }
+  .meal-summary-wrapper .col-md-6 {
+    float: none;
+    display: inline-block;
+    vertical-align: top; }
+    .meal-summary-wrapper .col-md-6:nth-last-child(2) {
+      margin-bottom: 135px; }
 
 .meal-card {
-  padding-left: 0;
-  padding-right: 0;
-  margin-bottom: 75px;
+  margin-bottom: 45px;
   background: #ffffff;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
@@ -930,12 +964,14 @@ a.logo {
     .meal-card header h2 {
       flex: 0 1 30%;
       text-align: right;
-      font-size: 22px;
-      font-size: 1.375rem;
-      line-height: 26px;
-      line-height: 1.625rem;
+      font-size: 18px;
+      font-size: 1.125rem;
+      line-height: 24px;
+      line-height: 1.5rem;
       font-weight: 400;
       padding: 12px 0; }
+      .meal-card header h2:first-child {
+        padding-left: 15px; }
       .meal-card header h2:last-child {
         flex: 0 1 70%;
         padding-right: 30px; }
@@ -1109,7 +1145,8 @@ a.logo {
       float: left;
       padding: 10px;
       cursor: pointer;
-      color: #404240; }
+      color: #404240;
+      overflow: hidden; }
       .calendar .calendar-row .calendar-day:hover, .calendar .calendar-row .calendar-day:active, .calendar .calendar-row .calendar-day:focus, .calendar .calendar-row .calendar-day:visited {
         color: #404240;
         text-decoration: none; }
@@ -1141,7 +1178,7 @@ a.logo {
         display: none; }
   .calendar .day-ellipsis {
     display: none;
-    height: 24px;
+    height: 10px;
     margin-top: 3px; }
     .calendar .day-ellipsis .ellipsis-dot {
       width: 6px;
@@ -1149,8 +1186,8 @@ a.logo {
       background: #898c89;
       border-radius: 50%;
       margin-left: 2px;
-      display: inline-block;
-      vertical-align: middle; }
+      display: block;
+      float: left; }
       .calendar .day-ellipsis .ellipsis-dot:first-child {
         margin-left: 0; }
   .calendar .calendar-meal.truncate + .day-ellipsis {
@@ -1166,6 +1203,14 @@ a.logo {
       display: flex;
       justify-content: space-between;
       color: #ffffff; } }
+
+@media only screen and (min-width: 768px) {
+  .calendar {
+    max-height: 898px; } }
+
+@media only screen and (min-width: 992px) {
+  .calendar {
+    max-height: 100%; } }
 
 .profile .profile-header {
   padding-top: 15px;
