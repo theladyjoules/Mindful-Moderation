@@ -8,6 +8,70 @@ input[type=date]::-webkit-calendar-picker-indicator {
   cursor:pointer;
   display:block;
 }
+.toggle-wrapper{
+  display:flex;
+  align-items: center;
+  padding-bottom:14px;
+  cursor:pointer;
+
+  .toggle-label{
+    @include font-size(20);
+    @include line-height(34);
+
+    &:first-child{
+      color:$mediumGray;
+    }
+    &:last-child{
+      color:$green;
+    }
+  }
+  .toggle{
+    position:relative;
+    width:40px;
+    height:16px;
+    margin:0 20px;
+
+    .toggle-track{
+      opacity:0.5;
+      background:$green;
+      border-radius:8px;
+      width:40px;
+      height:16px;
+      position:absolute;
+      z-index:1;
+    }
+    .toggle-handle{
+      position:absolute;
+      width:24px;
+      height:24px;
+      background:$green;
+      border-radius:50%;
+      z-index:2;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+      transform: translate3d(20px,-4px,0);
+      transition-property: background,transform;
+    }
+  }
+  &.off{
+    .toggle-label{
+      &:first-child{
+        color:$darkGreen;
+      }
+      &:last-child{
+        color:$mediumGray;
+      }
+    }
+    .toggle{
+      .toggle-track{
+        background:$darkGreen;
+      }
+      .toggle-handle{
+        transform: translate3d(-4px,-4px,0);
+        background:$darkGreen;
+      }
+    }
+  }
+}
 form{
   padding-bottom:100px;
   border-radius: 4px;
@@ -63,6 +127,16 @@ form{
 .form-field-wrapper{
   padding-top:34px;
 }
+.snack-theme{
+  .form-field{
+    .hunger-label .hunger-description{
+      color:$magenta;
+    }
+    hr:after{
+      background:$magenta;
+    }
+  }
+}
 .form-field{
   padding-top:8px;
   padding-bottom:26px;
@@ -102,7 +176,7 @@ form{
     justify-content: space-between;
 
     .hunger-description{
-      color:$green;
+      color:$darkGreen;
       font-weight:700;
     }
   }
@@ -113,7 +187,7 @@ form{
     overflow: visible;
 
     &:after{
-      background: $green;
+      background: $darkGreen;
       content: "";
       display: block;
       height: 2px;
@@ -146,7 +220,7 @@ form{
     & + label{
       transform: translate3d(0, -34px, 0);
       @include font-size(20);
-      color:$green;
+      color:$darkGreen;
     }
     & + label + hr:after{
       width:100%;
@@ -161,7 +235,7 @@ form{
     label{
       transform: translate3d(0, -34px, 0);
       @include font-size(20);
-      color:$green;
+      color:$darkGreen;
     }
     input, textarea{
       opacity:1;
@@ -239,7 +313,7 @@ form{
 
   /* When the radio button is checked, add a blue background */
   .radio-container input:checked ~ .radio-button {
-      background-color: $green;
+      background-color: $darkGreen;
   }
 
   /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -273,6 +347,43 @@ form{
       flex-wrap: nowrap;
       justify-content: space-between;
       padding-top: 17px;
+    }
+  }
+}
+.snack-theme{
+  .form-field{
+    .hunger-label .hunger-description{
+      color:$green;
+    }
+    hr:after{
+      background:$green;
+    }
+    input:focus + label{
+      color:$green;
+    }
+    &.active, &.has-value{
+      label{
+        color:$green;
+      }
+    }
+    &.invalid{
+
+      label{
+        color:$red;
+      }
+      hr{
+        border-color:$red;
+
+        &:after{
+          background-color:$red;
+        }
+      }
+      .input-message{
+        color:$red;
+      }
+    }
+    .radio-container input:checked ~ .radio-button {
+      background-color:$green;
     }
   }
 }

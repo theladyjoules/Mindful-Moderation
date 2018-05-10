@@ -1,9 +1,5 @@
 .account{
-  h1{
-    color: #898c89;
-    text-align:center;
-    padding-bottom:30px;
-  }
+
   form{
     box-shadow:none;
     padding:0;
@@ -17,15 +13,62 @@
     padding:30px;
     margin:0 0 15px 0;
 
+    p{
+      @include font-size(20);
+      @include line-height(26);
+
+      strong{
+        font-weight:600;
+      }
+    }
     h2{
       padding-bottom:15px;
       @include font-size(20);
       @include line-height(26);
       text-align:center;
+      font-weight:600;
+      text-transform:uppercase;
+    }
+    .account-sub-section{
+      border-bottom:1px solid $lightGray;
+      padding-bottom:30px;
+      margin-bottom:30px;
+
+      p:first-child{
+        margin-top:0;
+      }
+      &:first-child{
+        border-bottom:0;
+
+        p:first-child{
+          margin-top:1em;
+        }
+      }
+      &:last-child{
+        border-bottom:0;
+      }
     }
   }
+  .export-file-name{
+    font-weight:600;
+  }
   .btn-wrapper{
-    text-align:center;
+    text-align:right;
     padding-top:30px;
+
+    .btn{
+      padding: 8px 30px;
+      min-width:0;
+    }
+    .link-pair{
+      display: inline-block;
+      margin: 18px 15px 0 0;
+      color:$darkGray;
+      cursor:pointer;
+
+      &:hover, &:active, &:focus, &:visited{
+        color:$darkGray;
+      }
+    }
   }
 }

@@ -8,12 +8,17 @@ import { LOG_MEAL,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
          UPDATE_MEAL,
-         DELETE_MEAL } from '../actions/types';
+         DELETE_MEAL,
+         TOGGLE_LOG_TYPE } from '../actions/types';
 
-const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: {}, loadedMeals: {}, loadedMonths: {}, currentDay: '', currentMeal: ''}
+const INITIAL_STATE = { error: '', message: '', moods: [], loadedDays: {}, loadedMeals: {}, loadedMonths: {}, currentDay: '', currentMeal: '', logFormTypeMeal: true}
 
 export default function (state = INITIAL_STATE, action) {  
   switch(action.type) {
+    case TOGGLE_LOG_TYPE:
+      return { ...state, 
+        logFormTypeMeal: !state.logFormTypeMeal
+      }
     case ADD_MOOD:
       return { ...state, 
         moods: [...state.moods, action.payload]

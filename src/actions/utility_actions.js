@@ -1,15 +1,15 @@
-import { GET_EXPORT_CSV } from '../actions/types';
+import { GET_EXPORT_CSV,
+         SET_IMPORT_MESSAGE } from '../actions/types';
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 
 const API_URL = 'http://localhost:3001/api';
 
-export function importMealData(file) {
-
+export function importMealData(form) {
+  var formData = new FormData(form);
   const options = {
     method: 'POST',
-    body: JSON.stringify(file),
+    body: formData,
     headers: {
-      'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': getCookie('token')
     },
@@ -20,19 +20,18 @@ export function importMealData(file) {
     .then(function(response) { return response.json(); })
     .then(function(data){
       console.log(data)
-      // if('success' in data){
-      //   dispatch({ 
-      //     type: UPDATE_PASSWORD,
-      //     payload: data
-      //   });
-      // }
-      // else{
-      //   console.log('error')
-      //   dispatch({ 
-      //     type: UPDATE_PASSWORD_ERROR,
-      //     payload: data.error
-      //   });
-      // }
+      if('success' in data){
+        dispatch({ 
+          type: SET_IMPORT_MESSAGE,
+          payload: 'Successfully imported ' + data.importCount + ' meals and snacks.'
+        });
+      }
+      else{
+        dispatch({ 
+          type: SET_IMPORT_MESSAGE,
+          payload: 'An error occurred. Please check the structure of your file and try again.'
+        });
+      }
     })
     .catch((error) => {
       console.log(error)
@@ -55,6 +54,15 @@ export function exportMealData() {
     })
     .catch((error) => {
       console.log(error)
+    });
+  }
+}
+
+export function setImportMessage(message) {  
+  return function(dispatch) {
+    dispatch({
+      type: SET_IMPORT_MESSAGE,
+      payload: ''
     });
   }
 }

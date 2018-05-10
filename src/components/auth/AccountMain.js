@@ -26,7 +26,6 @@ class Account extends Component {
   render() {
     return (
       <div className="account container">
-        <h1>Account</h1>
         {this.renderAlert()}
         <AccountProfile />
         <AccountPassword />

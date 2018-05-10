@@ -40,6 +40,9 @@
       }
     }
   }
+  &.snack-theme header{
+    background:$green;
+  }
   main{
     @include font-size(18);
     @include line-height(24);

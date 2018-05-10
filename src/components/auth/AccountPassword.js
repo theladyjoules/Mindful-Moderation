@@ -51,12 +51,14 @@ class AccountPassword extends Component {
                   />
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={this.props.invalid || this.props.submitting}>Update</button>
-                <a className="btn" onClick={this.props.toggleUpdatePasswordView}>Cancel</a>
+                <div className="btn-wrapper">
+                  <a className="link-pair" onClick={this.props.toggleUpdatePasswordView}>Cancel</a>
+                  <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Update</button>
+                </div>
               </form>
             ) : (
               <div className="btn-wrapper">
-                <a className="btn" onClick={this.props.toggleUpdatePasswordView}>Change</a>
+                <a className="btn btn-green" onClick={this.props.toggleUpdatePasswordView}>Edit</a>
               </div>
             )}
         </div>

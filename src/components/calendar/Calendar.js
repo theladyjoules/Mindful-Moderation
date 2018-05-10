@@ -27,11 +27,28 @@ class Calendar extends React.Component {
     let self = this
     if(this.state.monthKey in this.props.log.loadedMonths && day in this.props.log.loadedMonths[this.state.monthKey]){
       console.log(day)
-      return Object.keys(this.props.log.loadedMonths[this.state.monthKey][day]).map(function (mealId, i) {
-        return <div className="calendar-meal" key={i}>
-          <div className="calendar-hunger-before">{self.props.log.loadedMonths[self.state.monthKey][day][mealId].mealHungerBefore}</div>
-          <div className="calendar-hunger-hyphen">-</div>
-          <div className="calendar-hunger-after">{self.props.log.loadedMonths[self.state.monthKey][day][mealId].mealHungerAfter}</div>
+      let mealKeys = Object.keys(this.props.log.loadedMonths[this.state.monthKey][day])
+      let mealsToDisplay
+      let mealCountClass = ''
+      if(mealKeys.length <= 7){
+        mealsToDisplay = this.props.log.loadedMonths[this.state.monthKey][day]
+      } 
+      else{
+        mealsToDisplay = {
+          [mealKeys[0]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[0]],
+          [mealKeys[1]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[1]],
+          [mealKeys[2]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[2]],
+          [mealKeys[2]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[3]],
+          [mealKeys[2]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[4]],
+          [mealKeys[2]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[5]],
+          [mealKeys[2]]: this.props.log.loadedMonths[this.state.monthKey][day][mealKeys[6]]
+        }
+        mealCountClass = ' truncate'
+      }
+      return Object.keys(mealsToDisplay).map(function (mealId, i) {
+        return <div className={"calendar-meal" + mealCountClass + (self.props.log.loadedMonths[self.state.monthKey][day][mealId].mealType === 'meal' ? ' meal-theme' : ' snack-theme')} key={i}>
+          <div className="calendar-meal-hunger">
+          </div>
         </div>
       })
     }
@@ -46,7 +63,14 @@ class Calendar extends React.Component {
       return <Link key={i} className={"calendar-day" + (calendarMonth !== day.month ? " inactive" : "")} to={"/day/" + (day.dateHumanFormat)}>
         <div className={currentDay === day.date && currentMonth === day.month ? "current" : ""}>
           <div className="calendar-date">{day.date}</div>
-          {self.generateDayMeals(day.dateHumanFormat)}
+          <div className="calendar-meal-wrapper">
+            {self.generateDayMeals(day.dateHumanFormat)}
+            <div className="day-ellipsis">
+              <div className="ellipsis-dot"></div>
+              <div className="ellipsis-dot"></div>
+              <div className="ellipsis-dot"></div>
+            </div>
+          </div>
         </div>
       </Link>
     })

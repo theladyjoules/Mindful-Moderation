@@ -55,16 +55,17 @@ class AccountProfile extends Component {
                   />
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={this.props.invalid || this.props.submitting}>Update</button>
-                <a className="btn" onClick={this.props.toggleUpdateUserView}>Cancel</a>
+                <div className="btn-wrapper">
+                  <a className="link-pair" onClick={this.props.toggleUpdateUserView}>Cancel</a>
+                  <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Update</button>
+                </div>
               </form>
             ) : (
               <div>
-                <p>First Name: {this.props.content.firstName}</p>
-                <p>Last Name: {this.props.content.lastName}</p>
-                <p>Email Name: {this.props.content.email}</p>
+                <p>{this.props.content.firstName} {this.props.content.lastName}</p>
+                <p>{this.props.content.email}</p>
                 <div className="btn-wrapper">
-                  <a className="btn" onClick={this.props.toggleUpdateUserView}>Edit</a>
+                  <a className="btn btn-green" onClick={this.props.toggleUpdateUserView}>Edit</a>
                 </div>
               </div>
             )}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Loader from '../global/Loader';
 import moment from 'moment'
 import { strings } from '../../utilities/strings';
-import { importMealData, exportMealData } from '../../actions/utility_actions';
+import { importMealData, exportMealData, setImportMessage } from '../../actions/utility_actions';
 
 class AccountData extends Component {
   constructor(props) {
@@ -15,10 +15,14 @@ class AccountData extends Component {
     this.handleExportClick = this.handleExportClick.bind(this);
   }
 
+  componentWillMount(){
+    this.props.setImportMessage('')
+  }
+
   handleFormSubmit(e) {
     e.preventDefault()
     if(this.fileInput.files.length && validate(this.fileInput.files[0].name)){
-      this.props.importMealData(this.fileInput.files[0]);
+      this.props.importMealData(document.getElementById('import-form'));
     }
   }
 
@@ -34,26 +38,31 @@ class AccountData extends Component {
         <div className="col-xs-12">
           <h2>Data</h2>
             <div className="row">
-              <div className="col-xs-12 col-md-6">
-                <h3>Export</h3>
-                <p>Export all meal data as a .csv file.</p>
+              <div className="account-sub-section col-xs-12 col-md-6">
+                <p><strong>Export</strong></p>
+                <p>Export all meal data as a .csv file. Click below to generate the file.</p>
                 {this.props.exportFile === '' ? (
                   <div className="btn-wrapper">
-                    <a className="btn" onClick={this.handleExportClick}>Generate Export File</a>
+                    <a className="btn btn-green" onClick={this.handleExportClick}>Generate</a>
                   </div>
                 ) : (
-                  <div className="btn-wrapper">
-                    <a className="btn" href={this.props.exportFile} download={this.state.exportFileName}>Download {this.state.exportFileName}</a>
+                  <div>
+                    <p className="export-file-name">{this.state.exportFileName}</p>
+                    <div className="btn-wrapper">
+                      <a className="btn btn-green" href={this.props.exportFile} download={this.state.exportFileName}>Download</a>
+                    </div>
                   </div>
                 )}
               </div>
-              <div className="col-xs-12 col-md-6">
-                <h3>Import</h3>
+              <div className="account-sub-section col-xs-12 col-md-6">
+                <p><strong>Import</strong></p>
                 <p>Import meal data from a .csv file.</p>
-                <form onSubmit={this.handleFormSubmit}>
+                {this.props.importMessage === '' ? null : (
+                  <p>{this.props.importMessage}</p>
+                )}
+                <form id="import-form" onSubmit={this.handleFormSubmit}>
                   <div className="row">
                     <div className="col-md-6">
-                      <label htmlFor="importFile">Select a File</label>
                       <input
                         name="importFile"
                         id="importFile"
@@ -65,7 +74,9 @@ class AccountData extends Component {
                       />
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Import</button>
+                  <div className="btn-wrapper">
+                    <button type="submit" className="btn btn-green" onClick={this.handleFormSubmit}>Import</button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -96,10 +107,10 @@ function validate(file) {
 
 AccountData = connect(
   state => ({
-    import: state.auth.import,
-    exportFile: state.utility.exportFile
+    exportFile: state.utility.exportFile,
+    importMessage: state.utility.importMessage
   }),
-  { importMealData, exportMealData }
+  { importMealData, exportMealData, setImportMessage }
 )(AccountData)
 
 export default AccountData

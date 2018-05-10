@@ -10,7 +10,7 @@ class MealCard extends React.Component {
       </div>
     ) : null;
     return (
-      <article className="meal-card col-xs-12 col-md-6">
+      <article className={"meal-card col-xs-12 col-md-6 " + (this.props.meal.mealType === 'meal' ? 'meal-theme' : 'snack-theme')}>
         <header>
           <h2>{this.props.meal.mealName}</h2>
           <h2>{this.props.meal.mealTimeHumanFormat}</h2>

@@ -8,7 +8,7 @@ import Loader from '../global/Loader';
 // import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
-import { logMeal, addMood, removeMood } from '../../actions/log_actions';
+import { logMeal, addMood, removeMood, toggleLogType } from '../../actions/log_actions';
 
 class LogMeal extends Component {
   constructor(props) {
@@ -17,6 +17,7 @@ class LogMeal extends Component {
     this.handleRemoveMood = this.handleRemoveMood.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleAddMoodClick = this.handleAddMoodClick.bind(this);
+    this.handleToggleClick = this.handleToggleClick.bind(this);
   }
 
   componentWillMount(){
@@ -25,6 +26,7 @@ class LogMeal extends Component {
 
   handleFormSubmit(values) {
     values['mealMood'] = this.props.moods
+    values['mealType'] = this.props.logFormTypeMeal ? 'meal' : 'snack'
     this.props.logMeal(values)
   }
 
@@ -51,6 +53,10 @@ class LogMeal extends Component {
     }
   }
 
+  handleToggleClick(){
+    this.props.toggleLogType()
+  }
+
   render() {
     const { handleSubmit } = this.props;
     const chips = (this.props.moods.length) ? this.props.moods.map((mood) =>
@@ -64,12 +70,20 @@ class LogMeal extends Component {
           <div className="col-xs-12">
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
               <div className="form-header">
-                <h1>Log Meal</h1>
+                <h1>Log</h1>
               </div>
-              <div className="form-field-wrapper">
+              <div className={"form-field-wrapper" + (!this.props.logFormTypeMeal ? ' snack-theme' : '')}>
+                <div className={"toggle-wrapper" + (this.props.logFormTypeMeal ? ' off' : '')} onClick={this.handleToggleClick}>
+                  <div className="toggle-label">Meal</div>
+                  <div className="toggle">
+                    <div className="toggle-track"></div>
+                    <div className="toggle-handle"></div>
+                  </div>
+                  <div className="toggle-label">Snack</div>
+                </div>
                 <Field
                   name="mealDate"
-                  label="Meal Date"
+                  label="Date"
                   component={renderField}
                   onFocus={handleFormFieldFocus}
                   type="date"
@@ -79,7 +93,7 @@ class LogMeal extends Component {
                   <div className="col-xs-12 col-sm-6">
                     <Field
                       name="mealTime"
-                      label="Meal Start Time"
+                      label="Start Time"
                       component={renderField}
                       type="time" 
                       required="required"
@@ -90,7 +104,7 @@ class LogMeal extends Component {
                     <Field
                       name="mealDuration"
                       type="number"
-                      label="Meal Duration"
+                      label="Duration"
                       helpText="in minutes"
                       component={renderField}
                       onFocus={handleFormFieldFocus}
@@ -98,7 +112,7 @@ class LogMeal extends Component {
                   </div>
                 </div>
                 <Field 
-                  label="Meal Name"
+                  label="Name"
                   name="mealName"
                   component="input" 
                   type="text"
@@ -331,7 +345,7 @@ class LogMeal extends Component {
                   onFocus={handleFormFieldFocus}
                 />
                 <div className="submit-wrapper">
-                  <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Log</button>
+                  <button type="submit" className={"btn " + (this.props.logFormTypeMeal ? 'btn-green' : 'btn-magenta')} disabled={this.props.invalid || this.props.submitting}>Log</button>
                   <p><Link to='/'>Cancel</Link></p>
                 </div>
               </div>
@@ -379,9 +393,10 @@ LogMeal = connect(
     mealHungerBefore: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerBefore' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerBefore : null,
     mealHungerAfter: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerAfter' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerAfter : null,
     moods: state.log.moods,
-    moodsField: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealMood' in state.form.logMeal.values) ? state.form.logMeal.values.mealMood : null
+    moodsField: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealMood' in state.form.logMeal.values) ? state.form.logMeal.values.mealMood : null,
+    logFormTypeMeal: state.log.logFormTypeMeal
   }),
-  { logMeal, addMood, removeMood }
+  { logMeal, addMood, removeMood, toggleLogType }
 )(LogMeal)
 
 export default LogMeal

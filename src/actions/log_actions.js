@@ -7,7 +7,8 @@ import { LOG_MEAL,
          SET_CURRENT_DAY_MEAL,
          UPDATE_MEAL,
          GET_MEALS_BY_MONTH,
-         DELETE_MEAL } from '../actions/types';
+         DELETE_MEAL,
+         TOGGLE_LOG_TYPE } from '../actions/types';
 import { getCookie } from '../utilities/cookies';
 import moment from 'moment'
 
@@ -82,7 +83,7 @@ export function getMealsByMonth(month, year) {
   }
 }
 
-export function logMeal({mealDate, mealTime, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}) {  
+export function logMeal({mealDate, mealTime, mealType, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}) {  
   const mealDateFormFormat = mealDate
   const mealTimeFormFormat = mealTime
   mealDate = moment(mealDate + 'T' + mealTime)
@@ -90,7 +91,7 @@ export function logMeal({mealDate, mealTime, mealDuration, mealName, mealFoods, 
   const mealTimeHumanFormat = mealDate.format('h:mm a')
   const options = {
     method: 'POST',
-    body: JSON.stringify({mealDate, mealDateHumanFormat, mealTimeHumanFormat, mealDateFormFormat, mealTimeFormFormat, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}),
+    body: JSON.stringify({mealDate, mealDateHumanFormat, mealTimeHumanFormat, mealDateFormFormat, mealTimeFormFormat, mealType, mealDuration, mealName, mealFoods, mealHungerBefore, mealHungerAfter, mealMood, mealSetting, mealNotes}),
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -202,6 +203,14 @@ export function removeMood(mood) {
     dispatch({ 
       type: REMOVE_MOOD,
       payload: mood
+    });
+  }
+}
+
+export function toggleLogType(mood) {  
+  return function(dispatch) {
+    dispatch({ 
+      type: TOGGLE_LOG_TYPE
     });
   }
 }
