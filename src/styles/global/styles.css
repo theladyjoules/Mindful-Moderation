@@ -502,6 +502,14 @@ a {
       background-color: #898c89;
       border-color: #898c89;
       color: #ffffff; }
+  .btn.btn-dark-green {
+    background-color: #083510;
+    border-color: #083510;
+    color: #ffffff; }
+    .btn.btn-dark-green:disabled {
+      background-color: #898c89;
+      border-color: #898c89;
+      color: #ffffff; }
   .btn.btn-magenta {
     border-color: #992277;
     background-color: #992277;

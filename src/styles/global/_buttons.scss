@@ -27,6 +27,17 @@
       color:$white;
     }
   }
+  &.btn-dark-green{
+    background-color:$darkGreen;
+    border-color:$darkGreen;
+    color:$white;
+
+    &:disabled{
+      background-color:$mediumGray;
+      border-color:$mediumGray;
+      color:$white;
+    }
+  }
   &.btn-magenta{
     border-color:$magenta;
     background-color:$magenta;

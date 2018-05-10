@@ -99,5 +99,4 @@ function strings(s){
   }
   return string;
 }
-
 export {strings};

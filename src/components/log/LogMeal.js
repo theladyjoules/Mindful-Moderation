@@ -345,7 +345,7 @@ class LogMeal extends Component {
                   onFocus={handleFormFieldFocus}
                 />
                 <div className="submit-wrapper">
-                  <button type="submit" className={"btn " + (this.props.logFormTypeMeal ? 'btn-green' : 'btn-magenta')} disabled={this.props.invalid || this.props.submitting}>Log</button>
+                  <button type="submit" className={"btn " + (this.props.logFormTypeMeal ? 'btn-dark-green' : 'btn-green')} disabled={this.props.invalid || this.props.submitting}>Log</button>
                   <p><Link to='/'>Cancel</Link></p>
                 </div>
               </div>

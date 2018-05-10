@@ -148,9 +148,10 @@ export function deleteMeal(mealId, mealDateHumanFormat) {
 }
 
 export function editExistingMeal(changedFields) {
+  console.log(JSON.stringify( changedFields))
   const options = {
     method: 'POST',
-    body: JSON.stringify(changedFields),
+    body: JSON.stringify( changedFields),
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
