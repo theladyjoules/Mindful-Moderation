@@ -1,0 +1,68 @@
+.hunger-icon-0{
+  @include hunger-icon(40, 1%, $red);
+}
+
+.hunger-icon-1{
+  @include hunger-icon(40, 10%, $red);
+}
+
+.hunger-icon-2{
+  @include hunger-icon(40, 20%, $yellow);
+}
+
+.hunger-icon-3{
+  @include hunger-icon(40, 30%, $green);
+}
+
+.hunger-icon-4{
+  @include hunger-icon(40, 40%, $green);
+}
+
+.hunger-icon-5{
+  @include hunger-icon(40, 50%, $green);
+}
+
+.hunger-icon-6{
+  @include hunger-icon(40, 60%, $green);
+}
+
+.hunger-icon-7{
+  @include hunger-icon(40, 70%, $green);
+}
+
+.hunger-icon-8{
+  @include hunger-icon(40, 80%, $yellow);
+}
+
+.hunger-icon-9{
+  @include hunger-icon(40, 90%, $red);
+}
+
+.hunger-icon-10{
+  @include hunger-icon(40, 100%, $red);
+}
+
+.hunger-scale-row{
+  width:100%;
+  border-bottom:1px solid rgba(137, 140, 137, 0.5);
+  padding:6px 0;
+  display:flex;
+  align-items:center;
+
+  &:last-child{
+    border-bottom:none;
+  }
+  .hunger-scale-icon{
+  }
+  .hunger-scale-number{
+    @include font-size(22);
+    @include line-height(40);
+    font-weight:600;
+    padding:0 30px;
+  }
+  .hunger-scale-word{
+    @include font-size(22);
+    @include line-height(40);
+    font-weight:600;
+  }
+}

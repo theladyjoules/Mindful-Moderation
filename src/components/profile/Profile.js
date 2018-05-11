@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment'
 import Loader from '../global/Loader'
 import { getStats, setActiveTab } from '../../actions/stats_actions';
+import {toggleHungerScaleDrawer} from '../../actions/utility_actions'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -67,7 +68,12 @@ class Profile extends React.Component {
               <div className="col-xs-12 col-md-6">
                 {this.props.allTimeStats.averageHungerBefore ? (
                   <div className="stat-row">
-                    <h2>Average Starting Hunger</h2>
+                    <h2>
+                      <span className="title">
+                        Average Starting Hunger
+                        <span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span>
+                      </span>
+                    </h2>
                     <div className="stat">
                       <h3>{this.props.allTimeStats.averageHungerBefore}</h3>
                       <div className="hunger-icon">
@@ -78,7 +84,12 @@ class Profile extends React.Component {
                 ) : null}
                 {this.props.allTimeStats.averageHungerAfter ? (
                   <div className="stat-row">
-                    <h2>Average Stopping Hunger</h2>
+                    <h2>
+                      <span className="title">
+                        Average Stopping Hunger
+                        <span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span>
+                      </span>
+                    </h2>
                     <div className="stat">
                       <h3>{this.props.allTimeStats.averageHungerAfter}</h3>
                       <div className="hunger-icon">
@@ -123,7 +134,12 @@ class Profile extends React.Component {
               <div className="col-xs-12 col-md-6">
                 {this.props.allTimeStats.averageHungerBefore ? (
                   <div className="stat-row">
-                    <h2>Average Starting Hunger</h2>
+                    <h2>
+                      <span className="title">
+                        Average Starting Hunger
+                        <span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span>
+                      </span>
+                    </h2>
                     <div className="stat">
                       <h3>{this.props.allTimeStats.averageHungerBefore}</h3>
                       <div className="hunger-icon">
@@ -134,7 +150,12 @@ class Profile extends React.Component {
                 ) : null}
                 {this.props.allTimeStats.averageHungerAfter ? (
                   <div className="stat-row">
-                    <h2>Average Stopping Hunger</h2>
+                    <h2>
+                      <span className="title">
+                        Average Stopping Hunger
+                        <span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span>
+                      </span>
+                    </h2>
                     <div className="stat">
                       <h3>{this.props.allTimeStats.averageHungerAfter}</h3>
                       <div className="hunger-icon">
@@ -186,7 +207,7 @@ Profile = connect(
     activeTab: state.stats.activeTab,
     stats: state.stats
   }),
-  {getStats, setActiveTab}
+  {getStats, setActiveTab, toggleHungerScaleDrawer}
 )(Profile)
 
 export default Profile

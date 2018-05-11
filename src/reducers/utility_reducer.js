@@ -1,7 +1,8 @@
 import { GET_EXPORT_CSV,
-         SET_IMPORT_MESSAGE } from '../actions/types';
+         SET_IMPORT_MESSAGE,
+         TOGGLE_HUNGER_SCALE_DRAWER } from '../actions/types';
 
-const INITIAL_STATE = { exportFile: '', importMessage: '' }
+const INITIAL_STATE = { exportFile: '', importMessage: '', hungerScaleDrawerOpen: false }
 
 export default function (state = INITIAL_STATE, action) {  
   switch(action.type) {
@@ -13,6 +14,10 @@ export default function (state = INITIAL_STATE, action) {
     case SET_IMPORT_MESSAGE:
       return { ...state, 
         importMessage: action.payload
+      }
+    case TOGGLE_HUNGER_SCALE_DRAWER:
+      return { ...state, 
+        hungerScaleDrawerOpen: !state.hungerScaleDrawerOpen
       }
     default:
       return state

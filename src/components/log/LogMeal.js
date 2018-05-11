@@ -9,6 +9,7 @@ import Loader from '../global/Loader';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
 import { logMeal, addMood, removeMood, toggleLogType } from '../../actions/log_actions';
+import {toggleHungerScaleDrawer} from '../../actions/utility_actions'
 
 class LogMeal extends Component {
   constructor(props) {
@@ -128,8 +129,20 @@ class LogMeal extends Component {
                   onFocus={handleFormFieldFocus}
                 />
                 <div className="form-field radio-group">
-                  <label className="hunger-label"><span>Hunger Before{this.props.mealHungerBefore ? ':' : null}</span> {this.props.mealHungerBefore ? (<span className="hunger-description">{this.props.mealHungerBefore} &ndash; {strings('hungerScaleWord'+this.props.mealHungerBefore)}</span>) : null}</label>
+                  <label className="hunger-label">
+                    <span className="label">Hunger Before{this.props.mealHungerBefore ? ':' : null}<span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span></span> 
+                    {this.props.mealHungerBefore ? (<span className="hunger-description">{this.props.mealHungerBefore} &ndash; {strings('hungerScaleWord'+this.props.mealHungerBefore)}</span>) : null}
+                  </label>
                   <div className="radio-button-wrapper">
+                    <Field
+                      name="mealHungerBefore"
+                      id="0"
+                      label="0"
+                      value="0"
+                      type="radio"
+                      component={renderRadioInput}
+                      onChange={this.handleHungerBeforeChange}
+                    />
                     <Field
                       name="mealHungerBefore"
                       id="1"
@@ -223,8 +236,20 @@ class LogMeal extends Component {
                   </div>
                 </div>
                 <div className="form-field radio-group">
-                  <label className="hunger-label"><span>Hunger After{this.props.mealHungerAfter ? ':' : null}</span> {this.props.mealHungerAfter ? (<span className="hunger-description">{this.props.mealHungerAfter} &ndash; {strings('hungerScaleWord'+this.props.mealHungerAfter)}</span>) : null}</label>
+                  <label className="hunger-label">
+                    <span className="label">Hunger After{this.props.mealHungerAfter ? ':' : null}<span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span></span> 
+                    {this.props.mealHungerAfter ? (<span className="hunger-description">{this.props.mealHungerAfter} &ndash; {strings('hungerScaleWord'+this.props.mealHungerAfter)}</span>) : null}
+                  </label>
                   <div className="radio-button-wrapper">
+                    <Field
+                      name="mealHungerAfter"
+                      id="0"
+                      label="0"
+                      value="0"
+                      type="radio"
+                      component={renderRadioInput}
+                      onChange={this.handleHungerAfterChange}
+                    />
                     <Field
                       name="mealHungerAfter"
                       id="1"
@@ -396,7 +421,7 @@ LogMeal = connect(
     moodsField: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealMood' in state.form.logMeal.values) ? state.form.logMeal.values.mealMood : null,
     logFormTypeMeal: state.log.logFormTypeMeal
   }),
-  { logMeal, addMood, removeMood, toggleLogType }
+  { logMeal, addMood, removeMood, toggleLogType, toggleHungerScaleDrawer }
 )(LogMeal)
 
 export default LogMeal

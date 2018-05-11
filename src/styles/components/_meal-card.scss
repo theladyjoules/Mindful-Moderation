@@ -103,10 +103,22 @@
       margin-bottom:10px;
       @include font-size(24);
       @include line-height(30);
+      position:relative;
 
       h3{
         margin-top: auto;
         margin-bottom: auto;
+
+        .hunger-title{
+          position:relative;
+          display:inline-block;
+
+          .tooltip{
+            left: -15px;
+            right: auto;
+            top: -12px;
+          }
+        }
       }
       .hunger-start{
         display:inline-block;

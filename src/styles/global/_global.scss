@@ -176,23 +176,19 @@ a.cta-calendar{
     z-index:2;
   }
 }
-@-webkit-keyframes avatar-swell {
-  0%   { width:45%; height:45%; }
-  50% { width:55%; height:55%; }
-  100%   { width:45%; height:45%; }
-}
-@-moz-keyframes avatar-swell {
-  0%   { width:45%; height:45%; }
-  50% { width:55%; height:55%; }
-  100%   { width:45%; height:45%; }
-}
-@-o-keyframes avatar-swell {
-  0%   { width:45%; height:45%; }
-  50% { width:55%; height:55%; }
-  100%   { width:45%; height:45%; }
-}
-@keyframes avatar-swell {
-  0%   { width:45%; height:45%; }
-  50% { width:55%; height:55%; }
-  100%   { width:45%; height:45%; }
+
+.tooltip{
+  text-align:center;
+  background:$mediumGray;
+  border-radius:50%;
+  width:18px;
+  height:18px;
+  color:$white;
+  cursor:pointer;
+  position:absolute;
+  top:0;
+  right:0;
+  @include font-size(14);
+  @include line-height(21);
+  font-weight:500;
 }

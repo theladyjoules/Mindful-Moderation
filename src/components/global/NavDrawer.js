@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { logoutUser }from '../../actions/auth_actions';
 import moment from 'moment'
 
-class Header extends React.Component {
+class NavDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
@@ -56,8 +56,8 @@ class Header extends React.Component {
       );
     }
     return (
-      <div className={"main-nav-drawer-wrapper" + (this.props.isOpen ? ' active' : '')}>
-        <nav className="main-nav-drawer">
+      <div className={"drawer-wrapper" + (this.props.isOpen ? ' active' : '')}>
+        <nav className="drawer">
           <div className="nav-drawer-section">
             <ul>
               <li><a onClick={this.props.toggleNavDrawer} className="ion-android-close"></a></li>
@@ -83,11 +83,11 @@ const MapStateToProps = dispatch => {
   }
 }
 
-Header = connect(
+NavDrawer = connect(
   state => ({
     isLoggedIn: state.auth.authenticated,
   }),
   MapStateToProps
-)(Header)
+)(NavDrawer)
 
-export default Header
+export default NavDrawer

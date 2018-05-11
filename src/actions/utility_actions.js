@@ -1,5 +1,6 @@
 import { GET_EXPORT_CSV,
-         SET_IMPORT_MESSAGE } from '../actions/types';
+         SET_IMPORT_MESSAGE,
+         TOGGLE_HUNGER_SCALE_DRAWER } from '../actions/types';
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 
 const API_URL = 'http://localhost:3001/api';
@@ -62,7 +63,15 @@ export function setImportMessage(message) {
   return function(dispatch) {
     dispatch({
       type: SET_IMPORT_MESSAGE,
-      payload: ''
+      payload: message
+    });
+  }
+}
+
+export function toggleHungerScaleDrawer() {  
+  return function(dispatch) {
+    dispatch({
+      type: TOGGLE_HUNGER_SCALE_DRAWER
     });
   }
 }

@@ -9,6 +9,7 @@ import Footer from './global/Footer'
 import NotFound404 from './global/NotFound404'
 import RequireAuth from './auth/Require-Auth';
 import NavDrawer from './global/NavDrawer';
+import HungerScaleDrawer from './global/HungerScaleDrawer';
 
 import '../styles/vendor/bootstrap.min.css';
 import '../styles/vendor/ionicons.min.css';
@@ -64,6 +65,11 @@ const Profile = Loadable({
   loading: Loader,
 });
 
+const HungerScale = Loadable({
+  loader: () => import('./resources/HungerScale'),
+  loading: Loader,
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -83,6 +89,7 @@ class App extends React.Component {
         <main>
           <Header toggleNavDrawer={this.toggleNavDrawer} />
           <NavDrawer isOpen={this.state.navDrawerOpen} toggleNavDrawer={this.toggleNavDrawer} />
+          <HungerScaleDrawer />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/register' component={Register} />
@@ -94,6 +101,7 @@ class App extends React.Component {
             <Route exact path='/meal/:meal' component={RequireAuth(MealView)} />
             <Route exact path='/calendar/:month' component={RequireAuth(Calendar)} />
             <Route exact path='/profile' component={RequireAuth(Profile)} />
+            <Route exact path='/resources/hunger-scale' component={HungerScale} />
             <Route component={NotFound404} />
           </Switch>
         </main>

@@ -64,6 +64,15 @@
       padding-bottom:7px;
       @include font-size(16);
       @include line-height(24);
+
+      .title{
+        position:relative;
+
+        .tooltip{
+          top: -8px;
+          right: -20px;
+        }
+      }
     }
     h3{
       @include line-height(56);

@@ -64,6 +64,9 @@ function strings(s){
     case 'mealTime':
         string = 'Please enter a valid time.';
         break;
+    case 'hungerScaleWord0':
+        string = 'Empty';
+        break;
     case 'hungerScaleWord1':
         string = 'Ravenous';
         break;

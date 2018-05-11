@@ -175,6 +175,15 @@ form{
     display:flex;
     justify-content: space-between;
 
+    .label{
+      position:relative;
+
+      .tooltip{
+        top: -5px;
+        right: -17px;
+      }
+    }
+
     .hunger-description{
       color:$darkGreen;
       font-weight:700;
