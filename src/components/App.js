@@ -60,8 +60,8 @@ const Calendar = Loadable({
   loading: Loader,
 });
 
-const Profile = Loadable({
-  loader: () => import('./profile/Profile'),
+const Stats = Loadable({
+  loader: () => import('./stats/Stats'),
   loading: Loader,
 });
 
@@ -86,7 +86,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="main-wrapper">
-        <main>
+        <main className={this.props.hungerScaleDrawerOpen || this.state.navDrawerOpen ? 'drawer-open' : ''}>
           <Header toggleNavDrawer={this.toggleNavDrawer} />
           <NavDrawer isOpen={this.state.navDrawerOpen} toggleNavDrawer={this.toggleNavDrawer} />
           <HungerScaleDrawer />
@@ -100,7 +100,7 @@ class App extends React.Component {
             <Route exact path='/day/:day' component={RequireAuth(DayView)} />
             <Route exact path='/meal/:meal' component={RequireAuth(MealView)} />
             <Route exact path='/calendar/:month' component={RequireAuth(Calendar)} />
-            <Route exact path='/profile' component={RequireAuth(Profile)} />
+            <Route exact path='/stats' component={RequireAuth(Stats)} />
             <Route exact path='/resources/hunger-scale' component={HungerScale} />
             <Route component={NotFound404} />
           </Switch>
@@ -110,5 +110,12 @@ class App extends React.Component {
     )
   }
 }
+
+App = connect(
+  state => ({
+    hungerScaleDrawerOpen: state.utility.hungerScaleDrawerOpen,
+  }),
+  null
+)(App)
 
 export default withRouter(App)

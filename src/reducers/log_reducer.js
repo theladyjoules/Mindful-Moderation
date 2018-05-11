@@ -40,6 +40,7 @@ export default function (state = INITIAL_STATE, action) {
         currentDay: action.payload.day,
         currentMeal: action.payload.mealId,
         moods: state.loadedMeals[action.payload.mealId].mealMood,
+        logFormTypeMeal: state.loadedMeals[action.payload.mealId].mealType === 'meal'
       };
     case LOG_MEAL_ERROR:
       return { ...state, 
@@ -132,7 +133,8 @@ export default function (state = INITIAL_STATE, action) {
         },
         currentDay: action.payload.day,
         currentMeal: Object.values(action.payload.meal)[0]._id,
-        moods: Object.values(action.payload.meal)[0].mealMood
+        moods: Object.values(action.payload.meal)[0].mealMood,
+        logFormTypeMeal: Object.values(action.payload.meal)[0].mealType === 'meal'
       }
     default:
       return state

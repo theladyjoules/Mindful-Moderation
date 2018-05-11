@@ -7,8 +7,8 @@ class HungerScale extends React.Component {
   render() {
     return (
       <div className="container">
-        <div class="row">
-          <div class="col-xs-12">
+        <div className="row">
+          <div className="col-xs-12">
             <article>
               <div className="hunger-scale-row">
                 <div className="hunger-scale-icon">

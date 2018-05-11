@@ -7,7 +7,7 @@ import $ from 'jquery'
 import Loader from '../global/Loader';
 import { strings } from '../../utilities/strings';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
-import { editExistingMeal, addMood, removeMood, getMealById, deleteMeal } from '../../actions/log_actions';
+import { editExistingMeal, addMood, removeMood, getMealById, deleteMeal, toggleLogType } from '../../actions/log_actions';
 
 let pathname = window.location.pathname.split( '/' )
 
@@ -15,7 +15,8 @@ class EditMeal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      moodsPristine: true
+      moodsPristine: true,
+      typePristine: true
     }
     this.handleAddMood = this.handleAddMood.bind(this);
     this.handleRemoveMood = this.handleRemoveMood.bind(this);
@@ -23,6 +24,7 @@ class EditMeal extends Component {
     this.handleAddMoodClick = this.handleAddMoodClick.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleDeleteMeal = this.handleDeleteMeal.bind(this);
+    this.handleToggleClick = this.handleToggleClick.bind(this);
   }
 
   componentDidMount(){
@@ -37,6 +39,10 @@ class EditMeal extends Component {
   handleFormSubmit(values) {
     let changedFields = {}
     const thisMeal = this.props.log.loadedMeals[this.props.mealId]
+    const valuesMealType = this.props.logFormTypeMeal ? 'meal' : 'snack'
+    if(valuesMealType !== thisMeal.mealType){
+      changedFields['mealType'] = valuesMealType
+    }
     if(values.mealDateFormFormat !== thisMeal.mealDateFormFormat || values.mealTimeFormFormat !== thisMeal.mealTimeFormFormat){
       changedFields['mealDateFormFormat'] = values.mealDateFormFormat
       changedFields['mealTimeFormFormat'] = values.mealTimeFormFormat
@@ -103,6 +109,11 @@ class EditMeal extends Component {
     this.props.deleteMeal(this.props.mealId, this.props.log.loadedMeals[this.props.mealId].mealDateHumanFormat)
   }
 
+  handleToggleClick(){
+    this.props.toggleLogType()
+    this.setState({typePristine:false})
+  }
+
   render() {
     const { handleSubmit } = this.props;
     const chips = (this.props.moods.length) ? this.props.moods.map((mood) =>
@@ -121,7 +132,15 @@ class EditMeal extends Component {
                   <h1></h1>
                   <a onClick={this.handleDeleteMeal}>Delete</a>
                 </div>
-                <div className="form-field-wrapper">
+                <div className={"form-field-wrapper" + (!this.props.logFormTypeMeal ? ' snack-theme' : '')}>
+                  <div className={"toggle-wrapper" + (this.props.logFormTypeMeal ? ' off' : '')} onClick={this.handleToggleClick}>
+                    <div className="toggle-label">Meal</div>
+                    <div className="toggle">
+                      <div className="toggle-track"></div>
+                      <div className="toggle-handle"></div>
+                    </div>
+                    <div className="toggle-label">Snack</div>
+                  </div>
                   <Field
                     name="mealDateFormFormat"
                     label="Date"
@@ -386,7 +405,7 @@ class EditMeal extends Component {
                     onFocus={handleFormFieldFocus}
                   />
                   <div className="submit-wrapper">
-                    <button type="submit" className="btn btn-green" disabled={ this.props.invalid || this.props.submitting || (this.props.pristine && this.state.moodsPristine)}>Update</button>
+                    <button type="submit" className="btn btn-green" disabled={ this.props.invalid || this.props.submitting || (this.props.pristine && (this.state.moodsPristine && this.state.typePristine))}>Update</button>
                     <p><Link to={'/meal/' + this.props.log.loadedMeals[this.props.mealId]._id}>Cancel</Link></p>
                   </div>
                 </div>
@@ -436,9 +455,10 @@ EditMeal = connect(
     mealHungerAfter: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealHungerAfter' in state.form.editMeal.values) ? state.form.editMeal.values.mealHungerAfter : null,
     moods: state.log.moods,
     moodsField: ('editMeal' in state.form && 'values' in state.form.editMeal && 'mealMood' in state.form.editMeal.values) ? state.form.editMeal.values.mealMood : null,
-    log: state.log
+    log: state.log,
+    logFormTypeMeal: state.log.logFormTypeMeal
   }),
-  { editExistingMeal, addMood, removeMood, getMealById, deleteMeal }
+  { editExistingMeal, addMood, removeMood, getMealById, deleteMeal, toggleLogType }
 )(EditMeal)
 
 export default EditMeal

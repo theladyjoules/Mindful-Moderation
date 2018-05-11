@@ -8,16 +8,16 @@ $lg: 1200px;
 
 /***** MIXINS *****/
 $white:#ffffff;
-$green:#2a7a39;
-$darkGreen:#083510;
-$orange:#EA9E19;
-$yellow:#FFB535;
+$green:#3f874c; // #2A7A39
+$darkGreen:#204927; //#083510
+$orange:#eca72f; // #EA9E19
+$yellow:#ffbc49; // #FFB535
 $pink:#DDAACC;
 $magenta:#992277;
-$lightGray:#e4e8e5;
-$mediumGray:#898c89;
+$lightGray:#f1f3f2; // #e4e8e5
+$mediumGray:#949794; //#898c89
 $darkGray:#404240;
-$red:#bd2c1b;
+$red:#c34131; // #bd2c1b
 
 /***** MIXINS *****/
 @mixin box-shadow(){

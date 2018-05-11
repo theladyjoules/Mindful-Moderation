@@ -64,7 +64,7 @@ ol{
 a{
   color:$green;
 
-  &:hover, &:active, &:focus, &:visited{
+  &:hover, &:active, &:focus{
     text-decoration:underline;
     color:$green;
   }

@@ -7,7 +7,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="homepage-wrapper">
         {this.props.isLoggedIn ? (
           <DayView />
         ) : (

@@ -36,4 +36,116 @@ a.logo{
   cursor:pointer;
   color:$mediumGray;
   display: block;
+  
+  &:hover, &:active, &:focus, &:visited{
+    color:$mediumGray;
+  }
+}
+.main-menu-wrapper{
+  display:none;
+}
+
+@media only screen and (min-width: $md) {
+  #main-header{
+    padding-bottom:45px;
+  }
+  .main-menu-hamburger-wrapper{
+    display:none;
+  }
+  .main-menu-wrapper{
+    display:block;
+
+    nav{
+      text-align:right;
+      padding-top: 8px;
+
+      ul{
+        li{
+          display:inline-block;
+          vertical-align:top;
+          position:relative;
+
+          &:first-child{
+            margin-left:0;
+          }
+          &:last-child ul{
+            width:200px;
+          }
+          a{
+            display:block;
+            text-transform: uppercase;
+            font-weight:600;
+            @include font-size(15);
+            @include line-height(17);
+            padding:15px;
+            cursor:pointer;
+            color:$mediumGray;
+
+            &:hover, &:active, &:focus{
+              color:$mediumGray;
+              text-decoration:none;
+              opacity:0.6;
+            }
+          }
+          &.nav-dropdown-item{
+            position:relative;
+            z-index:10;
+
+            .dropdown-label{
+              position:relative;
+              color:$mediumGray;
+              cursor:pointer;
+              @include font-size(15);
+              @include line-height(17);
+              padding:15px 30px 15px 15px;
+              text-transform: uppercase;
+              font-weight:600;
+
+              &:before{
+                position:absolute;
+                right:15px;
+                top:5px;
+                top: 17px;
+                @include font-size(12);
+              }
+            }
+
+            &:hover, &:active, &:focus{
+              background:$mediumGray;
+              color:$white;
+
+              .dropdown-label{
+                color:$white;
+              }
+              ul{
+                display:block;
+              }
+            }
+          }
+          ul{
+            display:none;
+            position:absolute;
+            top:47px;
+            right:0;
+            min-width:100%;
+
+            li{
+              display:block;
+
+              a{
+                background:$mediumGray;
+                color:$white;
+
+                &:hover, &:active, &:focus{
+                  color:$white;
+                  background:$darkGray;
+                  opacity:1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

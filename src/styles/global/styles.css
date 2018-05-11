@@ -10,7 +10,7 @@ html, body {
   font-size: 100%;
   color: #404240;
   font-weight: 300;
-  background: #e4e8e5; }
+  background: #f1f3f2; }
 
 #root, .sub-root {
   height: 100%; }
@@ -54,19 +54,19 @@ img {
   justify-content: space-between;
   padding-bottom: 18px; }
   .view-header h1 {
-    color: #898c89; }
+    color: #949794; }
     .view-header h1 span {
       font-size: 16px;
       font-size: 1rem;
       padding-left: 15px; }
   .view-header a {
-    color: #898c89;
+    color: #949794;
     margin-top: auto;
     margin-bottom: auto; }
     .view-header a:hover, .view-header a:active, .view-header a:focus, .view-header a:visited {
-      color: #898c89; }
+      color: #949794; }
   .view-header a.disabled {
-    color: #e4e8e5; }
+    color: #f1f3f2; }
 
 @media only screen and (min-width: 992px) {
   .view-header {
@@ -82,7 +82,7 @@ img {
 a.log-cta {
   width: 75px;
   height: 75px;
-  background: radial-gradient(#2a7a39, #083510);
+  background: radial-gradient(#3f874c, #204927);
   border-radius: 50%;
   color: #ffffff;
   text-align: center;
@@ -104,26 +104,26 @@ a.log-cta {
   .log-cta-wrapper {
     width: 100%; } }
 
-a.cta-calendar {
+a.cta-calendar, a.cta-back {
   display: block;
   position: absolute;
   left: 30px;
   bottom: 52px;
-  color: #898c89;
+  color: #949794;
   font-weight: 600;
   font-size: 18px;
   font-size: 1.125rem; }
-  a.cta-calendar:hover, a.cta-calendar:active, a.cta-calendar:focus, a.cta-calendar:visited {
-    color: #898c89; }
-  a.cta-calendar:before {
+  a.cta-calendar:hover, a.cta-calendar:active, a.cta-calendar:focus, a.cta-calendar:visited, a.cta-back:hover, a.cta-back:active, a.cta-back:focus, a.cta-back:visited {
+    color: #949794; }
+  a.cta-calendar:before, a.cta-back:before {
     margin-right: 15px; }
 
 .avatar {
   display: block;
   width: 120px;
   height: 120px;
-  background: #898c89;
-  color: #e4e8e5;
+  background: #949794;
+  color: #f1f3f2;
   text-align: center;
   border-radius: 50%;
   font-size: 40px;
@@ -134,7 +134,7 @@ a.cta-calendar {
   font-weight: 700; }
   .avatar:before {
     content: '';
-    background: #2a7a39;
+    background: #3f874c;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -154,7 +154,7 @@ a.cta-calendar {
 
 .tooltip {
   text-align: center;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   width: 18px;
   height: 18px;
@@ -243,10 +243,10 @@ ol {
 
 /***** LINKS *****/
 a {
-  color: #2a7a39; }
-  a:hover, a:active, a:focus, a:visited {
+  color: #3f874c; }
+  a:hover, a:active, a:focus {
     text-decoration: underline;
-    color: #2a7a39; }
+    color: #3f874c; }
 
 .btn {
   border-radius: 100px;
@@ -261,41 +261,41 @@ a {
   vertical-align: top;
   padding: 16px 60px;
   text-align: center;
-  border: 2px solid #2a7a39;
+  border: 2px solid #3f874c;
   font-weight: 600;
   letter-spacing: 2px;
   border-radius: 4px; }
   .btn:hover, .btn:active, .btn:focus, .btn:visited {
     text-decoration: none; }
   .btn.btn-green {
-    background-color: #2a7a39;
+    background-color: #3f874c;
     color: #ffffff; }
     .btn.btn-green:disabled {
-      background-color: #898c89;
-      border-color: #898c89;
+      background-color: #949794;
+      border-color: #949794;
       color: #ffffff; }
   .btn.btn-dark-green {
-    background-color: #083510;
-    border-color: #083510;
+    background-color: #204927;
+    border-color: #204927;
     color: #ffffff; }
     .btn.btn-dark-green:disabled {
-      background-color: #898c89;
-      border-color: #898c89;
+      background-color: #949794;
+      border-color: #949794;
       color: #ffffff; }
   .btn.btn-magenta {
     border-color: #992277;
     background-color: #992277;
     color: #ffffff; }
     .btn.btn-magenta:disabled {
-      background-color: #898c89;
-      border-color: #898c89;
+      background-color: #949794;
+      border-color: #949794;
       color: #ffffff; }
   .btn.btn-orange {
-    background-color: #EA9E19;
+    background-color: #eca72f;
     color: #ffffff; }
     .btn.btn-orange:disabled {
-      background-color: #e4e8e5;
-      border-color: #e4e8e5;
+      background-color: #f1f3f2;
+      border-color: #f1f3f2;
       color: #ffffff; }
   .btn.btn-white {
     background-color: #ffffff;
@@ -311,7 +311,7 @@ input[type=date]::-webkit-inner-spin-button, input[type=time]::-webkit-inner-spi
   display: none; }
 
 input[type=date]::-webkit-calendar-picker-indicator {
-  color: #2a7a39;
+  color: #3f874c;
   background: #ffffff;
   cursor: pointer;
   display: block; }
@@ -327,9 +327,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
     line-height: 34px;
     line-height: 2.125rem; }
     .toggle-wrapper .toggle-label:first-child {
-      color: #898c89; }
+      color: #949794; }
     .toggle-wrapper .toggle-label:last-child {
-      color: #2a7a39; }
+      color: #3f874c; }
   .toggle-wrapper .toggle {
     position: relative;
     width: 40px;
@@ -337,7 +337,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     margin: 0 20px; }
     .toggle-wrapper .toggle .toggle-track {
       opacity: 0.5;
-      background: #2a7a39;
+      background: #3f874c;
       border-radius: 8px;
       width: 40px;
       height: 16px;
@@ -347,21 +347,21 @@ input[type=date]::-webkit-calendar-picker-indicator {
       position: absolute;
       width: 24px;
       height: 24px;
-      background: #2a7a39;
+      background: #3f874c;
       border-radius: 50%;
       z-index: 2;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       transform: translate3d(20px, -4px, 0);
       transition-property: background,transform; }
   .toggle-wrapper.off .toggle-label:first-child {
-    color: #083510; }
+    color: #204927; }
   .toggle-wrapper.off .toggle-label:last-child {
-    color: #898c89; }
+    color: #949794; }
   .toggle-wrapper.off .toggle .toggle-track {
-    background: #083510; }
+    background: #204927; }
   .toggle-wrapper.off .toggle .toggle-handle {
     transform: translate3d(-4px, -4px, 0);
-    background: #083510; }
+    background: #204927; }
 
 form {
   padding-bottom: 100px;
@@ -390,12 +390,12 @@ form {
       form .form-header.edit-meal a {
         flex: 0 1 50%;
         display: block;
-        color: #bd2c1b;
+        color: #c34131;
         text-align: right;
         font-weight: bold;
         cursor: pointer; }
         form .form-header.edit-meal a:hover, form .form-header.edit-meal a:active, form .form-header.edit-meal a:focus, form .form-header.edit-meal a:visited {
-          color: #bd2c1b; }
+          color: #c34131; }
   form .submit-wrapper {
     padding: 60px 0 0 0; }
     form .submit-wrapper .btn {
@@ -434,7 +434,7 @@ form {
     transition-duration: .15s;
     transition-property: transform,font-size,color;
     transform: translate3d(0, 0, 0);
-    color: #898c89; }
+    color: #949794; }
     .form-field label.range {
       transform: none; }
   .form-field input, .form-field textarea {
@@ -462,15 +462,15 @@ form {
         top: -5px;
         right: -17px; }
     .form-field .hunger-label .hunger-description {
-      color: #083510;
+      color: #204927;
       font-weight: 700; }
   .form-field hr {
     margin: 0;
-    border-top: 1px solid #e4e8e5;
+    border-top: 1px solid #f1f3f2;
     position: relative;
     overflow: visible; }
     .form-field hr:after {
-      background: #083510;
+      background: #204927;
       content: "";
       display: block;
       height: 2px;
@@ -493,7 +493,7 @@ form {
     font-size: 1rem;
     line-height: 26px;
     line-height: 1.625rem;
-    color: #898c89;
+    color: #949794;
     font-style: italic; }
   .form-field input:focus {
     opacity: 1; }
@@ -501,7 +501,7 @@ form {
       transform: translate3d(0, -34px, 0);
       font-size: 20px;
       font-size: 1.25rem;
-      color: #083510; }
+      color: #204927; }
     .form-field input:focus + label + hr:after {
       width: 100%;
       right: 0; }
@@ -511,7 +511,7 @@ form {
     transform: translate3d(0, -34px, 0);
     font-size: 20px;
     font-size: 1.25rem;
-    color: #083510; }
+    color: #204927; }
   .form-field.active input, .form-field.active textarea, .form-field.has-value input, .form-field.has-value textarea {
     opacity: 1; }
   .form-field.active hr:after, .form-field.has-value hr:after {
@@ -524,13 +524,13 @@ form {
   .form-field.invalid {
     padding-bottom: 0; }
     .form-field.invalid label {
-      color: #bd2c1b; }
+      color: #c34131; }
     .form-field.invalid hr {
-      border-color: #bd2c1b; }
+      border-color: #c34131; }
       .form-field.invalid hr:after {
-        background-color: #bd2c1b; }
+        background-color: #c34131; }
     .form-field.invalid .input-message {
-      color: #bd2c1b;
+      color: #c34131;
       font-style: normal; }
   .form-field .radio-container {
     display: block;
@@ -566,7 +566,7 @@ form {
     background-color: #ccc;
     border-radius: 50%; }
   .form-field .radio-container input:checked ~ .radio-button {
-    background-color: #083510; }
+    background-color: #204927; }
   .form-field .radio-button:after {
     content: "";
     position: absolute;
@@ -591,36 +591,36 @@ form {
       padding-top: 17px; }
 
 .snack-theme .form-field .hunger-label .hunger-description {
-  color: #2a7a39; }
+  color: #3f874c; }
 
 .snack-theme .form-field hr:after {
-  background: #2a7a39; }
+  background: #3f874c; }
 
 .snack-theme .form-field input:focus + label {
-  color: #2a7a39; }
+  color: #3f874c; }
 
 .snack-theme .form-field.active label, .snack-theme .form-field.has-value label {
-  color: #2a7a39; }
+  color: #3f874c; }
 
 .snack-theme .form-field.invalid label {
-  color: #bd2c1b; }
+  color: #c34131; }
 
 .snack-theme .form-field.invalid hr {
-  border-color: #bd2c1b; }
+  border-color: #c34131; }
   .snack-theme .form-field.invalid hr:after {
-    background-color: #bd2c1b; }
+    background-color: #c34131; }
 
 .snack-theme .form-field.invalid .input-message {
-  color: #bd2c1b; }
+  color: #c34131; }
 
 .snack-theme .form-field .radio-container input:checked ~ .radio-button {
-  background-color: #2a7a39; }
+  background-color: #3f874c; }
 
 .mood-field-wrapper {
   padding-top: 34px; }
 
 .chip {
-  background: #EA9E19;
+  background: #eca72f;
   padding: 7px 7px 7px 7px;
   color: #ffffff;
   position: relative;
@@ -645,19 +645,19 @@ form .chip {
 /*** COMPONENTS ***/
 #main-header {
   padding-bottom: 10px;
-  border-bottom: 1px solid #e4e8e5; }
+  border-bottom: 1px solid #f1f3f2; }
 
 a.logo {
   display: block;
   width: 40px;
   height: 40px;
-  background: #083510;
+  background: #204927;
   border-radius: 50%;
   position: relative;
   margin-top: 10px; }
   a.logo:after {
     content: '';
-    background: #2a7a39;
+    background: #3f874c;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -678,8 +678,95 @@ a.logo {
   line-height: 52px;
   line-height: 3.25rem;
   cursor: pointer;
-  color: #898c89;
+  color: #949794;
   display: block; }
+  .main-menu-hamburger:hover, .main-menu-hamburger:active, .main-menu-hamburger:focus, .main-menu-hamburger:visited {
+    color: #949794; }
+
+.main-menu-wrapper {
+  display: none; }
+
+@media only screen and (min-width: 992px) {
+  #main-header {
+    padding-bottom: 45px; }
+  .main-menu-hamburger-wrapper {
+    display: none; }
+  .main-menu-wrapper {
+    display: block; }
+    .main-menu-wrapper nav {
+      text-align: right;
+      padding-top: 8px; }
+      .main-menu-wrapper nav ul li {
+        display: inline-block;
+        vertical-align: top;
+        position: relative; }
+        .main-menu-wrapper nav ul li:first-child {
+          margin-left: 0; }
+        .main-menu-wrapper nav ul li:last-child ul {
+          width: 200px; }
+        .main-menu-wrapper nav ul li a {
+          display: block;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 15px;
+          font-size: 0.9375rem;
+          line-height: 17px;
+          line-height: 1.0625rem;
+          padding: 15px;
+          cursor: pointer;
+          color: #949794; }
+          .main-menu-wrapper nav ul li a:hover, .main-menu-wrapper nav ul li a:active, .main-menu-wrapper nav ul li a:focus {
+            color: #949794;
+            text-decoration: none;
+            opacity: 0.6; }
+        .main-menu-wrapper nav ul li.nav-dropdown-item {
+          position: relative;
+          z-index: 10; }
+          .main-menu-wrapper nav ul li.nav-dropdown-item .dropdown-label {
+            position: relative;
+            color: #949794;
+            cursor: pointer;
+            font-size: 15px;
+            font-size: 0.9375rem;
+            line-height: 17px;
+            line-height: 1.0625rem;
+            padding: 15px 30px 15px 15px;
+            text-transform: uppercase;
+            font-weight: 600; }
+            .main-menu-wrapper nav ul li.nav-dropdown-item .dropdown-label:before {
+              position: absolute;
+              right: 15px;
+              top: 5px;
+              top: 17px;
+              font-size: 12px;
+              font-size: 0.75rem; }
+          .main-menu-wrapper nav ul li.nav-dropdown-item:hover, .main-menu-wrapper nav ul li.nav-dropdown-item:active, .main-menu-wrapper nav ul li.nav-dropdown-item:focus {
+            background: #949794;
+            color: #ffffff; }
+            .main-menu-wrapper nav ul li.nav-dropdown-item:hover .dropdown-label, .main-menu-wrapper nav ul li.nav-dropdown-item:active .dropdown-label, .main-menu-wrapper nav ul li.nav-dropdown-item:focus .dropdown-label {
+              color: #ffffff; }
+            .main-menu-wrapper nav ul li.nav-dropdown-item:hover ul, .main-menu-wrapper nav ul li.nav-dropdown-item:active ul, .main-menu-wrapper nav ul li.nav-dropdown-item:focus ul {
+              display: block; }
+        .main-menu-wrapper nav ul li ul {
+          display: none;
+          position: absolute;
+          top: 47px;
+          right: 0;
+          min-width: 100%; }
+          .main-menu-wrapper nav ul li ul li {
+            display: block; }
+            .main-menu-wrapper nav ul li ul li a {
+              background: #949794;
+              color: #ffffff; }
+              .main-menu-wrapper nav ul li ul li a:hover, .main-menu-wrapper nav ul li ul li a:active, .main-menu-wrapper nav ul li ul li a:focus {
+                color: #ffffff;
+                background: #404240;
+                opacity: 1; } }
+
+.homepage-wrapper {
+  height: calc(100% - 70px); }
+  .homepage-wrapper .daily-view {
+    height: 100%; }
 
 .daily-view {
   height: calc(100% - 70px); }
@@ -692,7 +779,7 @@ a.logo {
     margin: 100px 50px;
     text-align: center;
     max-width: 400;
-    color: #898c89;
+    color: #949794;
     opacity: 0.6; }
 
 .meal-summary-wrapper {
@@ -705,6 +792,11 @@ a.logo {
     .meal-summary-wrapper .col-md-6:nth-last-child(2) {
       margin-bottom: 135px; }
 
+.meal-view {
+  height: calc(100% - 70px); }
+  .meal-view .row, .meal-view .col-xs-12 {
+    height: 100%; }
+
 .meal-card {
   margin-bottom: 45px;
   background: #ffffff;
@@ -713,7 +805,7 @@ a.logo {
   -webkit-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2);
   -moz-box-shadow: 0 0 8px rgba(120, 120, 120, 0.2); }
   .meal-card header {
-    background: #083510;
+    background: #204927;
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -734,7 +826,7 @@ a.logo {
         flex: 0 1 70%;
         padding-right: 30px; }
   .meal-card.snack-theme header {
-    background: #2a7a39; }
+    background: #3f874c; }
   .meal-card main {
     font-size: 18px;
     font-size: 1.125rem;
@@ -753,7 +845,7 @@ a.logo {
             cursor: default; }
     .meal-card main .chip {
       padding-right: 7px;
-      background: #EA9E19; }
+      background: #eca72f; }
     .meal-card main h3 {
       font-size: 18px;
       font-size: 1.125rem;
@@ -766,7 +858,7 @@ a.logo {
       padding-left: 30px;
       padding-right: 30px; }
     .meal-card main .hunger-section {
-      border-bottom: 1px solid #e4e8e5;
+      border-bottom: 1px solid #f1f3f2;
       padding-top: 20px;
       padding-bottom: 20px;
       margin-bottom: 10px;
@@ -821,6 +913,19 @@ a.logo {
     float: right;
     text-align: right; }
 
+@media only screen and (min-width: 992px) {
+  .homepage-wrapper {
+    height: calc(100% - 101px); }
+  .daily-view {
+    height: calc(100% - 101px); }
+  .meal-view {
+    height: calc(100% - 101px); }
+    .meal-view .row, .meal-view .col-xs-12 {
+      height: 100%; } }
+
+main.drawer-open {
+  overflow: hidden; }
+
 .drawer-wrapper {
   position: fixed;
   width: 100%;
@@ -842,7 +947,7 @@ a.logo {
     transition: right 250ms ease;
     z-index: 21; }
     .drawer-wrapper .drawer.hunger-scale-drawer {
-      background: #e4e8e5; }
+      background: #f1f3f2; }
   .drawer-wrapper.active {
     right: 0; }
     .drawer-wrapper.active .drawer {
@@ -854,7 +959,7 @@ a.logo {
 .nav-drawer-section {
   padding-left: 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #e4e8e5; }
+  border-bottom: 1px solid #f1f3f2; }
   .nav-drawer-section ul li {
     padding-top: 30px;
     font-size: 18px;
@@ -882,9 +987,9 @@ a.logo {
   font-size: 27px;
   font-size: 1.6875rem;
   margin-left: 5px;
-  color: #898c89; }
+  color: #949794; }
   .hunger-scale-drawer-section a.ion-android-close:before:hover, .hunger-scale-drawer-section a.ion-android-close:before:active, .hunger-scale-drawer-section a.ion-android-close:before:focus, .hunger-scale-drawer-section a.ion-android-close:before:visited {
-    color: #898c89; }
+    color: #949794; }
 
 .calendar-wrapper {
   height: calc(100% - 70px);
@@ -909,7 +1014,7 @@ a.logo {
   .calendar.rows-5 .calendar-row {
     height: 24%; }
   .calendar .calendar-row {
-    border-bottom: 1px solid #e4e8e5; }
+    border-bottom: 1px solid #f1f3f2; }
     .calendar .calendar-row.calendar-header {
       height: 4%;
       border-bottom: none;
@@ -937,7 +1042,7 @@ a.logo {
       .calendar .calendar-row .calendar-day .current .calendar-date {
         padding-left: 0;
         padding-top: 1px;
-        background: #EA9E19;
+        background: #eca72f;
         border-radius: 50%;
         color: #ffffff;
         display: block;
@@ -946,13 +1051,13 @@ a.logo {
         margin-top: -1px;
         margin-left: -2px; }
       .calendar .calendar-row .calendar-day .calendar-meal {
-        background: #2a7a39;
+        background: #3f874c;
         border-radius: 4px;
         margin-top: 3px;
         padding: 1px 5px;
         min-height: 10px; }
         .calendar .calendar-row .calendar-day .calendar-meal.meal-theme {
-          background: #083510; }
+          background: #204927; }
       .calendar .calendar-row .calendar-day .calendar-meal-hunger {
         display: none; }
   .calendar .day-ellipsis {
@@ -962,7 +1067,7 @@ a.logo {
     .calendar .day-ellipsis .ellipsis-dot {
       width: 6px;
       height: 6px;
-      background: #898c89;
+      background: #949794;
       border-radius: 50%;
       margin-left: 2px;
       display: block;
@@ -988,6 +1093,8 @@ a.logo {
     max-height: 898px; } }
 
 @media only screen and (min-width: 992px) {
+  .calendar-wrapper {
+    height: calc(100% - 101px); }
   .calendar {
     max-height: 100%; } }
 
@@ -1030,7 +1137,7 @@ a.logo {
     line-height: 1.125rem;
     font-size: 16px;
     font-size: 1rem;
-    color: #898c89;
+    color: #949794;
     max-width: 150px;
     margin: 0 auto; }
   .profile .streak .streak-number {
@@ -1083,15 +1190,15 @@ a.logo {
     display: inline-block;
     vertical-align: bottom;
     width: 50%;
-    border-bottom: 1px solid #898c89;
+    border-bottom: 1px solid #949794;
     padding-bottom: 1px;
-    color: #898c89;
+    color: #949794;
     font-weight: 400;
     cursor: pointer; }
     .stat-tabber .tab.active {
-      border-bottom: 2px solid #2a7a39;
+      border-bottom: 2px solid #3f874c;
       padding-bottom: 0;
-      color: #2a7a39;
+      color: #3f874c;
       font-weight: 600; }
     .stat-tabber .tab .tab-title {
       padding: 45px 0 7px;
@@ -1136,7 +1243,7 @@ a.logo {
     font-weight: 600;
     text-transform: uppercase; }
   .account .account-section .account-sub-section {
-    border-bottom: 1px solid #e4e8e5;
+    border-bottom: 1px solid #f1f3f2;
     padding-bottom: 30px;
     margin-bottom: 30px; }
     .account .account-section .account-sub-section p:first-child {
@@ -1168,7 +1275,7 @@ a.logo {
 .hunger-icon-0 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1176,7 +1283,7 @@ a.logo {
     content: '';
     height: 1%;
     width: 1%;
-    background: #bd2c1b;
+    background: #c34131;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1190,7 +1297,7 @@ a.logo {
 .hunger-icon-1 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1198,7 +1305,7 @@ a.logo {
     content: '';
     height: 10%;
     width: 10%;
-    background: #bd2c1b;
+    background: #c34131;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1212,7 +1319,7 @@ a.logo {
 .hunger-icon-2 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1220,7 +1327,7 @@ a.logo {
     content: '';
     height: 20%;
     width: 20%;
-    background: #FFB535;
+    background: #ffbc49;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1234,7 +1341,7 @@ a.logo {
 .hunger-icon-3 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1242,7 +1349,7 @@ a.logo {
     content: '';
     height: 30%;
     width: 30%;
-    background: #2a7a39;
+    background: #3f874c;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1256,7 +1363,7 @@ a.logo {
 .hunger-icon-4 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1264,7 +1371,7 @@ a.logo {
     content: '';
     height: 40%;
     width: 40%;
-    background: #2a7a39;
+    background: #3f874c;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1278,7 +1385,7 @@ a.logo {
 .hunger-icon-5 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1286,7 +1393,7 @@ a.logo {
     content: '';
     height: 50%;
     width: 50%;
-    background: #2a7a39;
+    background: #3f874c;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1300,7 +1407,7 @@ a.logo {
 .hunger-icon-6 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1308,7 +1415,7 @@ a.logo {
     content: '';
     height: 60%;
     width: 60%;
-    background: #2a7a39;
+    background: #3f874c;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1322,7 +1429,7 @@ a.logo {
 .hunger-icon-7 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1330,7 +1437,7 @@ a.logo {
     content: '';
     height: 70%;
     width: 70%;
-    background: #2a7a39;
+    background: #3f874c;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1344,7 +1451,7 @@ a.logo {
 .hunger-icon-8 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1352,7 +1459,7 @@ a.logo {
     content: '';
     height: 80%;
     width: 80%;
-    background: #FFB535;
+    background: #ffbc49;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1366,7 +1473,7 @@ a.logo {
 .hunger-icon-9 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1374,7 +1481,7 @@ a.logo {
     content: '';
     height: 90%;
     width: 90%;
-    background: #bd2c1b;
+    background: #c34131;
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -1388,7 +1495,7 @@ a.logo {
 .hunger-icon-10 {
   width: 40px;
   height: 40px;
-  background: #898c89;
+  background: #949794;
   border-radius: 50%;
   display: block;
   position: relative; }
@@ -1396,7 +1503,7 @@ a.logo {
     content: '';
     height: 100%;
     width: 100%;
-    background: #bd2c1b;
+    background: #c34131;
     border-radius: 50%;
     display: block;
     position: absolute;

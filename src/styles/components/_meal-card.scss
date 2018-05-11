@@ -1,3 +1,10 @@
+.homepage-wrapper{
+  height:calc(100% - 70px);
+
+  .daily-view{
+    height:100%;
+  }
+}
 .daily-view{
   height:calc(100% - 70px);
 
@@ -24,6 +31,13 @@
     &:nth-last-child(2){
       margin-bottom:135px;
     }
+  }
+}
+.meal-view{
+  height:calc(100% - 70px);
+
+  .row, .col-xs-12{
+    height:100%;
   }
 }
 .meal-card{
@@ -163,5 +177,20 @@
     width:70%;
     float:right;
     text-align:right;
+  }
+}
+@media only screen and (min-width: $md) {
+  .homepage-wrapper{
+    height:calc(100% - 101px);
+  }
+  .daily-view{
+    height:calc(100% - 101px);
+  }
+  .meal-view{
+    height:calc(100% - 101px);
+
+    .row, .col-xs-12{
+      height:100%;
+    }
   }
 }

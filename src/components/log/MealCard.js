@@ -12,7 +12,7 @@ class MealCard extends React.Component {
       </div>
     ) : null;
     return (
-      <div className="col-xs-12 col-md-6">
+      <div className={"col-xs-12 col-md-6" + (this.props.cardClass ? this.props.cardClass : '')}>
         <article className={"meal-card clearfix " + (this.props.meal.mealType === 'meal' ? 'meal-theme' : 'snack-theme')}>
           <header>
             <h2>{this.props.meal.mealName}</h2>

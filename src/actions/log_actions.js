@@ -170,6 +170,7 @@ export function editExistingMeal(changedFields) {
           payload: data.meal
         });
       }
+      window.location.href = '/meal/'+data.meal._id;
     })
     .catch((error) => {
       console.log(error)

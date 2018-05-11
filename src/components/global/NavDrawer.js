@@ -27,18 +27,14 @@ class NavDrawer extends React.Component {
                   <span className="ion-plus-circled"></span><span>Log a Meal or Snack</span>
                 </Link>
               </li>
-            </ul>
-          </div>
-          <div className="nav-drawer-section">
-            <ul>
               <li><Link to='/' onClick={this.props.toggleNavDrawer}>Today's Log</Link></li>
               <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))} onClick={this.props.toggleNavDrawer}>Calendar</Link></li>
-              <li><Link to='/profile' onClick={this.props.toggleNavDrawer}>Profile</Link></li>
-              <li><Link to='/account' onClick={this.props.toggleNavDrawer}>Settings</Link></li>
+              <li><Link to='/stats' onClick={this.props.toggleNavDrawer}>Stats</Link></li>
             </ul>
           </div>
           <div className="nav-drawer-section">
             <ul>
+              <li><Link to='/account' onClick={this.props.toggleNavDrawer}>Acccount &amp; Settings</Link></li>
               <li><a onClick={this.handleLogoutClick}>Logout</a></li>
             </ul>
           </div>
@@ -77,17 +73,11 @@ class NavDrawer extends React.Component {
   }
 }
 
-const MapStateToProps = dispatch => {
-  return {
-    logoutUser: () => dispatch(logoutUser())
-  }
-}
-
 NavDrawer = connect(
   state => ({
     isLoggedIn: state.auth.authenticated,
   }),
-  MapStateToProps
+  {logoutUser}
 )(NavDrawer)
 
 export default NavDrawer

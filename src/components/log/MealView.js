@@ -32,7 +32,7 @@ class DayView extends React.Component {
       pageContent = (
         <div className="meal-summary-wrapper">
           <div className="row">
-            <MealCard meal={thisMeal} showEditLink={true} />
+            <MealCard meal={thisMeal} showEditLink={true} cardClass=" col-md-push-3" />
           </div>
           <Link to={"/day/" + thisMeal.mealDateHumanFormat} className="cta-back ion-chevron-left">Back</Link>
         </div>
@@ -40,11 +40,15 @@ class DayView extends React.Component {
     }
     return (
       <div className="container meal-view">
-        <div className="day-view-header">
-          {displayDate}
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="view-header">
+              {displayDate}
+            </div>
+            {pageContent}
+            <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
+          </div>
         </div>
-        {pageContent}
-        <Link to="/log-meal" className="log-cta ion-plus-round"></Link>
       </div>
     )
   }
