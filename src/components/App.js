@@ -70,6 +70,11 @@ const HungerScale = Loadable({
   loading: Loader,
 });
 
+const About = Loadable({
+  loader: () => import('./about/About'),
+  loading: Loader,
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -97,7 +102,12 @@ class App extends React.Component {
           <NavDrawer isOpen={this.state.navDrawerOpen} toggleNavDrawer={this.toggleNavDrawer} />
           <HungerScaleDrawer isOpen={this.state.hungerScaleDrawerOpen} toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' render={()=> 
+                <Home toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+            } />
+            <Route exact path='/about' render={()=> 
+                <About toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+            } />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/account' component={RequireAuth(Account)} />  
@@ -137,7 +147,6 @@ class App extends React.Component {
                 <Login /> 
               )
             } />
-            <Route exact path='/resources/hunger-scale' component={HungerScale} />
             <Route component={NotFound404} />
           </Switch>
         </main>

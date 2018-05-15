@@ -1,28 +1,24 @@
 .homepage{
   #main-header{
-    padding-bottom:0;
+    padding-bottom:6px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    margin:auto;
+    z-index:10;
+    background:$lightGray;
+    @include box-shadow();
+  }
+  .main-wrapper{
+    padding-top:70px;
+  }
+  .logo{
+    color:$orange;
   }
   h1{
     @include font-size(30);
     @include line-height(38);
-
-    .logo{
-      color:$orange;
-      font-weight:400;
-
-      span{
-        font-weight:600;
-      }
-    }
-  }
-  ul{
-    list-style-type: disc;
-    padding:17px 0 0 21px;
-
-    li{
-      @include font-size(20);
-      @include line-height(26);
-    }
   }
   .scroll-cta{
     position:absolute;
@@ -53,19 +49,31 @@
   .homepage-section{
     padding:55px 0;
     position:relative;
+
+    ul{
+      list-style-type: disc;
+      padding:32px 0 0 21px;
+
+      li{
+        @include font-size(20);
+        @include line-height(26);
+      }
+      .tooltip{
+        position:static;
+        display:inline-block;
+      }
+    }
   }
   .homepage-section-hero{
-    padding:120px 0 240px;
+    padding:150px 0 182px;
     background:$green;
     color:$white;
   }
   .homepage-section-meal-card{
-    .meal-card{
-      transform: scale(0.8);
-    }
-    .meal-card-wrapper{
-      margin-top:-18px;
-      margin-bottom:-61px;
+    padding-bottom:50px;
+
+    ul{
+      padding-bottom:53px;
     }
     .scroll-cta:before{
       background:$green;
@@ -77,7 +85,7 @@
     padding-bottom:93px;
 
     h2{
-      padding-bottom:32px;
+      padding-bottom:27px;
     }
     .scroll-cta:before{
       background:$orange;
@@ -85,29 +93,137 @@
   }
   .homepage-section-stats{
     color:$darkGreen;
+    padding-bottom:65px;
 
     h2{
-      padding-bottom:26px;
+      padding-bottom:42px;
+    }
+    .stat-image{
+      display:none;
     }
   }
   .homepage-section-join{
     background:$darkGreen;
-    text-align:center;
     color:$white;
-    padding-top:85px;
-    padding-bottom:88px;
+    padding-top:104px;
+    padding-bottom:107px;
+    text-align: center;
 
     h2{
       padding-bottom:40px;
+    }
+    .btn-wrapper{
+      padding-bottom:9px;
     }
     .btn{
       @include box-shadow();
     }
   }
+  @media only screen and (min-width: $xxs) {
+    h1{
+      @include font-size(43);
+      @include line-height(51);
+    }
+    .meal-card{
+      margin-left:18px;
+      margin-right:13px;
+    }
+    .homepage-section-join{
+      padding-top:117px;
+      padding-bottom:120px;
+    }
+  }
+  @media only screen and (min-width: $xs) {
+    .homepage-section-stats{
+      padding-bottom:69px;
+
+      .stat-image-narrow{
+        display:none;
+      }
+      .stat-image{
+        display:block;
+      }
+    }
+    .meal-card{
+      margin-left:68px;
+      margin-right:63px;
+    }
+    img{
+      padding-left:60px;
+      padding-right:60px;
+    }
+  }
+  @media only screen and (min-width: $xs) {
+    .homepage-section{
+      padding-top:85px;
+    }
+    .homepage-section-hero{
+      padding:180px 0 212px;
+    }
+    .homepage-section-meal-card{
+      padding-bottom:80px;
+    }
+    .homepage-section-calendar{
+      padding-bottom:123px;
+    }
+    .homepage-section-stats{
+      padding-bottom:95px;
+      padding-bottom:99px;
+    }
+    .homepage-section-join{
+      padding-top:147px;
+      padding-bottom:150px;
+    }
+  }
   @media only screen and (min-width: $md) {
     h1{
-      @include font-size(80);
-      @include line-height(88);
+      @include font-size(90);
+      @include line-height(98);
+    }
+    h2{
+      @include font-size(45);
+      @include line-height(49);
+    }
+    .meal-card{
+      margin-left:0;
+      margin-right:0;
+    }
+    img{
+      padding-left:0;
+      padding-right:0;
+    }
+    .homepage-section{
+      padding-top:115px;
+    }
+    .homepage-section-hero{
+      padding:180px 0 212px;
+    }
+    .homepage-section-meal-card{
+      padding-bottom:110px;
+    }
+    .homepage-section-calendar{
+      padding-bottom:153px;
+    }
+    .homepage-section-stats{
+      padding-bottom:125px;
+      padding-bottom:129px;
+    }
+    .homepage-section-join{
+      padding-top:147px;
+      padding-bottom:150px;
+    }
+    .homepage-section .row{
+      display:flex;
+      align-items:center;
+    }
+    .homepage-section-meal-card .row{
+      align-items:flex-start;
+    }
+    .footer-ctas{
+      padding-top:30px;
+    }
+    .footer-utility{
+      text-align:right;
     }
   }
 }

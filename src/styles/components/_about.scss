@@ -1,0 +1,20 @@
+.about{  
+  background:$white;
+  border-radius: 4px;
+  @include box-shadow();
+  padding:26px 30px;
+
+  p{
+    @include font-size(18);
+    @include line-height(26);
+  }
+  .tooltip{
+    position:static;
+    display:inline-block;
+  }
+  .contact-email{
+    @include font-size(24);
+    @include line-height(30);
+    font-weight:600;
+  }
+}

@@ -1,3 +1,10 @@
+.logo{
+  font-weight:400;
+
+  span{
+    font-weight:600;
+  }
+}
 h1{
   @include font-size(32);
   @include line-height(38);

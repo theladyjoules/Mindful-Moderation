@@ -5,7 +5,8 @@ import DayView from '../log/DayView'
 import MealCard from '../log/MealCard'
 import RequireAuth  from '../auth/Require-Auth'
 import ImageCalendarView from '../../images/calendar-view.png'
-import ImageStatView from '../../images/stat-view-narrow.png'
+import ImageStatViewNarrow from '../../images/stat-view-narrow.png'
+import ImageStatView from '../../images/stat-view.png'
 
 class Home extends React.Component {
 
@@ -55,9 +56,9 @@ class Home extends React.Component {
               <div className="container">
                 <div className="row">
                   <div className="col-xs-12 col-sm-6">
-                    <h2>Log meals and snacks and record:</h2>
+                    <h2>Log your meals and snacks, recording:</h2>
                     <ul>
-                      <li>hunger levels using a 0-10 scale</li>
+                      <li>hunger levels using a 0-10 scale<sup><span className="tooltip ion-help" onClick={this.props.toggleHungerScaleDrawer}></span></sup></li>
                       <li>mood</li>
                       <li>foods eaten</li>
                       <li>setting</li>
@@ -90,7 +91,8 @@ class Home extends React.Component {
                     <h2>Track your progress with useful statistics.</h2>
                   </div>
                   <div className="col-xs-12 col-md-6 meal-card-wrapper">
-                    <img src={ImageStatView} alt="eatmindful mindful eating tracker user statistics" />
+                    <img className="stat-image-narrow" src={ImageStatViewNarrow} alt="eatmindful mindful eating tracker user statistics" />
+                    <img className="stat-image" src={ImageStatView} alt="eatmindful mindful eating tracker user statistics" />
                   </div>
                 </div>
               </div>
@@ -100,11 +102,32 @@ class Home extends React.Component {
                 <div className="row">
                   <div className="col-xs-12">
                     <h2>Ready to get started?</h2>
-                    <Link to="/register" className="btn btn-green">Sign Up</Link>
+                    <div className="btn-wrapper">
+                      <Link to="/register" className="btn btn-green">Sign Up</Link>
+                    </div>
+                    <p className="free-disclaimer">It's 100% free.</p>
                   </div>
                 </div>
               </div>
             </div>
+            <footer className="main-footer">
+              <div className="footer-gradient"></div>
+              <div className="container">
+                <div className="row">
+                  <div className="col-xs-12 col-md-6">
+                    <div className="footer-ctas">
+                      <Link to="/about">about <span className="logo">eat<span>mindful</span></span></Link>
+                      <Link to="/about#contact">contact</Link>
+                    </div>
+                  </div>
+                  <div className="col-xs-12 col-md-6">
+                    <div className="footer-utility">
+                      <h6>&copy; 2018 <span className="logo">eat<span>mindful</span></span></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
           </div>
         )}
       </section>

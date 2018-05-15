@@ -1,0 +1,27 @@
+.main-footer{
+  background-color:$mediumGray;
+  color:$lightGray;
+  padding:55px 0 10px 0;
+  position:relative;
+
+  .footer-gradient{
+    background-image: linear-gradient(-180deg, #000000 2%, rgba(0,0,0,0.00) 100%);
+    opacity:0.3;
+    width:100%;
+    height:68px;
+    position:absolute;
+    right:0;
+    top:0;
+  }
+  a{
+    color:$lightGray;
+
+    padding-right:30px;
+  }
+  .logo{
+    color:$lightGray;
+  }
+  .footer-utility{
+    padding-top:30px;
+  }
+}
