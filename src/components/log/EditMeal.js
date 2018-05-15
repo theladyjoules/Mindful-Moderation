@@ -171,22 +171,28 @@ class EditMeal extends Component {
                       />
                     </div>
                   </div>
-                  <Field 
-                    label="Name"
-                    name="mealName"
-                    component="input" 
-                    type="text"
-                    component={renderField}
-                    onFocus={handleFormFieldFocus}
-                    helpText="ex: lunch, afternoon snack" />
-                  <Field
-                    name="mealFoods"
-                    type="text"
-                    label="Food Eaten"
-                    helpText="ex: apple, steak dinner"
-                    component={renderTextarea}
-                    onFocus={handleFormFieldFocus}
-                  />
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-6">
+                      <Field 
+                        label="Name"
+                        name="mealName"
+                        component="input" 
+                        type="text"
+                        component={renderField}
+                        onFocus={handleFormFieldFocus}
+                        helpText="ex: lunch, afternoon snack" />
+                    <div className="col-xs-12 col-sm-6">
+                    </div>
+                      <Field
+                        name="mealFoods"
+                        type="text"
+                        label="Food Eaten"
+                        helpText="ex: apple, steak dinner"
+                        component={renderTextarea}
+                        onFocus={handleFormFieldFocus}
+                      />
+                    </div>
+                  </div>
                   <div className="form-field radio-group">
                     <label className="hunger-label"><span>Hunger Before{this.props.mealHungerBefore ? ':' : null}</span> {this.props.mealHungerBefore ? (<span className="hunger-description">{this.props.mealHungerBefore} &ndash; {strings('hungerScaleWord'+this.props.mealHungerBefore)}</span>) : null}</label>
                     <div className="radio-button-wrapper">
@@ -404,9 +410,9 @@ class EditMeal extends Component {
                     component={renderTextarea}
                     onFocus={handleFormFieldFocus}
                   />
-                  <div className="submit-wrapper">
+                  <div className="submit-wrapper clearfix">
                     <button type="submit" className="btn btn-green" disabled={ this.props.invalid || this.props.submitting || (this.props.pristine && (this.state.moodsPristine && this.state.typePristine))}>Update</button>
-                    <p><Link to={'/meal/' + this.props.log.loadedMeals[this.props.mealId]._id}>Cancel</Link></p>
+                    <Link to={'/meal/' + this.props.log.loadedMeals[this.props.mealId]._id}>Cancel</Link>
                   </div>
                 </div>
               </form>

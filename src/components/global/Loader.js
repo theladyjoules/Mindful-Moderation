@@ -2,9 +2,7 @@ import React from 'react'
 
 function Loader(props){
   return (
-    <div className={"loader " + (props.wrapperClass)}>
-      Loading...
-    </div>
+    <div className={"container loader " + (props.wrapperClass)}></div>
   )
 }
 

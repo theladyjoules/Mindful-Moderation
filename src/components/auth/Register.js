@@ -27,8 +27,8 @@ class Register extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-xs-12">
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <div className="col-xs-12 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+            <form id="register" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
               <div className="form-header">
                 <h1>Sign Up</h1>
               </div>
@@ -62,7 +62,7 @@ class Register extends Component {
                   type="password"
                   component={renderField}
                   onFocus={handleFormFieldFocus} />
-                <div className="submit-wrapper">
+                <div className="submit-wrapper clearfix">
                   <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Get Started</button>
                   <p>Already have an account? <Link to="/login">Login.</Link></p>
                 </div>

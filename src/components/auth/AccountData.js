@@ -37,7 +37,7 @@ class AccountData extends Component {
       <div className="account-section row">
         <div className="col-xs-12">
           <h2>Data</h2>
-            <div className="row">
+            <div className="row account-sub-section-wrapper">
               <div className="account-sub-section col-xs-12 col-md-6">
                 <p><strong>Export</strong></p>
                 <p>Export all meal data as a .csv file. Click below to generate the file.</p>

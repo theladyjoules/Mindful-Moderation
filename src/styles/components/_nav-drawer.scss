@@ -76,12 +76,54 @@ main.drawer-open{
     padding-bottom:15px;
   }
   a.ion-android-close:before{
-    @include font-size(27);
+    @include font-size(32);
     margin-left: 5px;
     color:$mediumGray;
 
     &:hover, &:active, &:focus, &:visited{
       color:$mediumGray;
+    }
+  }
+}
+
+
+@media only screen and (min-width: $sm) {
+  .drawer-wrapper{
+    background:rgba(148,151,148,0.4);
+
+    .hunger-scale-drawer{
+      max-width:400px;
+      height:auto;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 4px;
+      @include box-shadow();
+      padding: 8px 15px 25px 15px;
+
+      .container{
+        max-width:100%;
+      }
+    }
+    &.active .hunger-scale-drawer{
+      left:0;
+      margin:auto;
+    }
+  }
+  .hunger-scale-drawer-section{
+    position:relative;
+
+    &:first-child{
+      padding-bottom:0;
+    }
+
+    a.ion-android-close{
+      padding-bottom:32px;
+
+      &:before{
+        position:absolute;
+        left:auto;
+        right:0;
+      }
     }
   }
 }

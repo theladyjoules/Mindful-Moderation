@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
-import {toggleHungerScaleDrawer} from '../../actions/utility_actions'
 
 class MealCard extends React.Component {
 
@@ -63,7 +61,7 @@ class MealCard extends React.Component {
             {'mealDuration' in this.props.meal && this.props.meal.mealDuration ? (
               <div className="meal-card-section">
                 <h3>Duration:</h3>
-                <div className="meal-card-value">{this.props.meal.mealDuration}</div>
+                <div className="meal-card-value">{this.props.meal.mealDuration} minutes</div>
               </div>
             ) : null}
             {'mealNotes' in this.props.meal && this.props.meal.mealNotes ? (
@@ -90,10 +88,5 @@ class MealCard extends React.Component {
     )
   }
 }
-
-MealCard = connect(
-  null,
-  { toggleHungerScaleDrawer }
-)(MealCard)
 
 export default MealCard

@@ -63,8 +63,6 @@ class NavDrawer extends React.Component {
           <div className="nav-drawer-section">
             <ul>
               <li><Link to='/about' onClick={this.props.toggleNavDrawer}>About</Link></li>
-              <li><Link to='/resources' onClick={this.props.toggleNavDrawer}>Resources</Link></li>
-              <li><Link to='/contact' onClick={this.props.toggleNavDrawer}>Contact</Link></li>
             </ul>
           </div>
         </nav>

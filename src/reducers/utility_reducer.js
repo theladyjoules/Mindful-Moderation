@@ -15,10 +15,6 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, 
         importMessage: action.payload
       }
-    case TOGGLE_HUNGER_SCALE_DRAWER:
-      return { ...state, 
-        hungerScaleDrawerOpen: !state.hungerScaleDrawerOpen
-      }
     default:
       return state
   }

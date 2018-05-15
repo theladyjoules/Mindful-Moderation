@@ -19,57 +19,55 @@ class AccountProfile extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="account-section row">
-        <div className="col-xs-12">
-          <h2>Profile</h2>
-            {this.props.isEditingProfile ? (
-              <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <div className="row">
-                  <div className="col-md-6">
-                    <Field
-                      name="firstName"
-                      type="text"
-                      autoComplete="given-name"
-                      component={renderField}
-                      label="First Name"
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <Field
-                      name="lastName"
-                      type="text"
-                      autoComplete="family-name"
-                      component={renderField}
-                      label="First Name"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12">
+      <div className="account-section col-xs-12 col-md-6">
+        <h2>Profile</h2>
+          {this.props.isEditingProfile ? (
+            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+              <div className="row">
+                <div className="col-xs-12">
                   <Field
-                    name="email"
+                    name="firstName"
                     type="text"
-                    autoComplete="email"
+                    autoComplete="given-name"
                     component={renderField}
-                    label="Email"
+                    label="First Name"
                   />
-                  </div>
                 </div>
-                <div className="btn-wrapper">
-                  <a className="link-pair" onClick={this.props.toggleUpdateUserView}>Cancel</a>
-                  <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Update</button>
-                </div>
-              </form>
-            ) : (
-              <div>
-                <p>{this.props.content.firstName} {this.props.content.lastName}</p>
-                <p>{this.props.content.email}</p>
-                <div className="btn-wrapper">
-                  <a className="btn btn-green" onClick={this.props.toggleUpdateUserView}>Edit</a>
+                <div className="col-xs-12">
+                  <Field
+                    name="lastName"
+                    type="text"
+                    autoComplete="family-name"
+                    component={renderField}
+                    label="First Name"
+                  />
                 </div>
               </div>
-            )}
-        </div>
+              <div className="row">
+                <div className="col-xs-12">
+                <Field
+                  name="email"
+                  type="text"
+                  autoComplete="email"
+                  component={renderField}
+                  label="Email"
+                />
+                </div>
+              </div>
+              <div className="btn-wrapper">
+                <a className="link-pair" onClick={this.props.toggleUpdateUserView}>cancel</a>
+                <button type="submit" className="btn btn-green" disabled={this.props.invalid || this.props.submitting}>Update</button>
+              </div>
+            </form>
+          ) : (
+            <div>
+              <p>{this.props.content.firstName} {this.props.content.lastName}</p>
+              <p>{this.props.content.email}</p>
+              <div className="btn-wrapper">
+                <a className="btn btn-green" onClick={this.props.toggleUpdateUserView}>Edit</a>
+              </div>
+            </div>
+          )}
       </div>
     );
   }

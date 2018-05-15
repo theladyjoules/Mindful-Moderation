@@ -57,7 +57,8 @@ export default function (state = INITIAL_STATE, action) {
           loadedMeals:{
             ...state.loadedMeals,
             [action.payload._id]: action.payload
-          }
+          },
+          moods: []
         }
       }
       else{

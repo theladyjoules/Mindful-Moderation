@@ -7,9 +7,9 @@ import $ from 'jquery'
 import Loader from '../global/Loader';
 // import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
+import { getUrlParameter } from '../../utilities/getUrlParameter';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
-import { logMeal, addMood, removeMood, toggleLogType } from '../../actions/log_actions';
-import {toggleHungerScaleDrawer} from '../../actions/utility_actions'
+import { logMeal, addMood, removeMood, toggleLogType, resetMoods } from '../../actions/log_actions';
 
 class LogMeal extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class LogMeal extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleAddMoodClick = this.handleAddMoodClick.bind(this);
     this.handleToggleClick = this.handleToggleClick.bind(this);
+    this.handleCancelClick = this.handleCancelClick.bind(this);
   }
 
   componentWillMount(){
@@ -58,6 +59,11 @@ class LogMeal extends Component {
     this.props.toggleLogType()
   }
 
+  handleCancelClick(){
+    this.props.resetMoods()
+    window.location.href = '/'
+  }
+
   render() {
     const { handleSubmit } = this.props;
     const chips = (this.props.moods.length) ? this.props.moods.map((mood) =>
@@ -82,16 +88,18 @@ class LogMeal extends Component {
                   </div>
                   <div className="toggle-label">Snack</div>
                 </div>
-                <Field
-                  name="mealDate"
-                  label="Date"
-                  component={renderField}
-                  onFocus={handleFormFieldFocus}
-                  type="date"
-                  required="required"
-                />
                 <div className="row">
-                  <div className="col-xs-12 col-sm-6">
+                  <div className="col-xs-12 col-sm-4">
+                    <Field
+                      name="mealDate"
+                      label="Date"
+                      component={renderField}
+                      onFocus={handleFormFieldFocus}
+                      type="date"
+                      required="required"
+                    />
+                  </div>
+                  <div className="col-xs-12 col-sm-4">
                     <Field
                       name="mealTime"
                       label="Start Time"
@@ -101,15 +109,14 @@ class LogMeal extends Component {
                       onFocus={handleFormFieldFocus}
                     />
                   </div>
-                  <div className="col-xs-12 col-sm-6">
+                  <div className="col-xs-12 col-sm-4">
                     <Field
                       name="mealDuration"
                       type="number"
                       label="Duration"
-                      helpText="in minutes"
+                      helpText="minutes"
                       component={renderField}
-                      onFocus={handleFormFieldFocus}
-                    />
+                      onFocus={handleFormFieldFocus} />
                   </div>
                 </div>
                 <Field 
@@ -369,9 +376,9 @@ class LogMeal extends Component {
                   component={renderTextarea}
                   onFocus={handleFormFieldFocus}
                 />
-                <div className="submit-wrapper">
+                <div className="submit-wrapper clearfix">
                   <button type="submit" className={"btn " + (this.props.logFormTypeMeal ? 'btn-dark-green' : 'btn-green')} disabled={this.props.invalid || this.props.submitting}>Log</button>
-                  <p><Link to='/'>Cancel</Link></p>
+                  <a onClick={this.handleCancelClick}>Cancel</a>
                 </div>
               </div>
             </form>
@@ -402,7 +409,6 @@ const validate = values =>{
   if (isInvalidRequiredField(values, 'mealHungerAfter')){
     errors.mealHungerAfter = strings('required')
   }
-  console.log(errors)
   return errors
 }
 
@@ -414,14 +420,14 @@ LogMeal = reduxForm({
 
 LogMeal = connect(
   state => ({
-    initialValues: {mealDate: moment().format('YYYY-MM-DD'), mealTime: moment().format('kk:mm')},
+    initialValues: {mealDate: getUrlParameter('date') ? moment(getUrlParameter('date')).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'), mealTime: moment().format('kk:mm'), mealDuration: 15},
     mealHungerBefore: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerBefore' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerBefore : null,
     mealHungerAfter: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerAfter' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerAfter : null,
     moods: state.log.moods,
     moodsField: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealMood' in state.form.logMeal.values) ? state.form.logMeal.values.mealMood : null,
     logFormTypeMeal: state.log.logFormTypeMeal
   }),
-  { logMeal, addMood, removeMood, toggleLogType, toggleHungerScaleDrawer }
+  { logMeal, addMood, removeMood, toggleLogType, resetMoods }
 )(LogMeal)
 
 export default LogMeal

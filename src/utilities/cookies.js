@@ -5,10 +5,9 @@ function deleteCookie(name) {
   }
 }
 
-function getCookie(name){
-  let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  // console.log(cookieValue)
-  return cookieValue
+function getCookie(a){
+  var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
 }
 
 function setCookie(name, value, path = null, domain = null, maxAge = null, expires = null, secure = null){

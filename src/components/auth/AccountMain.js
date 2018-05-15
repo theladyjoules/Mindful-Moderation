@@ -27,8 +27,10 @@ class Account extends Component {
     return (
       <div className="account container">
         {this.renderAlert()}
-        <AccountProfile />
-        <AccountPassword />
+        <div className="row account-top-row">
+          <AccountProfile />
+          <AccountPassword />
+        </div>
         <AccountData />
       </div>
     );

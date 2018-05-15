@@ -2,33 +2,48 @@
   padding-bottom:10px;
   border-bottom:1px solid $lightGray;
 }
-a.logo{
-  display:block;
-  width:40px;
-  height:40px;
-  background:$darkGreen;
-  border-radius:50%;
-  position:relative;
-  margin-top:10px;
+.logo{
+  color:$darkGray;
 
-  &:after{
-    content:'';
-    background:$green;
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    margin:auto;
-    width:50%;
-    height:50%;
+  .logo-circle{
+    display:inline-block;
+    vertical-align:middle;
+    width:40px;
+    height:40px;
+    background:$darkGreen;
     border-radius:50%;
+    position:relative;
+    margin-top:15px;
+
+    &:after{
+      content:'';
+      background:$green;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin:auto;
+      width:50%;
+      height:50%;
+      border-radius:50%;
+    }
+  }
+  .logo-text{
+    display:none;
+  }
+  &:hover, &:active, &:focus{
+    color:$darkGray;
   }
 }
 
 .main-menu-hamburger-wrapper{
   text-align:right;
-  padding-top:5px;
+  padding-top:9px;
+
+  &.logged-out{
+    display:none;
+  }
 }
 .main-menu-hamburger{
   @include font-size(50);
@@ -36,18 +51,153 @@ a.logo{
   cursor:pointer;
   color:$mediumGray;
   display: block;
+  max-height:50px;
   
-  &:hover, &:active, &:focus, &:visited{
+  &:hover, &:active, &:focus{
     color:$mediumGray;
   }
 }
 .main-menu-wrapper{
   display:none;
+  
+  &.logged-out{
+    display:block;
+  }
+  nav{
+    text-align:right;
+    padding-top: 14px;
+
+    ul{
+      li{
+        display:inline-block;
+        vertical-align:top;
+        position:relative;
+
+        &:first-child{
+          margin-left:0;
+        }
+        &:last-child ul{
+          width:200px;
+        }
+        &.divider{
+          width:1px;
+          height:15px;
+          background:$mediumGray;
+          margin:15px 15px 0 15px;
+        }
+        a{
+          display:block;
+          text-transform: uppercase;
+          font-weight:600;
+          @include font-size(15);
+          @include line-height(17);
+          padding:15px;
+          cursor:pointer;
+          color:$mediumGray;
+
+          &:hover, &:active, &:focus{
+            color:$mediumGray;
+            text-decoration:none;
+            opacity:0.6;
+          }
+        }
+        &.nav-dropdown-item{
+          position:relative;
+          z-index:10;
+
+          .dropdown-label{
+            position:relative;
+            color:$mediumGray;
+            cursor:pointer;
+            @include font-size(15);
+            @include line-height(17);
+            padding:15px 30px 15px 15px;
+            text-transform: uppercase;
+            font-weight:600;
+
+            &:before{
+              position:absolute;
+              right:15px;
+              top:5px;
+              top: 17px;
+              @include font-size(12);
+            }
+          }
+
+          &:hover, &:active, &:focus{
+            background:$mediumGray;
+            color:$white;
+
+            .dropdown-label{
+              color:$white;
+            }
+            ul{
+              display:block;
+            }
+          }
+        }
+        ul{
+          display:none;
+          position:absolute;
+          top:47px;
+          right:0;
+          min-width:100%;
+
+          li{
+            display:block;
+
+            a{
+              background:$mediumGray;
+              color:$white;
+
+              &:hover, &:active, &:focus{
+                color:$white;
+                background:$darkGray;
+                opacity:1;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.logged-out{
+      a{
+        @include font-size(20);
+        @include line-height(24);
+        padding-left:15px;
+        padding-right:15px;
+
+        &.register-cta{
+          padding-right:0;
+          color:$green;
+
+          &:hover, &:active, &:focus{
+            color:$green;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (min-width: $md) {
   #main-header{
     padding-bottom:45px;
+  }
+  .logo .logo-text{
+    display:inline-block;
+    vertical-align:middle;
+    @include font-size(27);
+    @include line-height(42);
+    vertical-align:middle;
+    font-weight:400;
+    margin:13px 0 0 15px;
+    text-transform:lowercase;
+
+    span{
+      text-transform:lowercase;
+      font-weight:600;
+    }
   }
   .main-menu-hamburger-wrapper{
     display:none;
@@ -55,97 +205,9 @@ a.logo{
   .main-menu-wrapper{
     display:block;
 
-    nav{
-      text-align:right;
-      padding-top: 8px;
-
-      ul{
-        li{
-          display:inline-block;
-          vertical-align:top;
-          position:relative;
-
-          &:first-child{
-            margin-left:0;
-          }
-          &:last-child ul{
-            width:200px;
-          }
-          a{
-            display:block;
-            text-transform: uppercase;
-            font-weight:600;
-            @include font-size(15);
-            @include line-height(17);
-            padding:15px;
-            cursor:pointer;
-            color:$mediumGray;
-
-            &:hover, &:active, &:focus{
-              color:$mediumGray;
-              text-decoration:none;
-              opacity:0.6;
-            }
-          }
-          &.nav-dropdown-item{
-            position:relative;
-            z-index:10;
-
-            .dropdown-label{
-              position:relative;
-              color:$mediumGray;
-              cursor:pointer;
-              @include font-size(15);
-              @include line-height(17);
-              padding:15px 30px 15px 15px;
-              text-transform: uppercase;
-              font-weight:600;
-
-              &:before{
-                position:absolute;
-                right:15px;
-                top:5px;
-                top: 17px;
-                @include font-size(12);
-              }
-            }
-
-            &:hover, &:active, &:focus{
-              background:$mediumGray;
-              color:$white;
-
-              .dropdown-label{
-                color:$white;
-              }
-              ul{
-                display:block;
-              }
-            }
-          }
-          ul{
-            display:none;
-            position:absolute;
-            top:47px;
-            right:0;
-            min-width:100%;
-
-            li{
-              display:block;
-
-              a{
-                background:$mediumGray;
-                color:$white;
-
-                &:hover, &:active, &:focus{
-                  color:$white;
-                  background:$darkGray;
-                  opacity:1;
-                }
-              }
-            }
-          }
-        }
-      }
+    nav.logged-out a{
+      padding-left: 30px;
+      padding-right: 30px;
     }
   }
 }

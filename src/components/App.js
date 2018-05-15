@@ -74,13 +74,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navDrawerOpen: false
+      navDrawerOpen: false,
+      hungerScaleDrawerOpen: false
     }
     this.toggleNavDrawer = this.toggleNavDrawer.bind(this);
+    this.toggleHungerScaleDrawer = this.toggleHungerScaleDrawer.bind(this);
   }
 
   toggleNavDrawer(){
     this.setState({navDrawerOpen:!this.state.navDrawerOpen});
+  }
+
+  toggleHungerScaleDrawer(){
+    this.setState({hungerScaleDrawerOpen:!this.state.hungerScaleDrawerOpen});
   }
 
   render() {
@@ -89,18 +95,48 @@ class App extends React.Component {
         <main className={this.props.hungerScaleDrawerOpen || this.state.navDrawerOpen ? 'drawer-open' : ''}>
           <Header toggleNavDrawer={this.toggleNavDrawer} />
           <NavDrawer isOpen={this.state.navDrawerOpen} toggleNavDrawer={this.toggleNavDrawer} />
-          <HungerScaleDrawer />
+          <HungerScaleDrawer isOpen={this.state.hungerScaleDrawerOpen} toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/account' component={RequireAuth(Account)} />  
-            <Route exact path='/log-meal' component={RequireAuth(LogMeal)} />
-            <Route exact path='/edit-meal/:meal' component={RequireAuth(EditMealWrapper)} />
-            <Route exact path='/day/:day' component={RequireAuth(DayView)} />
-            <Route exact path='/meal/:meal' component={RequireAuth(MealView)} />
+            <Route exact path='/log-meal' render={()=> 
+              this.props.isAuthenticated ? (
+                <LogMeal toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+              ) : (
+                <Login /> 
+              )
+            } />
+            <Route exact path='/edit-meal/:meal' render={()=> 
+              this.props.isAuthenticated ? (
+                <EditMealWrapper toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+              ) : (
+                <Login /> 
+              )
+            } />
+            <Route exact path='/day/:day' render={()=> 
+              this.props.isAuthenticated ? (
+                <DayView toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+              ) : (
+                <Login /> 
+              )
+            } />
+            <Route exact path='/meal/:meal' render={()=> 
+              this.props.isAuthenticated ? (
+                <MealView toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+              ) : (
+                <Login /> 
+              )
+            } />
             <Route exact path='/calendar/:month' component={RequireAuth(Calendar)} />
-            <Route exact path='/stats' component={RequireAuth(Stats)} />
+            <Route exact path='/stats' render={()=> 
+              this.props.isAuthenticated ? (
+                <Stats toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+              ) : (
+                <Login /> 
+              )
+            } />
             <Route exact path='/resources/hunger-scale' component={HungerScale} />
             <Route component={NotFound404} />
           </Switch>
@@ -114,6 +150,7 @@ class App extends React.Component {
 App = connect(
   state => ({
     hungerScaleDrawerOpen: state.utility.hungerScaleDrawerOpen,
+    isAuthenticated: state.auth.authenticated
   }),
   null
 )(App)

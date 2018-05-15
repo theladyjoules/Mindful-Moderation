@@ -1,0 +1,113 @@
+.homepage{
+  #main-header{
+    padding-bottom:0;
+  }
+  h1{
+    @include font-size(30);
+    @include line-height(38);
+
+    .logo{
+      color:$orange;
+      font-weight:400;
+
+      span{
+        font-weight:600;
+      }
+    }
+  }
+  ul{
+    list-style-type: disc;
+    padding:17px 0 0 21px;
+
+    li{
+      @include font-size(20);
+      @include line-height(26);
+    }
+  }
+  .scroll-cta{
+    position:absolute;
+    bottom:15px;
+    left:0;
+    right:0;
+    margin:auto;
+    text-align:center;
+    @include font-size(18);
+
+    &:before{
+      @include font-size(30);
+      @include line-height(34);
+      display:block;
+      position:absolute;
+      bottom:-30px;
+      left:0;
+      right:0;
+      margin:auto;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      background:$darkGreen;
+      color:$white;
+      z-index:2;
+    }
+  }
+  .homepage-section{
+    padding:55px 0;
+    position:relative;
+  }
+  .homepage-section-hero{
+    padding:120px 0 240px;
+    background:$green;
+    color:$white;
+  }
+  .homepage-section-meal-card{
+    .meal-card{
+      transform: scale(0.8);
+    }
+    .meal-card-wrapper{
+      margin-top:-18px;
+      margin-bottom:-61px;
+    }
+    .scroll-cta:before{
+      background:$green;
+    }
+  }
+  .homepage-section-calendar{
+    background:$darkGray;
+    color:$lightGray;
+    padding-bottom:93px;
+
+    h2{
+      padding-bottom:32px;
+    }
+    .scroll-cta:before{
+      background:$orange;
+    }
+  }
+  .homepage-section-stats{
+    color:$darkGreen;
+
+    h2{
+      padding-bottom:26px;
+    }
+  }
+  .homepage-section-join{
+    background:$darkGreen;
+    text-align:center;
+    color:$white;
+    padding-top:85px;
+    padding-bottom:88px;
+
+    h2{
+      padding-bottom:40px;
+    }
+    .btn{
+      @include box-shadow();
+    }
+  }
+  @media only screen and (min-width: $md) {
+    h1{
+      @include font-size(80);
+      @include line-height(88);
+    }
+  }
+}

@@ -56,7 +56,8 @@ export function loginUser({ email, password }) {
     .then(function(data){
       console.log(data)
       setCookie('token', data.token, '/', null, data.expires, moment().add(data.expires, 's').format('ddd, DD MMM YYYY HH:mm:ss'))
-      dispatch({ type: AUTH_USER });
+      setCookie('firstName', data.user.firstName, '/', null, data.expires, moment().add(data.expires, 's').format('ddd, DD MMM YYYY HH:mm:ss'))
+      dispatch({ type: AUTH_USER, payload: data.user.firstName });
       window.location.href = '/';
     })
     .catch((error) => {
@@ -80,8 +81,9 @@ export function registerUser({ email, firstName, lastName, password }) {
     fetch(`${API_URL}/register`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
-      setCookie('token', data.token, '/')
-      dispatch({ type: AUTH_USER });
+      setCookie('token', data.token, '/', null, data.expires, moment().add(data.expires, 's').format('ddd, DD MMM YYYY HH:mm:ss'))
+      setCookie('firstName', data.user.firstName, '/', null, data.expires, moment().add(data.expires, 's').format('ddd, DD MMM YYYY HH:mm:ss'))
+      dispatch({ type: AUTH_USER, payload: data.user.firstName });
       window.location.href = '/';
     })
     .catch((error) => {

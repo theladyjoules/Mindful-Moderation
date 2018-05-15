@@ -12,7 +12,9 @@ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
 const store = createStoreWithMiddleware(reducers, persistedState)
 
 if (token) {  
-  store.dispatch({ type: AUTH_USER })
+  const firstName = getCookie('firstName');
+  console.log(firstName)
+  store.dispatch({ type: AUTH_USER, payload: firstName })
 }
 
 store.subscribe(()=>{

@@ -2,7 +2,7 @@ import { GET_STATS,
          GET_STATS_BY_MONTH,
          SET_ACTIVE_STAT_TAB } from '../actions/types';
 
-const INITIAL_STATE = { activeTab: 'allTimeStats', allTimeStats: {} }
+const INITIAL_STATE = { activeTab: 'Meals', allTimeStats: {} }
 
 export default function (state = INITIAL_STATE, action) {  
   switch(action.type) {

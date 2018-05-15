@@ -1,7 +1,14 @@
-.profile{
+.stats{
+  background:$white;
+  border-radius: 4px;
+  @include box-shadow();
+  margin-bottom:15px;
 
-  .profile-header{
-    padding-top:15px;
+  .row{
+    margin:0;
+  }
+  .stats-header{
+    padding-top:30px;
     position:relative;
     padding-bottom:15px;
 
@@ -14,7 +21,7 @@
       @include font-size(24);
       text-align:center;
       font-weight:600;
-      padding:15px 0 30px 0;
+      padding:10px 0 8px 0;
       color:$darkGray;
       text-transform:uppercase;
     }
@@ -30,16 +37,17 @@
       }
     }
   }
-  .streak{
+  .highlight-band{
     text-align:center;
-    padding:20px;
-    background:$white;
-    @include box-shadow();
+    padding-top:21px;
+    padding-bottom:29px;
+    background:$darkGray;
+    color:$white;
 
     h2{
       @include line-height(18);
       @include font-size(16);
-      color:$mediumGray;
+      color:$white;
       max-width: 150px;
       margin: 0 auto;
     }
@@ -47,6 +55,7 @@
       @include line-height(50);
       @include font-size(38);
       font-weight:700;
+      color:$lightGray;
 
       span{
         @include font-size(18);
@@ -54,8 +63,19 @@
       }
     }
   }
+  .tab-content{
+    padding:0 15px;
+  }
+  .meal-tab .stat-row{
+    border-left:3px solid $darkGreen;
+  }
+  .snack-tab .stat-row{
+    border-left:3px solid $green;
+  }
   .stat-row{
-    padding:30px 15px;
+    padding:2px 15px 0px 30px;
+    margin-top:30px;
+    margin-bottom:30px;
 
     .stat{
       display:flex;
@@ -75,7 +95,7 @@
       }
     }
     h3{
-      @include line-height(56);
+      @include line-height(48);
       @include font-size(48);
       font-weight:700;
 
@@ -96,7 +116,8 @@
 .stat-tabber{
   text-align:center;
   padding-top:15px;
-  margin-bottom:40px;
+  margin-bottom:15px;
+  padding:0 15px;
 
   .tab{
     display:inline-block;
@@ -109,16 +130,21 @@
     cursor:pointer;
 
     &.active{
-      border-bottom:2px solid $green;
+      border-bottom:3px solid $green;
       padding-bottom:0;
       color:$green;
       font-weight:600;
     }
+    &:first-child.active{
+      color:$darkGreen;
+      border-color:$darkGreen;
+    }
     .tab-title{
-      padding:45px 0 7px;
+      padding:57px 0 7px;
       @include font-size(20);
       @include line-height(24);
       text-transform:uppercase;
+      margin-bottom:-1px;
     }
   }
 }
@@ -127,5 +153,54 @@
 
   &.active{
     display:block;
+  }
+}
+
+@media only screen and (min-width: $md) {
+  .stats{
+    .highlight-band{
+      text-align:left;
+      padding-top: 6px;
+      padding-bottom: 5px;
+
+      .streak-number{
+        display:inline-block;
+        vertical-align:baseline;
+        padding-left:15px;
+      }
+      h2{
+        display:inline-block;
+        vertical-align:baseline;
+        max-width:100%;
+        padding-left:15px;
+      }
+    }
+    .stats-header{
+      padding-bottom:30px
+    }
+  } 
+  .stat-tabber{
+    margin-bottom:45px;
+    padding:0;
+    margin-left:15px;
+    margin-right:15px;
+    text-align:left;
+    border-bottom:1px solid $mediumGray;
+
+    .tab{
+      width:25%;
+      border-bottom:none;
+      margin-bottom:-1px;
+
+      .tab-title{
+        text-align:center;
+        margin-bottom:0;
+      }
+    }
+  }
+}
+@media only screen and (min-width: $lg) {
+  .stat-tabber .tab{
+    width:12.5%;
   }
 }

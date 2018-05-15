@@ -28,5 +28,4 @@ export const AUTH_USER = 'auth_user',
              SET_ACTIVE_STAT_TAB = "set_active_stat_tab",
              GET_EXPORT_CSV = "get_export_csv",
              SET_IMPORT_MESSAGE = "set_import_message",
-             TOGGLE_LOG_TYPE = "toggle_log_type",
-             TOGGLE_HUNGER_SCALE_DRAWER = "toggle_hunger_scale_drawer";
+             TOGGLE_LOG_TYPE = "toggle_log_type";

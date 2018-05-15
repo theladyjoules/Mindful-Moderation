@@ -7,6 +7,11 @@ import moment from 'moment'
 class Header extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  }
+
+  handleLogoutClick(){
+    this.props.logoutUser()
   }
 
   render() {
@@ -19,19 +24,13 @@ class Header extends React.Component {
             <li><Link to='/'>Today</Link></li>
             <li><Link to={'/calendar' + ('/' + moment().format('MM-YYYY'))}>Calendar</Link></li>
             <li><Link to='/stats'>Stats</Link></li>
+            <li className="divider"></li>
+            <li><Link to='/about'>About</Link></li>
             <li className="nav-dropdown-item">
-              <div className="dropdown-label ion-chevron-down">MindfulMod</div>
-              <ul>
-                <li><Link to='/about'>About</Link></li>
-                <li><Link to='/resources'>Resources</Link></li>
-                <li><Link to='/contact'>Contact</Link></li>
-              </ul>
-            </li>
-            <li className="nav-dropdown-item">
-              <div className="dropdown-label ion-chevron-down">Julie</div>
+              <div className="dropdown-label ion-chevron-down">{this.props.firstName}</div>
               <ul>
                 <li><Link to='/account'>Acccount &amp; Settings</Link></li>
-                <li><a>Logout</a></li>
+                <li><a onClick={this.handleLogoutClick}>Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -40,10 +39,10 @@ class Header extends React.Component {
     }
     else if(!this.props.isLoggedIn){
       userNav = (
-        <nav>
+        <nav className="logged-out">
           <ul>
-            <li><Link to='/login' className="btn btn-white">Login</Link></li>
-            <li><Link to='/register' className="btn btn-green">Sign Up</Link></li>
+            <li><Link to='/login' className="login-cta">Login</Link></li>
+            <li><Link to='/register' className="register-cta">Join</Link></li>
           </ul>
         </nav>
       );
@@ -52,13 +51,16 @@ class Header extends React.Component {
       <header id="main-header">
         <div className="container">
           <div className="row">
-            <div className="col-xs-3 col-sm-3">
-              <Link to='/' className="logo"></Link>
+            <div className="col-xs-4">
+              <Link to='/' className="logo">
+                <div className="logo-circle"></div>
+                <div className="logo-text">eat<span>Mindful</span></div>
+              </Link>
             </div>
-            <div className="col-xs-9 col-sm-9 main-menu-hamburger-wrapper">
+            <div className={"col-xs-8 main-menu-hamburger-wrapper" + (!this.props.isLoggedIn ? ' logged-out' : '')}>
               <a className="main-menu-hamburger ion-navicon" onClick={this.props.toggleNavDrawer}></a>
             </div>
-            <div className="col-xs-9 col-sm-9 main-menu-wrapper">
+            <div className={"col-xs-8 main-menu-wrapper" + (!this.props.isLoggedIn ? ' logged-out' : '')}>
               {userNav}
             </div>
           </div>
@@ -72,6 +74,7 @@ class Header extends React.Component {
 Header = connect(
   state => ({
     isLoggedIn: state.auth.authenticated,
+    firstName: state.auth.firstName
   }),
   { logoutUser }
 )(Header)
