@@ -4,7 +4,7 @@ import { GET_STATS,
 import { getCookie } from '../utilities/cookies';
 import moment from 'moment'
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://cryptic-beyond-37566.herokuapp.com/api';
 
 export function getStats(month = 'all', year = 'all') {
   return function(dispatch) {

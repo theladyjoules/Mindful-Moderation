@@ -11,7 +11,7 @@ import { AUTH_USER,
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 import moment from 'moment'
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://cryptic-beyond-37566.herokuapp.com//api';
 
 export function errorHandler(dispatch, error, type) {  
   let errorMessage = '';

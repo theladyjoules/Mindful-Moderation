@@ -11,11 +11,20 @@ import ImageStatView from '../../images/stat-view.png'
 class Home extends React.Component {
 
   componentWillMount() {
-    document.body.classList.add('homepage');
+    if(!this.props.isLoggedIn){
+      document.body.classList.add('homepage');
+    }
   }
 
   componentWillUnmount() {
     document.body.classList.remove('homepage');
+  }
+
+  shouldComponentUpdate(){
+    if(this.props.isLoggedIn){
+      document.body.classList.remove('homepage');
+    }
+    return true;
   }
 
   render() {

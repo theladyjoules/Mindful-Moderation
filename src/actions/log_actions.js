@@ -13,7 +13,7 @@ import { LOG_MEAL,
 import { getCookie } from '../utilities/cookies';
 import moment from 'moment'
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://cryptic-beyond-37566.herokuapp.com/api';
 
 export function getMealById(mealId) {
   return function(dispatch) {

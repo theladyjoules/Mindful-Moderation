@@ -4,7 +4,7 @@ import { GET_EXPORT_CSV,
 import  store  from '../store/index';
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://cryptic-beyond-37566.herokuapp.com/api';
 
 export function importMealData(form) {
   var formData = new FormData(form);
