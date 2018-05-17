@@ -7,7 +7,6 @@ import $ from 'jquery'
 import Loader from '../global/Loader';
 // import MoodField from './MoodField';
 import { strings } from '../../utilities/strings';
-import { getUrlParameter } from '../../utilities/getUrlParameter';
 import { isInvalidDate, isInvalidTime, isInvalidRequiredField, handleFormFieldFocus, renderField, renderChipField, renderTextarea, renderRadioInput } from '../../utilities/forms';
 import { logMeal, addMood, removeMood, toggleLogType, resetMoods } from '../../actions/log_actions';
 
@@ -420,7 +419,7 @@ LogMeal = reduxForm({
 
 LogMeal = connect(
   state => ({
-    initialValues: {mealDate: getUrlParameter('date') ? moment(getUrlParameter('date')).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'), mealTime: moment().format('kk:mm'), mealDuration: 15},
+    initialValues: {mealDate: state.log.currentDate, mealTime: state.log.currentTime, mealDuration: 15},
     mealHungerBefore: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerBefore' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerBefore : null,
     mealHungerAfter: ('logMeal' in state.form && 'values' in state.form.logMeal && 'mealHungerAfter' in state.form.logMeal.values) ? state.form.logMeal.values.mealHungerAfter : null,
     moods: state.log.moods,

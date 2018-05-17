@@ -4,8 +4,6 @@ import { GET_EXPORT_CSV,
 import  store  from '../store/index';
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 
-const API_URL = 'https://cryptic-beyond-37566.herokuapp.com/api';
-
 export function importMealData(form) {
   var formData = new FormData(form);
   const options = {
@@ -18,7 +16,7 @@ export function importMealData(form) {
   };
 
   return function(dispatch) {
-    fetch(`${API_URL}/import`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/import`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       console.log(data)
@@ -43,7 +41,7 @@ export function importMealData(form) {
 
 export function exportMealData() {  
   return function(dispatch) {
-    fetch(`${API_URL}/export`, {
+    fetch(`${process.env.REACT_APP_API_URL}/export`, {
       headers: { 'Authorization': getCookie('token') }
     })
     .then(function(response) { return response.text(); })

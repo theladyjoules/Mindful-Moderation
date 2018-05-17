@@ -10,6 +10,7 @@ import NotFound404 from './global/NotFound404'
 import RequireAuth from './auth/Require-Auth';
 import NavDrawer from './global/NavDrawer';
 import HungerScaleDrawer from './global/HungerScaleDrawer';
+import moment from 'moment'
 
 import '../styles/vendor/bootstrap.min.css';
 import '../styles/vendor/ionicons.min.css';
@@ -35,8 +36,8 @@ const Account = Loadable({
   loading: Loader,
 });
 
-const LogMeal = Loadable({
-  loader: () => import('./log/LogMeal'),
+const LogMealWrapper = Loadable({
+  loader: () => import('./log/LogMealWrapper'),
   loading: Loader,
 });
 
@@ -82,6 +83,7 @@ class App extends React.Component {
       navDrawerOpen: false,
       hungerScaleDrawerOpen: false
     }
+    console.log(moment().utcOffset())
     this.toggleNavDrawer = this.toggleNavDrawer.bind(this);
     this.toggleHungerScaleDrawer = this.toggleHungerScaleDrawer.bind(this);
   }
@@ -113,7 +115,7 @@ class App extends React.Component {
             <Route exact path='/account' component={RequireAuth(Account)} />  
             <Route exact path='/log-meal' render={()=> 
               this.props.isAuthenticated ? (
-                <LogMeal toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
+                <LogMealWrapper toggleHungerScaleDrawer={this.toggleHungerScaleDrawer} />
               ) : (
                 <Login /> 
               )

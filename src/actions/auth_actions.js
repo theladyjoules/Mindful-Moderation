@@ -11,8 +11,6 @@ import { AUTH_USER,
 import { setCookie, getCookie, deleteCookie } from '../utilities/cookies';
 import moment from 'moment'
 
-const API_URL = 'https://cryptic-beyond-37566.herokuapp.com//api';
-
 export function errorHandler(dispatch, error, type) {  
   let errorMessage = '';
   if(error){
@@ -51,7 +49,7 @@ export function loginUser({ email, password }) {
   };
 
   return function(dispatch) {
-    fetch(`${API_URL}/login`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/login`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       console.log(data)
@@ -78,7 +76,7 @@ export function registerUser({ email, firstName, lastName, password }) {
   };
 
   return function(dispatch) {
-    fetch(`${API_URL}/register`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/register`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       setCookie('token', data.token, '/', null, data.expires, moment().add(data.expires, 's').format('ddd, DD MMM YYYY HH:mm:ss'))
@@ -104,7 +102,7 @@ export function logoutUser() {
 
 export function getAccountData() {  
   return function(dispatch) {
-    fetch(`${API_URL}/account`, {
+    fetch(`${process.env.REACT_APP_API_URL}/account`, {
       headers: { 'Authorization': getCookie('token') }
     })
     .then(function(response) { return response.json(); })
@@ -139,7 +137,7 @@ export function updateUser({email, firstName, lastName}) {
   };
 
   return function(dispatch) {
-    fetch(`${API_URL}/update_user`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/update_user`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       if('success' in data){
@@ -180,7 +178,7 @@ export function updatePassword({currentPassword, password}) {
   };
 
   return function(dispatch) {
-    fetch(`${API_URL}/update_password`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/update_password`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       if('success' in data){

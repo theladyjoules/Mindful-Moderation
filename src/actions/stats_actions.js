@@ -4,11 +4,9 @@ import { GET_STATS,
 import { getCookie } from '../utilities/cookies';
 import moment from 'moment'
 
-const API_URL = 'https://cryptic-beyond-37566.herokuapp.com/api';
-
 export function getStats(month = 'all', year = 'all') {
   return function(dispatch) {
-    fetch(`${API_URL}/stats/${month}/${year}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/stats/${month}/${year}`, {
       headers: { 'Authorization': getCookie('token') }
     })
     .then(function(response) { return response.json(); })

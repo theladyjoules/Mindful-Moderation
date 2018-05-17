@@ -6,6 +6,7 @@ import { LOG_MEAL,
          GET_MEALS_BY_DAY,
          GET_MEAL_BY_ID,
          SET_CURRENT_DAY_MEAL,
+         SET_CURRENT_DATE_TIME,
          UPDATE_MEAL,
          GET_MEALS_BY_MONTH,
          DELETE_MEAL,
@@ -13,11 +14,9 @@ import { LOG_MEAL,
 import { getCookie } from '../utilities/cookies';
 import moment from 'moment'
 
-const API_URL = 'https://cryptic-beyond-37566.herokuapp.com/api';
-
 export function getMealById(mealId) {
   return function(dispatch) {
-    fetch(`${API_URL}/meal/${mealId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/meal/${mealId}`, {
       headers: { 'Authorization': getCookie('token') }
     })
     .then(function(response) { return response.json(); })
@@ -40,8 +39,9 @@ export function getMealById(mealId) {
 }
 
 export function getMealsByDay(day) {
+  const offset = moment().utcOffset()
   return function(dispatch) {
-    fetch(`${API_URL}/day/${day}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/day/${day}/${offset}`, {
       headers: { 'Authorization': getCookie('token') }
     })
     .then(function(response) {
@@ -63,7 +63,7 @@ export function getMealsByDay(day) {
 
 export function getMealsByMonth(month, year) {
   return function(dispatch) {
-    fetch(`${API_URL}/month/${month}/${year}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/month/${month}/${year}`, {
       headers: { 'Authorization': getCookie('token') }
     })
     .then(function(response) {
@@ -100,7 +100,7 @@ export function logMeal({mealDate, mealTime, mealType, mealDuration, mealName, m
     },
   };
   return function(dispatch) {
-    fetch(`${API_URL}/meal/create`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/meal/create`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       if('success' in data && data.success){
@@ -134,7 +134,7 @@ export function deleteMeal(mealId, mealDateHumanFormat) {
     },
   };
   return function(dispatch) {
-    fetch(`${API_URL}/meal/delete`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/meal/delete`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       console.log(data)
@@ -160,7 +160,7 @@ export function editExistingMeal(changedFields) {
     },
   };
   return function(dispatch) {
-    fetch(`${API_URL}/meal/update`, options)
+    fetch(`${process.env.REACT_APP_API_URL}/meal/update`, options)
     .then(function(response) { return response.json(); })
     .then(function(data){
       console.log(data)
@@ -184,7 +184,6 @@ export function setCurrentDayMeal(day, mealId) {
       day: day,
       mealId: mealId
     }
-    console.log(data)
     dispatch({ 
       type: SET_CURRENT_DAY_MEAL,
       payload: data
@@ -192,6 +191,18 @@ export function setCurrentDayMeal(day, mealId) {
   }
 }
 
+export function setCurrentDateTime(date) {  
+  return function(dispatch) {
+    const data ={
+      date: date,
+      time: moment().format('HH:mm')
+    }
+    dispatch({ 
+      type: SET_CURRENT_DATE_TIME,
+      payload: data
+    });
+  }
+}
 export function addMood(mood) {  
   return function(dispatch) {
     dispatch({ 
